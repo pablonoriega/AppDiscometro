@@ -7,6 +7,9 @@
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout-w936dp/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/activity_maps.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_main_map.xml" value="0.12364130434782608" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.12364130434782608" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.12364130434782608" />
       </map>
     </option>
   </component>
