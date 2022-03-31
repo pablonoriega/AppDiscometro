@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_maps" />
     <fragment
         android:id="@+id/favoritosFragment"
-        android:name="com.discometro.FavoritosFragment"
+        android:name="com.discometro.favoritos.FavoritosFragment"
         android:label="Favoritos"
         tools:layout="@layout/fragment_favoritos" />
     <fragment
