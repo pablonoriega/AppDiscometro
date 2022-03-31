@@ -6,26 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".map.MainMapActivity">
 
+
     <androidx.fragment.app.FragmentContainerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/container_Fragment"
+        android:layout_width="414dp"
+        android:layout_height="521dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <fragment
-            android:id="@+id/Mapfragment"
+            android:id="@+id/fragment_map"
             android:name="com.discometro.map.MapsFragment"
-            android:layout_width="403dp"
-            android:layout_height="415dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         </fragment>
 
     </androidx.fragment.app.FragmentContainerView>
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

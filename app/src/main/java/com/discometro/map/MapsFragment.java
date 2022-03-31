@@ -37,12 +37,15 @@ public class MapsFragment extends Fragment {
              //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in barcelona"));
              mMap.moveCamera(CameraUpdateFactory.newLatLng(barcelona));
              **/
+
             // Add a marker in Sydney and move the camera
-            LatLng barcelona = new LatLng(41.39861050229726, 2.1541296260232676 );
+            LatLng shoko = new LatLng(41.38561716518406, 2.196849116060127 );
             //Build camera position
-            CameraPosition cameraPosition = new CameraPosition.Builder() .target(barcelona) .zoom(11).build();
+            CameraPosition cameraPosition = new CameraPosition.Builder() .target(shoko) .zoom(11).build();
             //Zoom in and animate the camera.
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            googleMap.addMarker(new MarkerOptions().position(shoko).title("Shoko"));
+
         }
     };
 
