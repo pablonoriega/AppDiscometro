@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Discometro">
         <activity
-            android:name=".PerfilDisco.PerfilDiscoActivity"
+            android:name=".map.MainMapActivity"
             android:exported="false" />
 
         <meta-data
@@ -22,7 +22,9 @@
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".map.MainMapActivity"
+
+            android:name=".MainActivity"
+
             android:exported="true"
             android:label="@string/title_activity_maps">
             <intent-filter>

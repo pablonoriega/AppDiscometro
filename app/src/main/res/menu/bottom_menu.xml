@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mapsFragment"
+        android:icon="@drawable/ic_map"
+        android:title="@string/mapa" />
+
+    <item
+        android:id="@+id/vueltaSeguraFragment"
+        android:title="@string/vuelta_segura"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/suscripcionesFragment"
+        android:title="@string/suscripciones"
+        android:icon="@drawable/ic_card"/>
+
+    <item
+        android:id="@+id/favoritosFragment"
+        android:title="@string/favoritos"
+        android:icon="@drawable/ic_star"/>
+
+    <item
+        android:id="@+id/perfilUserFragment"
+        android:title="@string/perfil"
+        android:icon="@drawable/ic_person"/>
+</menu>
