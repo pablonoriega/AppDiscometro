@@ -47,6 +47,7 @@
         android:hint="@string/CorreoDNI"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
@@ -60,7 +61,19 @@
         android:hint="@string/Contraseña"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_correo" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="20dp"
+        android:onClick="intentToRegister"
+        android:text="@string/registrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

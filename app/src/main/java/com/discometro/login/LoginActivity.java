@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.discometro.CarteraUser;
 import com.discometro.MainActivity;
 import com.discometro.R;
+import com.discometro.RegistroActivity;
 import com.discometro.User;
 import com.discometro.resources.service.AbstractFactoryData;
 import com.discometro.resources.service.DataService;
@@ -62,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void intentToRegister(View view) {
+        Intent intent = new Intent(getApplicationContext(), RegistroActivity.class);
+        startActivity(intent);
+    }
+
     public void intentToMap(View view) {
         String txt_email = email.getText().toString();
         String txt_pwd = password.getText().toString();
@@ -81,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (remember.isChecked()) {
                         savePreferences();
                     }
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
             }
