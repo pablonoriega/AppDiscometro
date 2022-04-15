@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Discometro">
         <activity
+            android:name=".PerfilDisco.PerfilDiscoTitusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilDisco.PerfilDiscoOttoZutzActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilDisco.PerfilDiscoDowntownActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilDisco.PerfilDiscoPachaActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
@@ -17,6 +29,9 @@
             android:exported="false" />
         <activity
             android:name=".map.MainMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilDisco.PerfilDiscoShokoActivity"
             android:exported="false" />
 
         <meta-data

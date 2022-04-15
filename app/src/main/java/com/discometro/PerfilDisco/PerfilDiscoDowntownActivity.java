@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.discometro.R;
 
-public class PerfilDiscoActivity extends AppCompatActivity {
+public class PerfilDiscoDowntownActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disco_perfil);
+        setContentView(R.layout.activity_perfil_disco_downtown);
     }
 }
