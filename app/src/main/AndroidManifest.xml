@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Discometro">
         <activity
+            android:name=".AgregarVueltaSeguraActivity"
+            android:exported="false" />
+        <activity
             android:name=".PerfilDisco.PerfilDiscoTitusActivity"
             android:exported="false" />
         <activity

@@ -15,6 +15,16 @@
     <string name="Recuérdame">Recuérdame</string>
     <string name="login">LOGIN</string>
     <string name="LogoDiscometro">Logo</string>
+
+    <string name="spinner_vehicles">dropDownMenuExample</string>
+    <string-array name="vehicles">
+        <item>A pie</item>
+        <item>Coche</item>
+        <item>Autobus</item>
+        <item>Moto</item>
+        <item>Taxi</item>
+        <item>Bicicleta</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="vuelta_segura">Vuelta Segura</string>

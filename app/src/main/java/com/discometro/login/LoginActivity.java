@@ -6,10 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.discometro.CarteraUser;
@@ -33,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private CarteraUser carteraUser;
     private AbstractFactoryData factory;
     private DataService dataService;
+    private ImageButton img_btn;
+    private static int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +48,29 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.et_contra);
         remember = findViewById(R.id.cb_recuerdame);
         login = findViewById(R.id.btn_login);
+        img_btn = findViewById(R.id.img_btn);
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
+        num = 0;
         try {
             iniCarteraUser();
         } catch (Exception e) {
 
         }
         loadPreferences();
+        img_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                num++;
+                if (num % 2 != 0) {
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else {
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+
+        });
     }
 
     public boolean iniCarteraUser() throws Exception {

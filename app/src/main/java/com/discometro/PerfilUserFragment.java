@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +24,7 @@ public class PerfilUserFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ImageView mImageView;
 
     public PerfilUserFragment() {
         // Required empty public constructor
@@ -59,6 +61,9 @@ public class PerfilUserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_perfil_user, container, false);
+        mImageView = (ImageView) view.findViewById(R.id.imageView2);
+        mImageView.setImageResource(R.drawable.ottozutz1);
+        return view;
     }
 }
