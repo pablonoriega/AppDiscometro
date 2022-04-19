@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ubicación:"
+                android:textColor="#AC67D3"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -51,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Transporte:"
+                android:textColor="#AC67D3"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -75,6 +77,7 @@
                 android:layout_height="wrap_content"
                 android:cursorVisible="true"
                 android:text="Nº Personas:"
+                android:textColor="#AC67D3"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
@@ -100,10 +103,20 @@
 
             <Button
                 android:id="@+id/btn_accept"
+                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#AC67D3"
                 android:onClick="intentToVueltaSegura"
-                android:text="Aceptar" />
+                android:outlineAmbientShadowColor="#3F51B5"
+                android:outlineSpotShadowColor="#3F51B5"
+                android:text="Aceptar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:iconTintMode="add"
+                app:strokeColor="#AC67D3" />
         </TableRow>
     </TableLayout>
 

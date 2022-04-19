@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -25,7 +24,6 @@ import com.discometro.resources.service.AbstractFactoryData;
 import com.discometro.resources.service.DataService;
 import com.discometro.resources.service.FactoryMOCK;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_login);
         email = findViewById(R.id.et_correo);
         password = findViewById(R.id.et_contra);
         remember = findViewById(R.id.cb_recuerdame);
