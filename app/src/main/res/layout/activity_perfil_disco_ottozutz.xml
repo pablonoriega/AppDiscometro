@@ -1,75 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilDisco.PerfilDiscoShokoActivity">
+    tools:context=".PerfilDisco.PerfilDiscoOttoZutzActivity"
+    tools:ignore="SpeakableTextPresentCheck">
 
     <LinearLayout
-        android:id="@+id/layoutLogo"
-        android:layout_width="412dp"
-        android:layout_height="148dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ottozutzlogo" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/otto_banner" />
 
-    <LinearLayout
-        android:id="@+id/LayoutDesc"
-        android:layout_width="415dp"
-        android:layout_height="128dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutLogo">
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:layout_gravity="bottom|center"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/otto_logo" />
 
-        <TextView
-            android:id="@+id/Descrpicion"
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="-> +18 \n-> 12:30 - 06:00\n-> Se requiere acudir arreglado"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-    </LinearLayout>
+            android:minHeight="70dp">
 
-    <LinearLayout
-        android:id="@+id/layoutFotos"
-        android:layout_width="408dp"
-        android:layout_height="183dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="2dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LayoutDesc">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/FAB_msg_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#AC67D3"
+                android:clickable="true"
+                android:onClick="intentToEmail"
+                app:backgroundTint="#AC67D3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/sym_action_email"
+                tools:ignore="SpeakableTextPresentCheck" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/FAB_items_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#AC67D3"
+                android:clickable="true"
+                android:onClick="intentToObjetosPerdidos"
+                app:backgroundTint="#AC67D3"
+                app:layout_constraintStart_toEndOf="@+id/FAB_msg_otto"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/sym_contact_card"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="361dp"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/FAB_favs_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#AC67D3"
+                android:clickable="true"
+                app:backgroundTint="#AC67D3"
+                app:layout_constraintStart_toEndOf="@+id/FAB_items_otto"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_star"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/FAB_subs_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="40dp"
+                android:backgroundTint="#AC67D3"
+                android:clickable="true"
+                app:backgroundTint="#AC67D3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/FAB_favs_otto"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_card"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ottozutz1" />
+            android:background="@drawable/bg_rounded"
+            android:text="    Mínimo 18 para entrar\n    Se requiere una vestimenta adecuada\n    El horario es de 00:00 a 06:00" />
 
-        <ImageView
-            android:id="@+id/imageView9"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="10dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="Fotos"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_foto1_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="showImage"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/otto_foto1"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/ib_foto2_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="showImage"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/otto_foto2"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Próximos eventos"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ottozutz2" />
-    </LinearLayout>
+            android:layout_height="180dp"
+            android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/ib_event1_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="showImage"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/otto_evento1"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/ib_event2_otto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="showImage"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/otto_evento2"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
