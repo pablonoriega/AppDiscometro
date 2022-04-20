@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.discometro.resources.service.DataService;
 
@@ -47,6 +51,14 @@ public class RegistroActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intentToMapReg(view);
+            }
+
+        });
     }
 
     public boolean isPasswordSafe(String password) {
@@ -62,27 +74,32 @@ public class RegistroActivity extends AppCompatActivity {
         return matcher.find();
     }
 
-    public String validatePassword(String password) {
-        if (!isPasswordSafe(password)) {
-            return "Contraseña no segura";
-        } else
-            return "Contraseña segura";
-    }
+    public void registerUser(String email, String password, String password2, String name, String surname, String birthday, String dni, Boolean acceptedTerms) {
 
-    public String validateUsername(String email) {
-        if (!isEmailSafe(email))
-            return "Correo en formato incorrecto";
-        else
-            return "Correo en formato correcto";
-    }
+        if (email.equals("") || password.equals("") || password2.equals("") || name.equals("") || surname.equals("") || dni.equals("") || birthday.equals("")) {
+            Toast.makeText(this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
+        }
 
-    public String registerUser(String email, String password) {
-        if (isEmailSafe(email) && isPasswordSafe(password)) {
+        if(acceptedTerms == Boolean.FALSE){
+            Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show();
+        }
+
+        if(isEmailSafe(email) && isPasswordSafe(password)){
             User user = carteraUser.find(email);
-            if (user != null) {
-                return "Usuario Duplicado";
-            } else return "Usuario Validado";
-        } else return "Formato incorrecto";
+            if(user != null){
+                Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
+            }
+            if(password.equals(password2)){
+                User u = new User(email, password);
+                carteraUser.addUser(u);
+            } else{
+                Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            Toast.makeText(this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public boolean iniCarteraUser() throws Exception {
@@ -93,6 +110,22 @@ public class RegistroActivity extends AppCompatActivity {
         }
         else {
             return false;
+        }
+    }
+
+    public void intentToMapReg(View view) {
+        String txt_email = email.getText().toString();
+        String txt_pwd = password.getText().toString();
+        String txt_pwd2 = passwordRepeat.getText().toString();
+        String txt_name = name.getText().toString();
+        String txt_surname = surname.getText().toString();
+        String txt_dni = dni.getText().toString();
+        String txt_birthday = birthday.getText().toString();
+        Boolean acceptedTerms = acceptTerms.isChecked();
+
+        registerUser(txt_email,txt_pwd,txt_pwd2,txt_name,txt_surname,txt_birthday,txt_dni,acceptedTerms);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
         }
     }
 

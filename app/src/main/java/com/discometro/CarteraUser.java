@@ -18,4 +18,8 @@ public class CarteraUser {
         }
         return null;
     }
+
+    public void addUser(User u){
+        listUser.add(u);
+    }
 }
