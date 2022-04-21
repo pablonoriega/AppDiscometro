@@ -34,13 +34,13 @@ public class PerfilDiscoDowntownActivity extends AppCompatActivity implements Bo
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        ib_1 = findViewById(R.id.ib_foto1_downtown);
-        ib_2 = findViewById(R.id.ib_foto2_downtown);
-        ib_3 = findViewById(R.id.ib_event_downtown);
-        fab_msg = findViewById(R.id.FAB_msg_downtown);
-        fab_items = findViewById(R.id.FAB_items_downtown);
-        fab_favs = findViewById(R.id.FAB_favs_downtown);
-        fab_subs = findViewById(R.id.FAB_subs_downtown);
+        ib_1 = findViewById(R.id.ib_foto1_pacha);
+        ib_2 = findViewById(R.id.ib_foto2_pacha);
+        ib_3 = findViewById(R.id.ib_event1_pacha);
+        fab_msg = findViewById(R.id.FAB_msg_pacha);
+        fab_items = findViewById(R.id.FAB_items_pacha);
+        fab_favs = findViewById(R.id.FAB_favs_pacha);
+        fab_subs = findViewById(R.id.FAB_subs_pacha);
 
     }
 

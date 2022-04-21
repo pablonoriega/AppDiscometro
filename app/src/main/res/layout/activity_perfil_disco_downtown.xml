@@ -38,7 +38,7 @@
                 app:srcCompat="@drawable/downtownlogocrop" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/FAB_msg_downtown"
+                android:id="@+id/FAB_msg_pacha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -53,7 +53,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/FAB_items_downtown"
+                android:id="@+id/FAB_items_pacha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="120dp"
@@ -68,7 +68,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/FAB_favs_downtown"
+                android:id="@+id/FAB_favs_pacha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="120dp"
@@ -82,7 +82,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/FAB_subs_downtown"
+                android:id="@+id/FAB_subs_pacha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
@@ -127,7 +127,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/ib_foto1_downtown"
+                android:id="@+id/ib_foto1_pacha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.12"
@@ -138,7 +138,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageButton
-                android:id="@+id/ib_foto2_downtown"
+                android:id="@+id/ib_foto2_pacha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -164,7 +164,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/ib_event_downtown"
+                android:id="@+id/ib_event1_pacha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
