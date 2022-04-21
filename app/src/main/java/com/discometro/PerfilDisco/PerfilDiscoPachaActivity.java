@@ -38,7 +38,7 @@ public class PerfilDiscoPachaActivity extends AppCompatActivity implements Boton
         ib_2 = findViewById(R.id.ib_foto2_pacha);
         ib_3 = findViewById(R.id.ib_event1_pacha);
         ib_4 = findViewById(R.id.ib_event2_pacha);
-        fab_msg = findViewById(R.id.FAB_msg_pacha);
+        fab_msg = findViewById(R.id.FAB_msg_shoko);
         fab_items = findViewById(R.id.FAB_items_pacha);
         fab_favs = findViewById(R.id.FAB_favs_pacha);
         fab_subs = findViewById(R.id.FAB_subs_pacha);

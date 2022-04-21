@@ -37,7 +37,7 @@ public class PerfilDiscoDowntownActivity extends AppCompatActivity implements Bo
         ib_1 = findViewById(R.id.ib_foto1_pacha);
         ib_2 = findViewById(R.id.ib_foto2_pacha);
         ib_3 = findViewById(R.id.ib_event1_pacha);
-        fab_msg = findViewById(R.id.FAB_msg_pacha);
+        fab_msg = findViewById(R.id.FAB_msg_shoko);
         fab_items = findViewById(R.id.FAB_items_pacha);
         fab_favs = findViewById(R.id.FAB_favs_pacha);
         fab_subs = findViewById(R.id.FAB_subs_pacha);
