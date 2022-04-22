@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +32,7 @@ public class VueltaSeguraFragment extends Fragment {
     private String mParam2;
 
     private Button btn;
-    private ArrayList<String> listItems;
+    private List<VueltaSeguraCardItem> listItems;
     private RecyclerView recyclerView;
 
     public VueltaSeguraFragment() {
@@ -73,15 +74,17 @@ public class VueltaSeguraFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_vuelta_segura, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewVuelta);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        listItems = new ArrayList<String>();
-        for (int i = 0; i <= 50; i++) {
-            listItems.add("Dato " + i);
-        }
+        listItems = new ArrayList<VueltaSeguraCardItem>();
+        VueltaSeguraCardItem cardItem = new VueltaSeguraCardItem("Adri", "@srnatsu", "Coche", "Badalona");
+        listItems.add(cardItem);
+        listItems.add(new VueltaSeguraCardItem("Pepe", "pepe", "bici", "bcn"));
         VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems);
         recyclerView.setAdapter(adapter);
         return view;
         //return inflater.inflate(R.layout.fragment_vuelta_segura, container, false);
     }
+
+
 
     public void intentToAgregarVueltaSegura(View view) {
         ((MainActivity)getActivity()).intentToAgregarVueltaSegura(view);

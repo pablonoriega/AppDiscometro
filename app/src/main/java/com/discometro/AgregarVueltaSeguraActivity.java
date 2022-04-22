@@ -18,7 +18,7 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private TextView number_amount;
-    private EditText number;
+    private EditText location, number;
     private ViewGroup container;
 
     @Override

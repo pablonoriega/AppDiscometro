@@ -3,18 +3,20 @@ package com.discometro;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraItemAdapter.ViewHolderItems> {
 
-    ArrayList<String> listItems;
+    private List<VueltaSeguraCardItem> listItems;
 
-    public VueltaSeguraItemAdapter(ArrayList<String> listItems) {
+    public VueltaSeguraItemAdapter(List<VueltaSeguraCardItem> listItems) {
         this.listItems = listItems;
     }
 
@@ -26,7 +28,11 @@ public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraIt
 
     @Override
     public void onBindViewHolder(VueltaSeguraItemAdapter.ViewHolderItems holder, int position) {
-        holder.asignarItems(listItems.get(position));
+        String usuario = listItems.get(position).getUsuario();
+        String usuarioid = listItems.get(position).getUsuarioid();
+        String vehicle = listItems.get(position).getVehicle();
+        String location = listItems.get(position).getLocation();
+        ((ViewHolderItems)holder).asignarItems(usuario, usuarioid, vehicle, location);
     }
 
     @Override
@@ -36,15 +42,21 @@ public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraIt
 
     public class ViewHolderItems extends RecyclerView.ViewHolder {
 
-        TextView textView;
+        private TextView usuario, usuarioid, vehicle, location;
 
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.idVueltaSeguraItem);
+            usuario = (TextView) itemView.findViewById(R.id.tv_usuario_vuelta_segura_item);
+            usuarioid = (TextView) itemView.findViewById(R.id.tv_usuarioid_vuelta_segura_item);
+            vehicle = (TextView) itemView.findViewById(R.id.tv_vehicle_vuelta_segura_item);
+            location = (TextView) itemView.findViewById(R.id.tv_location_vuelta_segura_item);
         }
 
-        public void asignarItems(String s) {
-            textView.setText(s);
+        public void asignarItems(String usuario, String usuarioid, String vehicle, String location) {
+            this.usuario.setText(usuario);
+            this.usuarioid.setText(usuarioid);
+            this.vehicle.setText(vehicle);
+            this.location.setText(location);
         }
     }
 }
