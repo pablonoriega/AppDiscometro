@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.discometro.CarteraUser;
 import com.discometro.MainActivity;
 import com.discometro.R;
-import com.discometro.RegistroActivity;
+import com.discometro.registro.RegistroActivity;
 import com.discometro.User;
 import com.discometro.resources.service.AbstractFactoryData;
 import com.discometro.resources.service.DataService;

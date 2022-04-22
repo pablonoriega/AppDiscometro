@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Discometro">
         <activity
+            android:name=".PantallaInicioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarObjetoPerdidoActivity"
+            android:exported="false" />
+        <activity
             android:name=".AgregarVueltaSeguraActivity"
             android:exported="false" />
         <activity
@@ -25,7 +31,7 @@
             android:name=".PerfilDisco.PerfilDiscoPachaActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistroActivity"
+            android:name=".registro.RegistroActivity"
             android:exported="false" />
         <activity
             android:name=".objetosPerdidos.ObjetosPerdidosActivity"

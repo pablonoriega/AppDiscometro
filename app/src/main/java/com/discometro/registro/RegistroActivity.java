@@ -1,4 +1,4 @@
-package com.discometro;
+package com.discometro.registro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.discometro.CarteraUser;
+import com.discometro.MainActivity;
+import com.discometro.R;
+import com.discometro.User;
+import com.discometro.map.MainMapActivity;
+import com.discometro.map.MapsFragment;
 import com.discometro.resources.service.DataService;
 
 import java.util.*;
@@ -74,41 +80,12 @@ public class RegistroActivity extends AppCompatActivity {
         return matcher.find();
     }
 
-    public void registerUser(String email, String password, String password2, String name, String surname, String birthday, String dni, Boolean acceptedTerms) {
-
-        if (email.equals("") || password.equals("") || password2.equals("") || name.equals("") || surname.equals("") || dni.equals("") || birthday.equals("")) {
-            Toast.makeText(this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
-        }
-
-        if(acceptedTerms == Boolean.FALSE){
-            Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show();
-        }
-
-        if(isEmailSafe(email) && isPasswordSafe(password)){
-            User user = carteraUser.find(email);
-            if(user != null){
-                Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
-            }
-            if(password.equals(password2)){
-                User u = new User(email, password);
-                carteraUser.addUser(u);
-            } else{
-                Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();
-            }
-
-        } else {
-            Toast.makeText(this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
     public boolean iniCarteraUser() throws Exception {
         List<User> list = dataService.getAllUsers();
         if (list != null) {
             carteraUser = new CarteraUser(list);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -123,10 +100,39 @@ public class RegistroActivity extends AppCompatActivity {
         String txt_birthday = birthday.getText().toString();
         Boolean acceptedTerms = acceptTerms.isChecked();
 
-        registerUser(txt_email,txt_pwd,txt_pwd2,txt_name,txt_surname,txt_birthday,txt_dni,acceptedTerms);
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        if (txt_email.equals("") || txt_pwd.equals("") || txt_pwd2.equals("") || txt_name.equals("") || txt_surname.equals("") || txt_dni.equals("") || txt_birthday.equals("")) {
+            Toast.makeText(this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
+        } else {
+            if (acceptedTerms == Boolean.FALSE) {
+                Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show();
+            } else {
+
+                if (isEmailSafe(txt_email) && isPasswordSafe(txt_pwd)) {
+                    User user = carteraUser.find(txt_email);
+                    if (user != null) {
+                        Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        if (txt_pwd.equals(txt_pwd2)) {
+                            User u = new User(txt_email, txt_pwd);
+                            carteraUser.addUser(u);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                } else {
+                    Toast.makeText(this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                }
+            }
+
         }
+
     }
+}
+
 
 
