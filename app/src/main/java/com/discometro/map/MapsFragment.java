@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.discometro.MainActivity;
 import com.discometro.PerfilDisco.PerfilDiscoPachaActivity;
 import com.discometro.PerfilDisco.PerfilDiscoShokoActivity;
 import com.discometro.R;
+import com.discometro.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,12 +30,13 @@ import java.util.ArrayList;
 
 public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickListener {
     private GoogleMap mMap;
-    SupportMapFragment mapFragment;
-    View view;
-    Button button;
-    String nameDisco;
-    Intent intent;
-    Class claseDisco;
+    private SupportMapFragment mapFragment;
+    private View view;
+    private Button button;
+    private String nameDisco;
+    private Intent intent;
+    private Class claseDisco;
+    private User u;
 
 
 
@@ -68,6 +71,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
              mMap.moveCamera(CameraUpdateFactory.newLatLng(barcelona));
              **/
             mMap = googleMap;
+            u=((MainActivity)getActivity()).getUser();
 
             // below line is to add marker to google maps
             for (int i = 0; i < latLngArrayList.size(); i++) {
@@ -124,6 +128,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                     //  Block of code to handle errors
                 }
                 intent = new Intent(getContext(), claseDisco);
+                intent.putExtra("usuario",u);
                 startActivity(intent);
             }
         });

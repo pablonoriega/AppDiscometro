@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.discometro.favoritos.FavoritosFragment;
 import com.discometro.map.MapsFragment;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private SuscripcionesFragment suscripcionesFragment;
     private FavoritosFragment favoritosFragment;
     private PerfilUserFragment perfilUserFragment;
+    private User u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,20 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.mapsFragment, R.id.vueltaSeguraFragment, R.id.suscripcionesFragment, R.id.favoritosFragment, R.id.perfilUserFragment).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        Intent intent = getIntent();
+         u= intent.getParcelableExtra("usuario");
+
+
+
+
     }
 
     public void intentToAgregarVueltaSegura(View view) {
         Intent intent = new Intent(this, AgregarVueltaSeguraActivity.class);
         startActivity(intent);
+    }
+
+    public User getUser(){
+        return this.u;
     }
 }

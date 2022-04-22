@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private AbstractFactoryData factory;
     private DataService dataService;
     private ImageButton img_btn;
+    private User u;
     private static int num;
 
     @Override
@@ -94,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Rellena los espacios", Toast.LENGTH_SHORT).show();
         }
         else {
-            User u = carteraUser.find(txt_email);
+            u = carteraUser.find(txt_email);
             if (u == null) {
                 Toast.makeText(this, "Correo incorrecto", Toast.LENGTH_SHORT).show();
             }
@@ -107,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                         savePreferences();
                     }
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("usuario",u);
                     startActivity(intent);
                 }
             }

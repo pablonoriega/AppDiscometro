@@ -9,14 +9,14 @@
     tools:context=".favoritos.FavoritosFragment" >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RecyclerView"
-        />
+        android:layout_width="99dp"
+        android:layout_height="70dp"
+        android:text="RecyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFavs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="385dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp" />
 
 </LinearLayout>

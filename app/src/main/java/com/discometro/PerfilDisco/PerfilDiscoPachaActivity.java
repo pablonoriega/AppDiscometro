@@ -1,13 +1,18 @@
 package com.discometro.PerfilDisco;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.TintContextWrapper;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.view.TintableBackgroundView;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +21,11 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.discometro.MainActivity;
 import com.discometro.R;
+import com.discometro.User;
 import com.discometro.objetosPerdidos.ObjetosPerdidosActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,6 +33,9 @@ public class PerfilDiscoPachaActivity extends AppCompatActivity implements Boton
 
     private ImageButton ib_1, ib_2, ib_3, ib_4;
     private FloatingActionButton fab_msg, fab_items, fab_favs, fab_subs;
+    private Intent intent;
+    private User u;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +53,25 @@ public class PerfilDiscoPachaActivity extends AppCompatActivity implements Boton
         fab_items = findViewById(R.id.FAB_items_pacha);
         fab_favs = findViewById(R.id.FAB_favs_pacha);
         fab_subs = findViewById(R.id.FAB_subs_pacha);
+
+        intent=getIntent();
+        u= intent.getParcelableExtra("usuario");
+        name="Pacha";
+
+        habilitarNoFavs();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Toast.makeText(getApplicationContext(), u.getListFavoritos().size()+" ", Toast.LENGTH_SHORT).show();
+                Intent vuelta = new Intent(getApplicationContext(), MainActivity.class);
+                vuelta.putExtra("usuario",u);
+                startActivity(vuelta);
+
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this,callback);
+
     }
 
     @Override
@@ -84,5 +114,19 @@ public class PerfilDiscoPachaActivity extends AppCompatActivity implements Boton
     public void intentToObjetosPerdidos(View view) {
         Intent intent = new Intent(this, ObjetosPerdidosActivity.class);
         startActivity(intent);
+    }
+    public void añadirFavorito(View view){
+        u.añadirFavorito(name);
+        Toast.makeText(getApplicationContext(),"Se ha añadido "+name+" a favoritos", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    private void habilitarNoFavs(){
+        if(u.getListFavoritos().contains(name)){
+            Toast.makeText(getApplicationContext(),"pasa", Toast.LENGTH_SHORT).show();
+            fab_favs.setClickable(false);
+
+        }
     }
 }

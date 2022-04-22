@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.discometro.FavoritosAdapter;
+import com.discometro.MainActivity;
 import com.discometro.R;
+import com.discometro.User;
 
 import java.util.ArrayList;
 
@@ -33,6 +36,7 @@ public class FavoritosFragment extends Fragment {
 
     private ArrayList<String> listItems;
     private RecyclerView recyclerView;
+    private User u;
 
     public FavoritosFragment() {
         // Required empty public constructor
@@ -72,10 +76,9 @@ public class FavoritosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewFavs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        listItems = new ArrayList<>();
-        for (int i = 0; i <= 50; i++) {
-            listItems.add("Item " + i);
-        }
+
+        u=((MainActivity)getActivity()).getUser();
+        listItems = u.getListFavoritos();
 
         FavoritosAdapter adapter = new FavoritosAdapter(listItems);
         recyclerView.setAdapter(adapter);
