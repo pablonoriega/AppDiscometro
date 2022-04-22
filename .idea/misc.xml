@@ -39,20 +39,22 @@
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.118" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.106640625" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_agregar_objeto_perdido.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_agregar_vuelta_segura.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/activity_disco_perfil.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main_map.xml" value="0.12364130434782608" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.12364130434782608" />
-        <entry key="app/src/main/res/layout/activity_objetos_perdidos.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_objetos_perdidos.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_pantalla_inicio.xml" value="0.2056159420289855" />
         <entry key="app/src/main/res/layout/activity_perfil_disco.xml" value="0.23245630678923235" />
-        <entry key="app/src/main/res/layout/activity_perfil_disco_pacha.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/activity_perfil_disco_downtown.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_perfil_disco_shoko.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/activity_perfil_disco_titus.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_registro.xml" value="0.25843048095703125" />
-        <entry key="app/src/main/res/layout/fragment_favoritos.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_registro.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.12364130434782608" />
         <entry key="app/src/main/res/layout/fragment_perfil_user.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/fragment_suscripciones.xml" value="0.20244565217391305" />
