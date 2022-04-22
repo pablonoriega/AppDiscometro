@@ -3,12 +3,17 @@ package com.discometro.favoritos;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.discometro.FavoritosAdapter;
 import com.discometro.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +30,9 @@ public class FavoritosFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ArrayList<String> listItems;
+    private RecyclerView recyclerView;
 
     public FavoritosFragment() {
         // Required empty public constructor
@@ -61,6 +69,17 @@ public class FavoritosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favoritos, container, false);
+        View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewFavs);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        listItems = new ArrayList<>();
+        for (int i = 0; i <= 50; i++) {
+            listItems.add("Item " + i);
+        }
+
+        FavoritosAdapter adapter = new FavoritosAdapter(listItems);
+        recyclerView.setAdapter(adapter);
+        return view;
+        //return inflater.inflate(R.layout.fragment_favoritos, container, false);
     }
 }
