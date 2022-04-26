@@ -76,6 +76,7 @@
                 android:layout_marginTop="4dp"
                 android:backgroundTint="#AC67D3"
                 android:clickable="true"
+                android:onClick="añadirFavorito"
                 app:backgroundTint="#AC67D3"
                 app:layout_constraintStart_toEndOf="@+id/FAB_items_otto"
                 app:layout_constraintTop_toTopOf="parent"

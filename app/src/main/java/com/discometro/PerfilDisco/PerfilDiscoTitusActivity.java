@@ -1,5 +1,6 @@
 package com.discometro.PerfilDisco;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +17,11 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.discometro.MainActivity;
 import com.discometro.R;
+import com.discometro.User;
 import com.discometro.objetosPerdidos.ObjetosPerdidosActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,6 +29,12 @@ public class PerfilDiscoTitusActivity extends AppCompatActivity implements Boton
 
     private ImageButton ib_1, ib_2, ib_3, ib_4;
     private FloatingActionButton fab_msg, fab_items, fab_favs, fab_subs;
+
+    Intent intent;
+    private User u;
+    private String name;
+    private String numLogo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,24 @@ public class PerfilDiscoTitusActivity extends AppCompatActivity implements Boton
         fab_items = findViewById(R.id.FAB_items_titus);
         fab_favs = findViewById(R.id.FAB_favs_titus);
         fab_subs = findViewById(R.id.FAB_subs_titus);
+
+        intent=getIntent();
+        u= intent.getParcelableExtra("usuario");
+        numLogo= R.drawable.titus_logo+"";
+        name="Titus";
+
+
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent vuelta = new Intent(getApplicationContext(), MainActivity.class);
+                vuelta.putExtra("usuario",u);
+                startActivity(vuelta);
+
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this,callback);
 
     }
 
@@ -85,5 +113,14 @@ public class PerfilDiscoTitusActivity extends AppCompatActivity implements Boton
     public void intentToObjetosPerdidos(View view) {
         Intent intent = new Intent(this, ObjetosPerdidosActivity.class);
         startActivity(intent);
+    }
+
+    public void añadirFavorito(View view){
+        if(!u.getListFavoritos().contains(numLogo)){
+            u.añadirFavorito(numLogo);
+            Toast.makeText(getApplicationContext(),"Se ha añadido "+name+" a favoritos", Toast.LENGTH_SHORT).show();
+
+
+        }
     }
 }

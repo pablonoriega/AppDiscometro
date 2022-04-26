@@ -58,6 +58,9 @@ public class User implements Parcelable {
     public void añadirFavorito(String nameDisco){
         this.listFavoritos.add(nameDisco);
     }
+    public void eliminarFavorito(String nameDisco){
+        listFavoritos.remove(nameDisco);
+    }
 
     @Override
     public int describeContents() {

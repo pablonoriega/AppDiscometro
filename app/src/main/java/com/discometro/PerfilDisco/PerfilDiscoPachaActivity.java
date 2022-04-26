@@ -36,6 +36,7 @@ public class PerfilDiscoPachaActivity extends AppCompatActivity implements Boton
     private Intent intent;
     private User u;
     private String name;
+    private String numLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +57,14 @@ public class PerfilDiscoPachaActivity extends AppCompatActivity implements Boton
 
         intent=getIntent();
         u= intent.getParcelableExtra("usuario");
+        numLogo= R.drawable.pacha_logo+"";
         name="Pacha";
 
-        habilitarNoFavs();
+
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Toast.makeText(getApplicationContext(), u.getListFavoritos().size()+" ", Toast.LENGTH_SHORT).show();
                 Intent vuelta = new Intent(getApplicationContext(), MainActivity.class);
                 vuelta.putExtra("usuario",u);
                 startActivity(vuelta);
@@ -116,17 +117,13 @@ public class PerfilDiscoPachaActivity extends AppCompatActivity implements Boton
         startActivity(intent);
     }
     public void añadirFavorito(View view){
-        u.añadirFavorito(name);
-        Toast.makeText(getApplicationContext(),"Se ha añadido "+name+" a favoritos", Toast.LENGTH_SHORT).show();
+        if(!u.getListFavoritos().contains(numLogo)){
+             u.añadirFavorito(numLogo);
+              Toast.makeText(getApplicationContext(),"Se ha añadido "+name+" a favoritos", Toast.LENGTH_SHORT).show();
 
-
-    }
-
-    private void habilitarNoFavs(){
-        if(u.getListFavoritos().contains(name)){
-            Toast.makeText(getApplicationContext(),"pasa", Toast.LENGTH_SHORT).show();
-            fab_favs.setClickable(false);
 
         }
     }
+
+
 }
