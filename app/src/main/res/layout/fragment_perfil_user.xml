@@ -138,4 +138,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/changePhotoBtn"
+        android:layout_width="32dp"
+        android:layout_height="37dp"
+        android:background="@color/common_google_signin_btn_tint"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.327"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.182"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        app:tint="#AC67D3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

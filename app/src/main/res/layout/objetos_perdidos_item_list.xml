@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_vuelta_segura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/nombreObj_objetos_perdidos_item"
+                android:layout_width="4dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/imgUserProfile"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/usuario_objetos_perdidos_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/imgUserProfile"
+                app:layout_constraintTop_toBottomOf="@+id/nombreObj_objetos_perdidos_item" />
+
+            <ImageView
+                android:id="@+id/imgUserProfile"
+                android:layout_width="63dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/downtownlogocrop" />
+
+            <TextView
+                android:id="@+id/descripcion_objetos_perdidos_item"
+                android:layout_width="168dp"
+                android:layout_height="55dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.411"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.836" />
+
+            <Button
+                android:id="@+id/buttonReclamar"
+                android:layout_width="111dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="112dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="3dp"
+                android:text="RECLAMAR"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/objetoPerdidoImagen"
+                android:layout_width="58dp"
+                android:layout_height="54dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.07"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.838"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+</LinearLayout>
