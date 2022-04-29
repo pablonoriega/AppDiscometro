@@ -43,4 +43,18 @@
         app:srcCompat="@drawable/addbtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/objPerdidosRecycler"
+        android:layout_width="409dp"
+        android:layout_height="454dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/addObjectBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/objetosPerdidosTxt"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

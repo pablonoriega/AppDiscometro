@@ -3,13 +3,11 @@ package com.discometro;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraItemAdapter.ViewHolderItems> {
@@ -46,9 +44,9 @@ public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraIt
 
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
-            usuario = (TextView) itemView.findViewById(R.id.tv_usuario_vuelta_segura_item);
-            usuarioid = (TextView) itemView.findViewById(R.id.tv_usuarioid_vuelta_segura_item);
-            vehicle = (TextView) itemView.findViewById(R.id.tv_vehicle_vuelta_segura_item);
+            usuario = (TextView) itemView.findViewById(R.id.nombreObj_objetos_perdidos_item);
+            usuarioid = (TextView) itemView.findViewById(R.id.usuario_objetos_perdidos_item);
+            vehicle = (TextView) itemView.findViewById(R.id.descripcion_objetos_perdidos_item);
             location = (TextView) itemView.findViewById(R.id.tv_location_vuelta_segura_item);
         }
 

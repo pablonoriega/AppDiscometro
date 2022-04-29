@@ -1,8 +1,5 @@
 package com.discometro.favoritos;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.discometro.R;
-import com.discometro.VueltaSeguraCardItem;
 
 import java.util.List;
 
@@ -32,7 +27,7 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
     public FavoritosItemAdapter.ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favoritos_item_list, null, false);
 
-        eliminar=view.findViewById(R.id.buttonEliminarFav);
+        eliminar=view.findViewById(R.id.buttonReclamar);
         return new ViewHolderItems(view);
     }
 
@@ -57,7 +52,7 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
 
-            logoDisco= (ImageView) itemView.findViewById(R.id.imgLogoFavs);
+            logoDisco= (ImageView) itemView.findViewById(R.id.imgUserProfile);
 
 
         }

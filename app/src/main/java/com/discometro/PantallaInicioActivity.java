@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.discometro.login.LoginActivity;
+
 public class PantallaInicioActivity extends AppCompatActivity {
 
     @Override
@@ -17,7 +19,7 @@ public class PantallaInicioActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent ventanaLogin = new Intent(getApplicationContext(), MainActivity.class);
+                Intent ventanaLogin = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(ventanaLogin);
                 finish();
             }
