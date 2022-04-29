@@ -1,10 +1,12 @@
-package com.discometro;
+package com.discometro.objetosPerdidos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.discometro.R;
 
 public class AgregarObjetoPerdidoActivity extends AppCompatActivity {
 

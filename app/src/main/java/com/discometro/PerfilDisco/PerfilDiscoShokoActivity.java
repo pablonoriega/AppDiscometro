@@ -114,8 +114,9 @@ public class PerfilDiscoShokoActivity extends AppCompatActivity implements Boton
         if(!u.getListFavoritos().contains(numLogo)){
             u.añadirFavorito(numLogo);
             Toast.makeText(getApplicationContext(),"Se ha añadido "+name+" a favoritos", Toast.LENGTH_SHORT).show();
-
-
+        }
+        else if(u.getListFavoritos().contains(numLogo)){
+            Toast.makeText(getApplicationContext(),name + " ya se encuentra en favoritos", Toast.LENGTH_SHORT).show();
         }
     }
 }

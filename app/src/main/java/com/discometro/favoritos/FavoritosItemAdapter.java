@@ -38,8 +38,6 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
 
     @Override
     public void onBindViewHolder(FavoritosItemAdapter.ViewHolderItems holder, int position) {
-        String usuario = listItems.get(position).getUsuario();
-        String usuarioid = listItems.get(position).getUsuarioid();
         String nameDisco= listItems.get(position).getNameDisco();
         ((ViewHolderItems)holder).asignarItems(nameDisco);
     }

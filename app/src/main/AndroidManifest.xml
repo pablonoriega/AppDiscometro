@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.discometro" >
+    package="com.discometro">
 
     <application
         android:allowBackup="true"
@@ -8,12 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Discometro" >
+        android:theme="@style/Theme.Discometro">
+        <activity
+            android:name=".dataBase.DataBaseAdapter"
+            android:exported="false" />
         <activity
             android:name=".PantallaInicioActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarObjetoPerdidoActivity"
+            android:name=".objetosPerdidos.AgregarObjetoPerdidoActivity"
             android:exported="false" />
         <activity
             android:name=".AgregarVueltaSeguraActivity"
@@ -54,7 +57,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

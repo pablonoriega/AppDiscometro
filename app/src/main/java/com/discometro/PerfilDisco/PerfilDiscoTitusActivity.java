@@ -122,5 +122,8 @@ public class PerfilDiscoTitusActivity extends AppCompatActivity implements Boton
 
 
         }
+        else if(u.getListFavoritos().contains(numLogo)){
+            Toast.makeText(getApplicationContext(),name + " ya se encuentra en favoritos", Toast.LENGTH_SHORT).show();
+        }
     }
 }
