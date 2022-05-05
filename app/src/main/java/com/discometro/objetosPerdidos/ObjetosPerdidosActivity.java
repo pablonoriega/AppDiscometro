@@ -34,7 +34,7 @@ public class ObjetosPerdidosActivity extends AppCompatActivity {
     }
 
     public void intentToAddLostObjects(View view){
-        Intent intent = new Intent(getApplicationContext(), AgregarObjetoPerdidoActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(getApplicationContext(), AgregarObjetoPerdidoActivity.class);
+        //startActivity(intent);
     }
 }

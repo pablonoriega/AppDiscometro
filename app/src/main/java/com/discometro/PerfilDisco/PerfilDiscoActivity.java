@@ -3,6 +3,7 @@ package com.discometro.PerfilDisco;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -22,10 +23,13 @@ import android.widget.Toast;
 import com.discometro.MainActivity;
 import com.discometro.R;
 import com.discometro.User;
+import com.discometro.ViewModel.ViewModelMain;
 import com.discometro.objetosPerdidos.ObjetosPerdidosActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class PerfilDiscoTitusActivity extends AppCompatActivity implements BotonesPerfilDisco {
+import java.util.ArrayList;
+
+public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPerfilDisco {
 
     private ImageButton ib_1, ib_2, ib_3, ib_4;
     private FloatingActionButton fab_msg, fab_items, fab_favs, fab_subs;
@@ -34,11 +38,25 @@ public class PerfilDiscoTitusActivity extends AppCompatActivity implements Boton
     private User u;
     private String name;
     private String numLogo;
+    private ViewModelMain vm;
+    private PerfilDisco disco;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        vm = new ViewModelProvider(this).get(ViewModelMain.class);
+        disco = vm.getDiscoByName("Titus");
+        intent=getIntent();
+        Bundle extras = intent.getExtras();
+        u= extras.getParcelable("usuario");
+        name= extras.getString("nameDisco");
+
+
+
+
+
         setContentView(R.layout.activity_perfil_disco_titus);
 
         ActionBar actionBar = getSupportActionBar();
@@ -52,11 +70,6 @@ public class PerfilDiscoTitusActivity extends AppCompatActivity implements Boton
         fab_items = findViewById(R.id.FAB_items_titus);
         fab_favs = findViewById(R.id.FAB_favs_titus);
         fab_subs = findViewById(R.id.FAB_subs_titus);
-
-        intent=getIntent();
-        u= intent.getParcelableExtra("usuario");
-        numLogo= R.drawable.titus_logo+"";
-        name="Titus";
 
 
 

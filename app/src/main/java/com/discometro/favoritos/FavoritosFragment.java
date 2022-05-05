@@ -86,10 +86,11 @@ public class FavoritosFragment extends Fragment {
         u=((MainActivity)getActivity()).getUser();
         listNombres = u.getListFavoritos();
 
+
         if(!listNombres.isEmpty()){
             for(int i=0; i<listNombres.size();i++){
                 String logoDisco=listNombres.get(i);
-                FavoritosCardItem card= new FavoritosCardItem("juan", "asdf",logoDisco);
+                FavoritosCardItem card= new FavoritosCardItem(u.getName(), u.getCorreo(),logoDisco);
                 listItems.add(card);
             }
 

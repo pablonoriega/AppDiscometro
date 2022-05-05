@@ -3,6 +3,7 @@ package com.discometro.map;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +14,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.discometro.MainActivity;
+import com.discometro.PerfilDisco.PerfilDisco;
+import com.discometro.PerfilDisco.PerfilDiscoActivity;
 import com.discometro.PerfilDisco.PerfilDiscoPachaActivity;
 import com.discometro.PerfilDisco.PerfilDiscoShokoActivity;
 import com.discometro.R;
 import com.discometro.User;
+import com.discometro.ViewModel.ViewModelMain;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,6 +41,8 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     private Intent intent;
     private Class claseDisco;
     private User u;
+
+
 
 
 
@@ -97,8 +103,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                     //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.map,perfil).addToBackStack(null).commit();
                     button.setVisibility(view.VISIBLE);
                     nameDisco=marker.getTitle();
-                    //Obtenir nom de l'activity corresponent
-                    nameDisco="com.discometro.PerfilDisco.PerfilDisco"+marker.getTitle()+"Activity";
+
 
 
                     return false;
@@ -127,8 +132,13 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                 catch(Exception e) {
                     //  Block of code to handle errors
                 }
-                intent = new Intent(getContext(), claseDisco);
-                intent.putExtra("usuario",u);
+
+                intent = new Intent(getContext(), PerfilDiscoActivity.class);
+                Bundle extras = new Bundle();
+                extras.putParcelable("usuario",u);
+                extras.putString("nameDisco",nameDisco);
+                intent.putExtras(extras);
+
                 startActivity(intent);
             }
         });

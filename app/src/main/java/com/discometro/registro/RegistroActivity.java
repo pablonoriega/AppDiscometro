@@ -1,6 +1,7 @@
 package com.discometro.registro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.discometro.CarteraUser;
 import com.discometro.MainActivity;
 import com.discometro.R;
 import com.discometro.User;
+import com.discometro.ViewModel.ViewModelMain;
 import com.discometro.map.MainMapActivity;
 import com.discometro.map.MapsFragment;
 import com.discometro.resources.service.DataService;
@@ -37,6 +39,8 @@ public class RegistroActivity extends AppCompatActivity {
     private Button register;
     private CarteraUser carteraUser;
     private DataService dataService;
+    private ViewModelMain vm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,8 @@ public class RegistroActivity extends AppCompatActivity {
         passwordRepeat = findViewById(R.id.password2);
         acceptTerms = findViewById(R.id.acceptTerms);
         register = findViewById(R.id.registerButton);
+        vm = new ViewModelProvider(this).get(ViewModelMain.class);
+
 
         try {
             iniCarteraUser();
@@ -106,27 +112,21 @@ public class RegistroActivity extends AppCompatActivity {
             if (acceptedTerms == Boolean.FALSE) {
                 Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show();
             } else {
-
-                if (isEmailSafe(txt_email) && isPasswordSafe(txt_pwd)) {
-                    User user = carteraUser.find(txt_email);
-                    if (user != null) {
-                        Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
+                User user = vm.getUserById(txt_email);
+                if (user != null) {
+                    Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (txt_pwd.equals(txt_pwd2)) {
+                        User u = new User(txt_email,txt_pwd,txt_name,txt_birthday,txt_surname,txt_dni,new ArrayList<String>(),"");
+                        vm.addUser(u);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                     } else {
-
-                        if (txt_pwd.equals(txt_pwd2)) {
-                            User u = new User(txt_email, txt_pwd);
-                            carteraUser.addUser(u);
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();
+                    }
 
                     }
 
-                } else {
-                    Toast.makeText(this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
-                }
             }
 
         }

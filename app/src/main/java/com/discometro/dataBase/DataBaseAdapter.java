@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
 
+import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,31 +32,31 @@ import java.util.Map;
 
 public class DataBaseAdapter extends Activity {
 
-    public static final String TAG ="DataBaseAdapter";
+    public static final String TAG = "DatabaseAdapter";
 
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final FirebaseStorage storage= FirebaseStorage.getInstance();
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private  FirebaseUser user;
+    private FirebaseUser user;
 
-    public static  DataBaseAdapter dataBaseAdapter;
+    public static DataBaseAdapter databaseAdapter;
     public static vmInterface listener;
 
-    public DataBaseAdapter(vmInterface listener){
+    public DataBaseAdapter(vmInterface listener) {
         this.listener = listener;
-        dataBaseAdapter = this;
+        databaseAdapter = this;
         FirebaseFirestore.setLoggingEnabled(true);
         initFirebase();
     }
 
-    public interface vmInterface{
-        void setCollection(ArrayList<User> usersArray);
+    public interface vmInterface {
+
         void setToast(String s);
+        void setUser(ArrayList<User> s);
+        void setDiscos(ArrayList<PerfilDisco> p);
     }
 
-
-    public void initFirebase(){
-
+    public void initFirebase() {
         user = mAuth.getCurrentUser();
 
         if (user == null) {
@@ -76,16 +77,46 @@ public class DataBaseAdapter extends Activity {
                             }
                         }
                     });
-        }
-        else{
+        } else {
             listener.setToast("Authentication with current user.");
 
         }
     }
 
 
-    public void getCollection(){
-        Log.d(TAG,"updateUsers");
+    public void saveUser (User u) {
+
+        // Create a new user with a first and last name
+        Map<String, Object> usuario = new HashMap<>();
+        usuario.put("correo", u.getCorreo());
+        usuario.put("contra",u.getContra());
+        usuario.put("name", u.getName());
+        usuario.put("birthday",u.getBirthday());
+        usuario.put("surname",u.getSurname());
+        usuario.put("dni",u.getDni());
+        usuario.put("listFavoritos",u.getListFavoritos());
+        usuario.put("url",u.getUrl());
+
+        Log.d(TAG, "saveUser");
+        // Add a new document with a generated ID
+        db.collection("users").document(u.getCorreo())
+                .set(usuario)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+    public void getUsers() {
+        Log.d(TAG, "updateUsers");
         DataBaseAdapter.db.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -93,12 +124,12 @@ public class DataBaseAdapter extends Activity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
 
-                            ArrayList<User> usersArray = new ArrayList<User>() ;
+                            ArrayList<User> retrieved_s = new ArrayList<User>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                usersArray.add(new User( document.getString("correo"), document.getString("contraseña")));
+                                retrieved_s.add(new User(document.getString("correo"),document.getString("contra"), document.getString("name"),document.getString("birthday"),document.getString("surname"),document.getString("dni"),(ArrayList<String>) document.get("listFavoritos"),document.getString("url")));
                             }
-                            listener.setCollection(usersArray);
+                            listener.setUser(retrieved_s);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -106,94 +137,27 @@ public class DataBaseAdapter extends Activity {
                     }
                 });
     }
-
-
-    public void saveDocument (String correo, String contraseña, ArrayList<String> listFavoritos,String url) {
-
-        // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("correo", correo);
-        user.put("contraseña", contraseña);
-        user.put("listFavoritos", listFavoritos);
-        user.put("url", url);
-
-
-        Log.d(TAG, "saveDocument");
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
-    }
-
-
-    public void saveDocumentWithFile (String correo, String contraseña, ArrayList<String> listFavoritos) {
-
-        //Uri file = Uri.fromFile(new File(path));
-        StorageReference storageRef = storage.getReference();
-        StorageReference userRef = storageRef.child("user"+File.separator+file.getLastPathSegment());
-        UploadTask uploadTask = userRef.putFile(file);
-
-        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if (!task.isSuccessful()) {
-                    throw task.getException();
-                }
-
-                // Continue with the task to get the download URL
-                return userRef.getDownloadUrl();
-            }
-        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()) {
-                    Uri downloadUri = task.getResult();
-                    saveDocument(correo, contraseña, listFavoritos, downloadUri.toString());
-                } else {
-                    // Handle failures
-                    // ...
-                }
-            }
-        });
-
-
-        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                Log.d(TAG, "Upload is " + progress + "% done");
-            }
-        });
-    }
-
-    public HashMap<String, String> getDocuments () {
-        db.collection("users")
+    public void getDiscos() {
+        Log.d(TAG, "updateDiscos");
+        DataBaseAdapter.db.collection("discos")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+
+                            ArrayList<PerfilDisco> retrieved_s = new ArrayList<PerfilDisco>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("activity_perfil"),document.getString("ib_1"),document.getString("ib_2"),document.getString("ib_3"),document.getString("ib_4"),document.getString("fab_msg"),document.getString("fab_items"),document.getString("fab_favs"),document.getString("fab_subs"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo")));
                             }
+                            listener.setDiscos(retrieved_s);
+
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
-
-        return new HashMap<>();
     }
 
 }

@@ -15,9 +15,9 @@ public class DAOUserMock implements DAOUser {
     private Map<String, User> listUser = new HashMap<>();
 
     public DAOUserMock() {
-        listUser.put("a@gmail.com", new User("a@gmail.com", "adri123"));
-        listUser.put("p@gmail.com", new User("p@gmail.com", "pablo123"));
-        listUser.put("c@gmail.com", new User("c@gmail.com", "christian123"));
+        //listUser.put("a@gmail.com", new User("a@gmail.com", "adri123"));
+        //listUser.put("p@gmail.com", new User("p@gmail.com", "pablo123"));
+        //listUser.put("c@gmail.com", new User("c@gmail.com", "christian123"));
     }
 
 

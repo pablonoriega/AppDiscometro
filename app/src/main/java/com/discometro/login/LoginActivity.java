@@ -1,6 +1,7 @@
 package com.discometro.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +18,16 @@ import android.widget.Toast;
 
 import com.discometro.CarteraUser;
 import com.discometro.MainActivity;
+import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
+import com.discometro.ViewModel.ViewModelMain;
 import com.discometro.registro.RegistroActivity;
 import com.discometro.User;
 import com.discometro.resources.service.AbstractFactoryData;
 import com.discometro.resources.service.DataService;
 import com.discometro.resources.service.FactoryMOCK;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -38,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private ImageButton img_btn;
     private User u;
     private static int num;
+    private  ViewModelMain vm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
         num = 0;
+        vm = new ViewModelProvider(this).get(ViewModelMain.class);
+
         try {
             iniCarteraUser();
         } catch (Exception e) {
@@ -95,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Rellena los espacios", Toast.LENGTH_SHORT).show();
         }
         else {
-            u = carteraUser.find(txt_email);
+            u = vm.getUserById(txt_email);
             if (u == null) {
                 Toast.makeText(this, "Correo incorrecto", Toast.LENGTH_SHORT).show();
             }
@@ -109,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("usuario",u);
+                    Toast.makeText(this, vm.getDiscoByName("Titus").getNameDisco(), Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
             }
