@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,9 +16,6 @@ import com.discometro.MainActivity;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.map.MainMapActivity;
-import com.discometro.map.MapsFragment;
-import com.discometro.resources.service.DataService;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -40,7 +35,6 @@ public class RegistroActivity extends AppCompatActivity {
     private CheckBox acceptTerms;
     private Button register;
     private CarteraUser carteraUser;
-    private DataService dataService;
     private ViewModelMain vm;
 
 
@@ -59,12 +53,6 @@ public class RegistroActivity extends AppCompatActivity {
         register = findViewById(R.id.registerButton);
         vm = new ViewModelProvider(this).get(ViewModelMain.class);
 
-
-        try {
-            iniCarteraUser();
-        } catch (Exception e) {
-
-        }
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,16 +132,6 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
 
-    public boolean iniCarteraUser() throws Exception {
-        List<User> list = dataService.getAllUsers();
-        if (list != null) {
-            carteraUser = new CarteraUser(list);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public void intentToMapReg(View view) {
         String txt_email = email.getText().toString();
         String txt_pwd = password.getText().toString();
@@ -188,6 +166,7 @@ public class RegistroActivity extends AppCompatActivity {
                                         User u = new User(txt_email, txt_pwd, txt_name, txt_birthday, txt_surname, txt_dni, new ArrayList<String>(), "", new ArrayList<String>());
                                         vm.saveUser(u);
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        intent.putExtra("usuario", u);
                                         startActivity(intent);
                                     } else {
                                         Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();

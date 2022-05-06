@@ -63,13 +63,6 @@ public class SuscripcionesItemAdapter extends RecyclerView.Adapter<Suscripciones
             super(itemView);
 
             logoDisco= (ImageView) itemView.findViewById(R.id.fotoLogoSus);
-            eliminar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    u.eliminarSuscripcion(nameDisco);
-                    vm.saveUser(u);
-                }
-            });
 
 
         }

@@ -27,25 +27,10 @@
             android:name=".PerfilDisco.PerfilDiscoActivity"
             android:exported="false" />
         <activity
-            android:name=".PerfilDisco.PerfilDiscoOttoZutzActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PerfilDisco.PerfilDiscoDowntownActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PerfilDisco.PerfilDiscoPachaActivity"
-            android:exported="false" />
-        <activity
             android:name=".registro.RegistroActivity"
             android:exported="false" />
         <activity
             android:name=".objetosPerdidos.ObjetosPerdidosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".map.MainMapActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PerfilDisco.PerfilDiscoShokoActivity"
             android:exported="false" />
 
         <meta-data

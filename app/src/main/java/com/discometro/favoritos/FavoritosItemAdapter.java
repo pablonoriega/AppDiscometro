@@ -62,17 +62,6 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
             super(itemView);
 
             logoDisco= (ImageView) itemView.findViewById(R.id.fotoLogoSus);
-            eliminar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    u.eliminarFavorito(nameDisco);
-                    vm.saveUser(u);
-
-
-
-                }
-            });
-
 
         }
         public void asignarItems(String nameDisco) {

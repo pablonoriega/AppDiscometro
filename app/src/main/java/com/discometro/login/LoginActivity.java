@@ -23,9 +23,6 @@ import com.discometro.R;
 import com.discometro.ViewModel.ViewModelMain;
 import com.discometro.registro.RegistroActivity;
 import com.discometro.User;
-import com.discometro.resources.service.AbstractFactoryData;
-import com.discometro.resources.service.DataService;
-import com.discometro.resources.service.FactoryMOCK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox remember;
     private Button login;
     private CarteraUser carteraUser;
-    private AbstractFactoryData factory;
-    private DataService dataService;
     private ImageButton img_btn;
     private User u;
     private static int num;
@@ -53,16 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         remember = findViewById(R.id.cb_recuerdame);
         login = findViewById(R.id.btn_login);
         img_btn = findViewById(R.id.img_btn);
-        factory = new FactoryMOCK();
-        dataService = new DataService(factory);
         num = 0;
         vm = new ViewModelProvider(this).get(ViewModelMain.class);
-
-        try {
-            iniCarteraUser();
-        } catch (Exception e) {
-
-        }
         loadPreferences();
         img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,17 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-    public boolean iniCarteraUser() throws Exception {
-        List<User> list = dataService.getAllUsers();
-        if (list != null) {
-            carteraUser = new CarteraUser(list);
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
     public void intentToRegister(View view) {
