@@ -116,7 +116,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("usuario",u);
-                    Toast.makeText(this, vm.getDiscoByName("Titus").getNameDisco(), Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
             }

@@ -118,7 +118,7 @@ public class RegistroActivity extends AppCompatActivity {
                 } else {
                     if (txt_pwd.equals(txt_pwd2)) {
                         User u = new User(txt_email,txt_pwd,txt_name,txt_birthday,txt_surname,txt_dni,new ArrayList<String>(),"");
-                        vm.addUser(u);
+                        vm.saveUser(u);
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     } else {

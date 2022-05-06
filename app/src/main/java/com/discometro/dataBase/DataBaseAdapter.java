@@ -5,9 +5,12 @@ import androidx.annotation.NonNull;
 import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.discometro.PerfilDisco.PerfilDisco;
+import com.discometro.R;
 import com.discometro.User;
+import com.discometro.VueltaSegura.VueltaSeguraCardItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -54,6 +57,7 @@ public class DataBaseAdapter extends Activity {
         void setToast(String s);
         void setUser(ArrayList<User> s);
         void setDiscos(ArrayList<PerfilDisco> p);
+        void setVueltaSeguraCards(ArrayList<VueltaSeguraCardItem> c);
     }
 
     public void initFirebase() {
@@ -115,6 +119,37 @@ public class DataBaseAdapter extends Activity {
                 });
     }
 
+    public void saveVueltaSegura (VueltaSeguraCardItem card) {
+
+        // Create a new user with a first and last name
+        Map<String, Object> usuario = new HashMap<>();
+        usuario.put("name", card.getName());
+        usuario.put("usuarioid",card.getUsuarioid());
+        usuario.put("vehicle", card.getVehicle());
+        usuario.put("location",card.getLocation());
+        usuario.put("number",card.getNumber());
+        usuario.put("origen",card.getOrigen());
+        usuario.put("fotoLogo",card.getFotoLogo());
+
+
+        Log.d(TAG, "saveVueltaSegura");
+        // Add a new document with a generated ID
+        db.collection("vueltaSegura").document(card.getUsuarioid())
+                .set(usuario)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
     public void getUsers() {
         Log.d(TAG, "updateUsers");
         DataBaseAdapter.db.collection("users")
@@ -149,7 +184,7 @@ public class DataBaseAdapter extends Activity {
                             ArrayList<PerfilDisco> retrieved_s = new ArrayList<PerfilDisco>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("activity_perfil"),document.getString("ib_1"),document.getString("ib_2"),document.getString("ib_3"),document.getString("ib_4"),document.getString("fab_msg"),document.getString("fab_items"),document.getString("fab_favs"),document.getString("fab_subs"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo")));
+                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion")));
                             }
                             listener.setDiscos(retrieved_s);
 
@@ -159,6 +194,68 @@ public class DataBaseAdapter extends Activity {
                     }
                 });
     }
+
+
+    public void getVueltaSeguraCard() {
+        Log.d(TAG, "updateVueltaSeguraCards");
+        DataBaseAdapter.db.collection("vueltaSegura")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            ArrayList<VueltaSeguraCardItem> retrieved_s = new ArrayList<VueltaSeguraCardItem>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                retrieved_s.add(new VueltaSeguraCardItem(document.getString("name"),document.getString("usuarioid"), document.getString("vehicle"),document.getString("location"),document.getString("number"),document.getString("origen"),document.getString("fotoLogo")));
+                            }
+                            listener.setVueltaSeguraCards(retrieved_s);
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+
+    public void saveDisco () {
+
+        // Create a new user with a first and last name
+        Map<String, Object> perfilDisco = new HashMap<>();
+
+        perfilDisco.put("banner", R.drawable.downtown2+"");
+        perfilDisco.put("correo", "info@downtownbarcelona.es");
+        perfilDisco.put("descripcion", "     Edad mínima de 18 ");
+        perfilDisco.put("foto1", R.drawable.downtown_cap1+"");
+        perfilDisco.put("foto2", R.drawable.downtown_cap2+"");
+        perfilDisco.put("foto3", R.drawable.downtown_evento1+"");
+        perfilDisco.put("foto4", R.drawable.otto_evento2+"");
+        perfilDisco.put("logo",R.drawable.downtownlogocrop+"");
+        perfilDisco.put("nameDisco","Downtown");
+
+        Log.d(TAG, "saveUser");
+        // Add a new document with a generated ID
+        db.collection("discos").document("Downtown")
+                .set(perfilDisco)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+
+
+
 
 }
 

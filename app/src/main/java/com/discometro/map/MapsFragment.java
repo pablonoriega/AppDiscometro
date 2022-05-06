@@ -11,13 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.discometro.MainActivity;
 import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.PerfilDisco.PerfilDiscoActivity;
-import com.discometro.PerfilDisco.PerfilDiscoPachaActivity;
-import com.discometro.PerfilDisco.PerfilDiscoShokoActivity;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
@@ -41,11 +38,9 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     private Intent intent;
     private Class claseDisco;
     private User u;
+    PerfilDisco disco;
 
-
-
-
-
+    private ViewModelMain vm;
 
     // below are the latitude and longitude
     LatLng shoko = new LatLng(41.38561716518406, 2.196849116060127);
@@ -77,7 +72,9 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
              mMap.moveCamera(CameraUpdateFactory.newLatLng(barcelona));
              **/
             mMap = googleMap;
+            vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
             u=((MainActivity)getActivity()).getUser();
+
 
             // below line is to add marker to google maps
             for (int i = 0; i < latLngArrayList.size(); i++) {
@@ -103,6 +100,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                     //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.map,perfil).addToBackStack(null).commit();
                     button.setVisibility(view.VISIBLE);
                     nameDisco=marker.getTitle();
+
 
 
 
@@ -134,11 +132,12 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                 }
 
                 intent = new Intent(getContext(), PerfilDiscoActivity.class);
+                disco = vm.getDiscoByName(nameDisco);
+
                 Bundle extras = new Bundle();
                 extras.putParcelable("usuario",u);
-                extras.putString("nameDisco",nameDisco);
+                extras.putParcelable("disco",disco);
                 intent.putExtras(extras);
-
                 startActivity(intent);
             }
         });
@@ -187,6 +186,8 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
         return false;
     }
 }
+
+
 
 
 

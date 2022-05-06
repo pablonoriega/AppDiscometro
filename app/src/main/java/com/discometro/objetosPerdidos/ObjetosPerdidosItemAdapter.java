@@ -51,7 +51,7 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
             super(itemView);
             nombreObj = (TextView) itemView.findViewById(R.id.nombreObj_objetos_perdidos_item);
             usuario = (TextView) itemView.findViewById(R.id.usuario_objetos_perdidos_item);
-            descripcion = (TextView) itemView.findViewById(R.id.descripcion_objetos_perdidos_item);
+            descripcion = (TextView) itemView.findViewById(R.id.objePerdidoDesc);
             imagen = (ImageView) itemView.findViewById(R.id.objetoPerdidoImagen);
         }
 

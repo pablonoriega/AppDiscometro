@@ -22,7 +22,7 @@
             android:name=".objetosPerdidos.AgregarObjetoPerdidoActivity"
             android:exported="false" />
         <activity
-            android:name=".AgregarVueltaSeguraActivity"
+            android:name=".VueltaSegura.AgregarVueltaSeguraActivity"
             android:exported="false" />
         <activity
             android:name=".PerfilDisco.PerfilDiscoActivity"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.discometro.MainActivity;
 import com.discometro.R;
 import com.discometro.User;
+import com.discometro.ViewModel.ViewModelMain;
 
 import java.util.ArrayList;
 
@@ -41,6 +43,8 @@ public class FavoritosFragment extends Fragment {
     private RecyclerView recyclerView;
     private User u;
     private ImageView imgLogo;
+    private ViewModelMain vm;
+
 
     public FavoritosFragment() {
         // Required empty public constructor
@@ -80,10 +84,10 @@ public class FavoritosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewFavs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-
+        vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         listItems = new ArrayList<FavoritosCardItem>();
 
-        u=((MainActivity)getActivity()).getUser();
+        u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
         listNombres = u.getListFavoritos();
 
 
@@ -97,10 +101,10 @@ public class FavoritosFragment extends Fragment {
         }
 
 
-        FavoritosItemAdapter adapter = new FavoritosItemAdapter(listItems);
+        FavoritosItemAdapter adapter = new FavoritosItemAdapter(listItems,u,vm);
         recyclerView.setAdapter(adapter);
         return view;
-        //return inflater.inflate(R.layout.fragment_favoritos, container, false);
+
     }
 
 }

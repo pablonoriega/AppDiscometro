@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.118" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/drawable/bg_rounded.xml" value="0.118" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/drawable/downtownlogocrop.xml" value="0.118" />
@@ -57,11 +58,11 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/favoritos_item_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/favoritos_item_list.xml" value="0.17363433837890624" />
         <entry key="app/src/main/res/layout/favs_item_list.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_favoritos.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.12364130434782608" />
-        <entry key="app/src/main/res/layout/fragment_perfil_user.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_perfil_user.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_suscripciones.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/fragment_vuelta_segura.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/objetos_perdidos_item_list.xml" value="0.335" />

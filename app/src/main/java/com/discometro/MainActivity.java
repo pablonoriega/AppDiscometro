@@ -1,8 +1,6 @@
 package com.discometro;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -11,8 +9,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
+import com.discometro.VueltaSegura.AgregarVueltaSeguraActivity;
+import com.discometro.VueltaSegura.VueltaSeguraFragment;
 import com.discometro.favoritos.FavoritosFragment;
 import com.discometro.map.MapsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         Intent intent = getIntent();
          u= intent.getParcelableExtra("usuario");
+
 
 
 

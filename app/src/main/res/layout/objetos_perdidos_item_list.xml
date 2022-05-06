@@ -44,7 +44,7 @@
                 app:srcCompat="@drawable/downtownlogocrop" />
 
             <TextView
-                android:id="@+id/descripcion_objetos_perdidos_item"
+                android:id="@+id/objePerdidoDesc"
                 android:layout_width="168dp"
                 android:layout_height="55dp"
                 app:layout_constraintBottom_toBottomOf="parent"

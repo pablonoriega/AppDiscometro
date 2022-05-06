@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarVueltaSeguraActivity">
+    tools:context=".VueltaSegura.AgregarVueltaSeguraActivity">
 
     <TableLayout
         android:layout_width="409dp"
@@ -16,7 +16,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="141dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -67,7 +67,7 @@
         <TableRow
             android:id="@+id/tr_amount"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="101dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -81,7 +81,7 @@
                 android:textColor="#AC67D3"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:visibility="gone" />
+                android:visibility="invisible" />
 
             <EditText
                 android:id="@+id/et_number"
@@ -91,7 +91,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:textSize="20sp"
-                android:visibility="gone"
+                android:visibility="invisible"
                 tools:ignore="SpeakableTextPresentCheck" />
         </TableRow>
 
@@ -120,5 +120,31 @@
                 app:strokeColor="#AC67D3" />
         </TableRow>
     </TableLayout>
+
+    <TableRow
+        android:layout_width="405dp"
+        android:layout_height="92dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="92dp">
+
+        <TextView
+            android:id="@+id/tv_location3"
+            android:layout_width="153dp"
+            android:layout_height="44dp"
+            android:text="Discoteca Origen"
+            android:textColor="#AC67D3"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edit_origen"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Origen"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textSize="20sp" />
+    </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

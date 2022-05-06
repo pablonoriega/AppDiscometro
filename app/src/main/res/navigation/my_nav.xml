@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_suscripciones" />
     <fragment
         android:id="@+id/vueltaSeguraFragment"
-        android:name="com.discometro.VueltaSeguraFragment"
+        android:name="com.discometro.VueltaSegura.VueltaSeguraFragment"
         android:label="Vuelta Segura"
         tools:layout="@layout/fragment_vuelta_segura" />
     <fragment

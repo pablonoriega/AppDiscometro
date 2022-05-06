@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.discometro.MainActivity;
@@ -27,49 +28,64 @@ import com.discometro.ViewModel.ViewModelMain;
 import com.discometro.objetosPerdidos.ObjetosPerdidosActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-
 public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPerfilDisco {
 
     private ImageButton ib_1, ib_2, ib_3, ib_4;
+    private ImageView logo, banner;
     private FloatingActionButton fab_msg, fab_items, fab_favs, fab_subs;
+    private TextView descripcion;
+    private ViewModelMain vm;
 
     Intent intent;
     private User u;
-    private String name;
-    private String numLogo;
-    private ViewModelMain vm;
+
     private PerfilDisco disco;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         vm = new ViewModelProvider(this).get(ViewModelMain.class);
-        disco = vm.getDiscoByName("Titus");
         intent=getIntent();
         Bundle extras = intent.getExtras();
         u= extras.getParcelable("usuario");
-        name= extras.getString("nameDisco");
-
-
-
-
+        disco= extras.getParcelable("disco");
 
         setContentView(R.layout.activity_perfil_disco_titus);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        ib_1 = findViewById(R.id.ib_foto1_titus);
-        ib_2 = findViewById(R.id.ib_foto2_titus);
-        ib_3 = findViewById(R.id.ib_foto3_titus);
-        ib_4 = findViewById(R.id.ib_event1_titus);
-        fab_msg = findViewById(R.id.FAB_msg_titus);
-        fab_items = findViewById(R.id.FAB_items_titus);
-        fab_favs = findViewById(R.id.FAB_favs_titus);
-        fab_subs = findViewById(R.id.FAB_subs_titus);
+        ib_1 = findViewById(R.id.ib_foto1_disco);
+        ib_2 = findViewById(R.id.ib_foto2_disco);
+        ib_3 = findViewById(R.id.ib_foto3_disco);
+        ib_4 = findViewById(R.id.ib_event1_disco);
+        fab_msg = findViewById(R.id.FAB_msg_disco);
+        fab_items = findViewById(R.id.FAB_items_disco);
+        fab_favs = findViewById(R.id.FAB_favs_disco);
+        fab_subs = findViewById(R.id.FAB_subs_disco);
+        logo= findViewById(R.id.logoDisco);
+        banner=findViewById(R.id.banner_disco);
+        descripcion= findViewById(R.id.descripcion_disco);
+
+        String foto1 = disco.getFoto1();
+        String foto2 = disco.getFoto2();
+        String foto3 = disco.getFoto3();
+        String foto4 = disco.getFoto4();
+        String logo_text = disco.getLogo();
+        String banner_text =disco.getBanner();
+        String descripcion_text=disco.getDescripcion();
+
+
+
+        ib_1.setImageResource(Integer.parseInt(foto1));
+        ib_2.setImageResource(Integer.parseInt(foto2));
+        ib_3.setImageResource(Integer.parseInt(foto3));
+        ib_4.setImageResource(Integer.parseInt(foto4));
+        logo.setImageResource(Integer.parseInt(logo_text));
+        banner.setImageResource(Integer.parseInt(banner_text));
+        descripcion.setText(descripcion_text);
+
 
 
 
@@ -100,16 +116,16 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
         ImageView imageView = new ImageView(this);
         if (view.equals(ib_1)) {
-            imageView.setImageResource(R.drawable.titus_foto1);
+            imageView.setImageResource(Integer.parseInt(disco.getFoto1()));
         }
         else if (view.equals(ib_2)) {
-            imageView.setImageResource(R.drawable.titus_foto2);
+            imageView.setImageResource(Integer.parseInt(disco.getFoto2()));
         }
         else if (view.equals(ib_3)) {
-            imageView.setImageResource(R.drawable.titus_foto3);
+            imageView.setImageResource(Integer.parseInt(disco.getFoto3()));
         }
         else if (view.equals(ib_4)) {
-            imageView.setImageResource(R.drawable.titus_event1);
+            imageView.setImageResource(Integer.parseInt(disco.getFoto4()));
         }
         builder.addContentView(imageView, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         builder.show();
@@ -118,25 +134,28 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
     @Override
     public void intentToEmail(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto","tituscarpa@titus.cat", null));
+                "mailto",disco.getCorreo(), null));
         startActivity(Intent.createChooser(intent, "Send email..."));
     }
 
     @Override
     public void intentToObjetosPerdidos(View view) {
         Intent intent = new Intent(this, ObjetosPerdidosActivity.class);
+        intent.putExtra("nameDisco",disco.getNameDisco());
         startActivity(intent);
     }
 
     public void añadirFavorito(View view){
-        if(!u.getListFavoritos().contains(numLogo)){
-            u.añadirFavorito(numLogo);
-            Toast.makeText(getApplicationContext(),"Se ha añadido "+name+" a favoritos", Toast.LENGTH_SHORT).show();
-
+        if(!u.getListFavoritos().contains(disco.getLogo())){
+            u.añadirFavorito(disco.getLogo());
+            vm.saveUser(u);
+            Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getNameDisco()+" a favoritos", Toast.LENGTH_SHORT).show();
 
         }
-        else if(u.getListFavoritos().contains(numLogo)){
-            Toast.makeText(getApplicationContext(),name + " ya se encuentra en favoritos", Toast.LENGTH_SHORT).show();
+        else if(u.getListFavoritos().contains(disco.getLogo())){
+            u.eliminarFavorito(disco.getLogo());
+            vm.saveUser(u);
+            Toast.makeText(getApplicationContext(),"Se ha eliminado "+disco.getNameDisco() + " de favoritos", Toast.LENGTH_SHORT).show();
         }
     }
 }
