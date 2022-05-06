@@ -23,11 +23,11 @@
                 android:layout_marginTop="4dp"
                 android:text="VISITAR PERFIL"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/imgUserProfile"
-                app:layout_constraintTop_toTopOf="@id/imgUserProfile" />
+                app:layout_constraintStart_toEndOf="@id/DiscoProfile"
+                app:layout_constraintTop_toTopOf="@id/DiscoProfile" />
 
             <ImageView
-                android:id="@+id/imgUserProfile"
+                android:id="@+id/DiscoProfile"
                 android:layout_width="116dp"
                 android:layout_height="101dp"
                 android:layout_marginStart="28dp"
@@ -43,8 +43,8 @@
                 android:layout_marginTop="52dp"
                 android:text="ELIMINAR"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/imgUserProfile"
-                app:layout_constraintTop_toTopOf="@id/imgUserProfile" />
+                app:layout_constraintStart_toEndOf="@id/DiscoProfile"
+                app:layout_constraintTop_toTopOf="@id/DiscoProfile" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

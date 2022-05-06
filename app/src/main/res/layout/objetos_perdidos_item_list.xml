@@ -21,7 +21,7 @@
                 android:layout_height="15dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/imgUserProfile"
+                app:layout_constraintStart_toEndOf="@+id/DiscoProfile"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -30,11 +30,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
-                app:layout_constraintStart_toEndOf="@+id/imgUserProfile"
+                app:layout_constraintStart_toEndOf="@+id/DiscoProfile"
                 app:layout_constraintTop_toBottomOf="@+id/nombreObj_objetos_perdidos_item" />
 
             <ImageView
-                android:id="@+id/imgUserProfile"
+                android:id="@+id/DiscoProfile"
                 android:layout_width="63dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="20dp"
@@ -53,6 +53,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.836" />
+
+            <TextView
+                android:id="@+id/objePerdidoName"
+                android:layout_width="117dp"
+                android:layout_height="33dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.411"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.275" />
 
             <Button
                 android:id="@+id/buttonReclamar"

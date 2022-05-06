@@ -33,7 +33,7 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
         String nombreObj = listItems.get(position).getUsuario();
         String usuario = listItems.get(position).getUsuario();
         String descripcion = listItems.get(position).getDescripcion();
-        Image imagen = listItems.get(position).getImagen();
+        String imagen = listItems.get(position).getImagen();
         ((ViewHolderItems)holder).asignarItems(nombreObj, usuario, descripcion, imagen);
     }
 
@@ -55,10 +55,11 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
             imagen = (ImageView) itemView.findViewById(R.id.objetoPerdidoImagen);
         }
 
-        public void asignarItems(String nombreObj, String usuario, String descripcion, Image imagen) {
+        public void asignarItems(String nombreObj, String usuario, String descripcion, String imagen) {
             this.nombreObj.setText(nombreObj);
             this.usuario.setText(usuario);
             this.descripcion.setText(descripcion);
+            this.imagen.setImageResource(Integer.parseInt(imagen));
             //this.imagen.setImageURI(imagen);
         }
     }

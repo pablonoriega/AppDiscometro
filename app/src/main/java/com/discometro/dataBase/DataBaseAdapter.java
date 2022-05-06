@@ -11,6 +11,7 @@ import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
+import com.discometro.objetosPerdidos.ObjetosPerdidosCardItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,6 +59,7 @@ public class DataBaseAdapter extends Activity {
         void setUser(ArrayList<User> s);
         void setDiscos(ArrayList<PerfilDisco> p);
         void setVueltaSeguraCards(ArrayList<VueltaSeguraCardItem> c);
+        void setObjetosPerdidosCards(ArrayList<ObjetosPerdidosCardItem> c);
     }
 
     public void initFirebase() {
@@ -150,6 +152,36 @@ public class DataBaseAdapter extends Activity {
                 });
     }
 
+    public void saveObjetoPerdido (ObjetosPerdidosCardItem card) {
+
+        // Create a new user with a first and last name
+        Map<String, Object> usuario = new HashMap<>();
+        usuario.put("nombreObj", card.getNombreObj());
+        usuario.put("usuario", card.getUsuario());
+        usuario.put("descripcion",card.getDescripcion());
+        usuario.put("imagen",card.getImagen());
+        usuario.put("nameDisco",card.getNameDisco());
+
+
+
+        Log.d(TAG, "saveObjetoPerdido");
+        // Add a new document with a generated ID
+        db.collection("objetosPerdidos").document(card.getUsuario())
+                .set(usuario)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
     public void getUsers() {
         Log.d(TAG, "updateUsers");
         DataBaseAdapter.db.collection("users")
@@ -219,8 +251,9 @@ public class DataBaseAdapter extends Activity {
                 });
     }
 
+/*
 
-    public void saveDisco () {
+ public void saveDisco () {
 
         // Create a new user with a first and last name
         Map<String, Object> perfilDisco = new HashMap<>();
@@ -249,6 +282,32 @@ public class DataBaseAdapter extends Activity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+
+ */
+
+    public void getObjetosPerdidoCards() {
+        Log.d(TAG, "updateObjetosPerdidosCards");
+        DataBaseAdapter.db.collection("objetosPerdidos")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            ArrayList<ObjetosPerdidosCardItem> retrieved_s = new ArrayList<ObjetosPerdidosCardItem>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                retrieved_s.add(new ObjetosPerdidosCardItem(document.getString("nombreObj"),document.getString("descripcion"), document.getString("usuario"),document.getString("imagen"),document.getString("nameDisco")));
+                            }
+                            listener.setObjetosPerdidosCards(retrieved_s);
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
                     }
                 });
     }

@@ -11,6 +11,7 @@ import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
 import com.discometro.dataBase.DataBaseAdapter;
+import com.discometro.objetosPerdidos.ObjetosPerdidosCardItem;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,11 +20,12 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
 
 
 
-    DataBaseAdapter da;
+    private DataBaseAdapter da;
     private MutableLiveData<ArrayList<User>> mUser;
     private MutableLiveData<String> mToast;
     private MutableLiveData<ArrayList<PerfilDisco>> mPerfilDisco;
     private MutableLiveData<ArrayList<VueltaSeguraCardItem>> mVueltaSegura;
+    private MutableLiveData<ArrayList<ObjetosPerdidosCardItem>> mObjetoPerdido;
 
     public ViewModelMain(Application application) {
         super(application);
@@ -31,12 +33,13 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
         mUser = new MutableLiveData<>();
         mVueltaSegura = new MutableLiveData<>();
         mPerfilDisco = new MutableLiveData<>();
-
+        mObjetoPerdido = new MutableLiveData<>();
 
         da = new DataBaseAdapter(this);
         da.getUsers();
         da.getDiscos();
         da.getVueltaSeguraCard();
+        da.getObjetosPerdidoCards();
 
 
     }
@@ -63,6 +66,11 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
         mVueltaSegura.setValue(c);
     }
 
+    @Override
+    public void setObjetosPerdidosCards(ArrayList<ObjetosPerdidosCardItem> c) {
+        mObjetoPerdido.setValue(c);
+    }
+
     public void saveUser(User u){
         if(u!= null){
             mUser.getValue().add(u);
@@ -71,11 +79,19 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
         }
     }
 
-    public void saveCard(VueltaSeguraCardItem card){
+    public void saveVueltaSeguraCard(VueltaSeguraCardItem card){
         if(card!= null){
             mVueltaSegura.getValue().add(card);
             mVueltaSegura.setValue(mVueltaSegura.getValue());
             da.saveVueltaSegura(card);
+        }
+    }
+
+    public void saveObjetoPerdidoCard(ObjetosPerdidosCardItem card){
+        if(card!= null){
+            mObjetoPerdido.getValue().add(card);
+            mObjetoPerdido.setValue(mObjetoPerdido.getValue());
+            da.saveObjetoPerdido(card);
         }
     }
 
@@ -123,6 +139,22 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
     public ArrayList<VueltaSeguraCardItem> getVueltaSeguraCards(){
         return mVueltaSegura.getValue();
     }
+
+    public ArrayList<ObjetosPerdidosCardItem> getObjetosPerdidosCards(String nameDisco){
+
+        ArrayList<ObjetosPerdidosCardItem> listAux = mObjetoPerdido.getValue();
+        ArrayList<ObjetosPerdidosCardItem>listObjetos=new ArrayList<>();
+        Iterator it = listAux.iterator();
+        while (it.hasNext()){
+            ObjetosPerdidosCardItem aux= (ObjetosPerdidosCardItem) it.next();
+            if(aux.getNameDisco().equals(nameDisco)){
+                listAux.add(aux);
+            }
+        }
+        return listAux;
+    }
+
+
 
 
 

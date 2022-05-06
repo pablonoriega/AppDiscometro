@@ -31,6 +31,7 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     private ViewGroup container;
     private ViewModelMain vm;
     private User u;
+    VueltaSeguraCardItem card;
 
 
 
@@ -79,6 +80,7 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     public void intentToVueltaSegura(View view) {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         if(comprobar()){
+            vm.saveVueltaSeguraCard(card);
             startActivity(intent);
         }
 
@@ -89,7 +91,6 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
         String txt_number = number.getText().toString();
         String txt_vehicle = spinner.getSelectedItem().toString();
         String txt_origen =origen.getText().toString();
-        VueltaSeguraCardItem card;
 
         ArrayList<String> listNombres = vm.getNameDiscos();
 
@@ -113,9 +114,6 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
         else{
             card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,txt_location,txt_number,txt_origen,vm.getDiscoByName(txt_origen).getLogo());
         }
-
-
-        vm.saveCard(card);
         return true;
     }
 }

@@ -1,19 +1,15 @@
 package com.discometro.favoritos;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.discometro.MainActivity;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
@@ -65,7 +61,7 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
 
-            logoDisco= (ImageView) itemView.findViewById(R.id.imgUserProfile);
+            logoDisco= (ImageView) itemView.findViewById(R.id.DiscoProfile);
             eliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

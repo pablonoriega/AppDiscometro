@@ -140,9 +140,13 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
     @Override
     public void intentToObjetosPerdidos(View view) {
-        Intent intent = new Intent(this, ObjetosPerdidosActivity.class);
-        intent.putExtra("nameDisco",disco.getNameDisco());
-        startActivity(intent);
+        Intent enviarDatos = new Intent(this, ObjetosPerdidosActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("nameDisco",disco.getNameDisco());
+        extras.putParcelable("usuario",u);
+        enviarDatos.putExtras(extras);
+        startActivity(enviarDatos);
+
     }
 
     public void añadirFavorito(View view){
