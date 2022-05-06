@@ -14,7 +14,7 @@
         android:text="RecyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFavs"
+        android:id="@+id/recyclerViewSubs"
         android:layout_width="385dp"
         android:layout_height="wrap_content"
         android:paddingHorizontal="15dp" />

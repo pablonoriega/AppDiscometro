@@ -15,17 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/visitar_perfil_favs"
-                android:layout_width="102dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="4dp"
-                android:text="VISITAR PERFIL"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/fotoLogoSus"
-                app:layout_constraintTop_toTopOf="@id/fotoLogoSus" />
-
             <ImageView
                 android:id="@+id/fotoLogoSus"
                 android:layout_width="116dp"
@@ -45,6 +34,15 @@
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@id/fotoLogoSus"
                 app:layout_constraintTop_toTopOf="@id/fotoLogoSus" />
+
+            <TextView
+                android:id="@+id/txtViewPuntos"
+                android:layout_width="86dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="44dp"
+                android:text="0 puntos"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
+                tools:layout_editor_absoluteY="25dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

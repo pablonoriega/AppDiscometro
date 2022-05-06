@@ -51,7 +51,7 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         u= extras.getParcelable("usuario");
         disco= extras.getParcelable("disco");
 
-        setContentView(R.layout.activity_perfil_disco_titus);
+        setContentView(R.layout.activity_perfil_disco);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -160,6 +160,21 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
             u.eliminarFavorito(disco.getLogo());
             vm.saveUser(u);
             Toast.makeText(getApplicationContext(),"Se ha eliminado "+disco.getNameDisco() + " de favoritos", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void añadirSuscripción(View view){
+
+        if(!u.getListSuscripciones().contains(disco.getLogo())){
+            u.añadirSuscripcion(disco.getLogo());
+            vm.saveUser(u);
+            Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getNameDisco()+" a suscripciones", Toast.LENGTH_SHORT).show();
+
+        }
+        else if(u.getListSuscripciones().contains(disco.getLogo())){
+            u.eliminarSuscripcion(disco.getLogo());
+            vm.saveUser(u);
+            Toast.makeText(getApplicationContext(),"Se ha eliminado "+disco.getNameDisco() + " de suscripciones", Toast.LENGTH_SHORT).show();
         }
     }
 }

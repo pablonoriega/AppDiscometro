@@ -1,4 +1,4 @@
-package com.discometro.favoritos;
+package com.discometro.Suscripciones;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
+import com.discometro.favoritos.FavoritosCardItem;
 
 import java.util.List;
 
-public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdapter.ViewHolderItems> {
+public class SuscripcionesItemAdapter extends RecyclerView.Adapter<SuscripcionesItemAdapter.ViewHolderItems> {
 
-    private List<FavoritosCardItem> listItems;
+    private List<SuscripcionesCardItem> listItems;
     private Button eliminar;
     private User u;
     private ViewModelMain vm;
 
-    public FavoritosItemAdapter(List<FavoritosCardItem> listItems, User u, ViewModelMain vm) {
+    public SuscripcionesItemAdapter(List<SuscripcionesCardItem> listItems, User u, ViewModelMain vm) {
 
         this.listItems = listItems;
         this.u=u;
@@ -31,8 +32,8 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
     }
 
     @Override
-    public FavoritosItemAdapter.ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favoritos_item_list, null, false);
+    public SuscripcionesItemAdapter.ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.suscripciones_item_list, null, false);
 
         eliminar=view.findViewById(R.id.buttonEliminarSus);
 
@@ -40,7 +41,7 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
     }
 
     @Override
-    public void onBindViewHolder(FavoritosItemAdapter.ViewHolderItems holder, int position) {
+    public void onBindViewHolder(SuscripcionesItemAdapter.ViewHolderItems holder, int position) {
         String nameDisco= listItems.get(position).getNameDisco();
 
         ((ViewHolderItems)holder).asignarItems(nameDisco);
@@ -65,11 +66,8 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
             eliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    u.eliminarFavorito(nameDisco);
+                    u.eliminarSuscripcion(nameDisco);
                     vm.saveUser(u);
-
-
-
                 }
             });
 

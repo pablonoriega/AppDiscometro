@@ -53,7 +53,8 @@ public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraIt
             usuarioid = (TextView) itemView.findViewById(R.id.usuario_objetos_perdidos_item);
             vehicle = (TextView) itemView.findViewById(R.id.objePerdidoDesc);
             location = (TextView) itemView.findViewById(R.id.tv_location_vuelta_segura_item);
-            foto_logo= (ImageView)  itemView.findViewById(R.id.DiscoProfile);
+            foto_logo= (ImageView)  itemView.findViewById(R.id.fotoLogoSus);
+
 
         }
 

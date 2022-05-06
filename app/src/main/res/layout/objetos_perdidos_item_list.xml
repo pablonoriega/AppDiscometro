@@ -21,7 +21,7 @@
                 android:layout_height="15dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/DiscoProfile"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -30,11 +30,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
-                app:layout_constraintStart_toEndOf="@+id/DiscoProfile"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
                 app:layout_constraintTop_toBottomOf="@+id/nombreObj_objetos_perdidos_item" />
 
             <ImageView
-                android:id="@+id/DiscoProfile"
+                android:id="@+id/fotoLogoSus"
                 android:layout_width="63dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="20dp"
@@ -66,7 +66,7 @@
                 app:layout_constraintVertical_bias="0.275" />
 
             <Button
-                android:id="@+id/buttonReclamar"
+                android:id="@+id/buttonEliminarSus"
                 android:layout_width="111dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="112dp"

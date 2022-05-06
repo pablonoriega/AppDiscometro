@@ -102,6 +102,7 @@ public class DataBaseAdapter extends Activity {
         usuario.put("dni",u.getDni());
         usuario.put("listFavoritos",u.getListFavoritos());
         usuario.put("url",u.getUrl());
+        usuario.put("listSuscripciones",u.getListSuscripciones());
 
         Log.d(TAG, "saveUser");
         // Add a new document with a generated ID
@@ -194,7 +195,7 @@ public class DataBaseAdapter extends Activity {
                             ArrayList<User> retrieved_s = new ArrayList<User>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new User(document.getString("correo"),document.getString("contra"), document.getString("name"),document.getString("birthday"),document.getString("surname"),document.getString("dni"),(ArrayList<String>) document.get("listFavoritos"),document.getString("url")));
+                                retrieved_s.add(new User(document.getString("correo"),document.getString("contra"), document.getString("name"),document.getString("birthday"),document.getString("surname"),document.getString("dni"),(ArrayList<String>) document.get("listFavoritos"),document.getString("url"),(ArrayList<String>) document.get("listSuscripciones")));
                             }
                             listener.setUser(retrieved_s);
 

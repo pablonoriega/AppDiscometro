@@ -22,6 +22,7 @@ import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
@@ -78,10 +79,11 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     }
 
     public void intentToVueltaSegura(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent vuelta = new Intent(getApplicationContext(), MainActivity.class);
         if(comprobar()){
             vm.saveVueltaSeguraCard(card);
-            startActivity(intent);
+            vuelta.putExtra("usuario",u);
+            startActivity(vuelta);
         }
 
 
@@ -91,9 +93,13 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
         String txt_number = number.getText().toString();
         String txt_vehicle = spinner.getSelectedItem().toString();
         String txt_origen =origen.getText().toString();
-
         ArrayList<String> listNombres = vm.getNameDiscos();
 
+        String inicial= txt_origen.substring(0,1);
+        inicial=inicial.toUpperCase();
+        String resto = txt_origen.substring(1,txt_origen.length());
+        resto=resto.toLowerCase();
+        txt_origen= inicial+resto;
 
         if(txt_location.equals("")){
             Toast.makeText(getApplicationContext(), "No se ha rellenado la localización", Toast.LENGTH_SHORT).show();

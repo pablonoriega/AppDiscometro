@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.discometro.Suscripciones.SuscripcionesFragment;
 import com.discometro.VueltaSegura.AgregarVueltaSeguraActivity;
 import com.discometro.VueltaSegura.VueltaSeguraFragment;
 import com.discometro.favoritos.FavoritosFragment;

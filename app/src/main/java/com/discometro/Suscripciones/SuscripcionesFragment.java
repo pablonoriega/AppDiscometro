@@ -1,12 +1,26 @@
-package com.discometro;
+package com.discometro.Suscripciones;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.discometro.MainActivity;
+import com.discometro.R;
+import com.discometro.User;
+import com.discometro.ViewModel.ViewModelMain;
+import com.discometro.favoritos.FavoritosCardItem;
+import com.discometro.favoritos.FavoritosItemAdapter;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +37,16 @@ public class SuscripcionesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+
+    private View view;
+    private ArrayList<SuscripcionesCardItem> listItems;
+    private ArrayList<String> listNombres;
+    private RecyclerView recyclerView;
+    private User u;
+    private ImageView imgLogo;
+    private ViewModelMain vm;
 
     public SuscripcionesFragment() {
         // Required empty public constructor
@@ -59,6 +83,25 @@ public class SuscripcionesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_suscripciones, container, false);
+        view = inflater.inflate(R.layout.fragment_suscripciones, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewSubs);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
+        listItems = new ArrayList<SuscripcionesCardItem>();
+
+        u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
+        listNombres = u.getListSuscripciones();
+        if(!listNombres.isEmpty()){
+            for(int i=0; i<listNombres.size();i++){
+                String logoDisco=listNombres.get(i);
+                SuscripcionesCardItem card= new SuscripcionesCardItem(u.getName(), u.getCorreo(),logoDisco);
+                listItems.add(card);
+            }
+
+        }
+        SuscripcionesItemAdapter adapter = new SuscripcionesItemAdapter(listItems,u,vm);
+        recyclerView.setAdapter(adapter);
+
+        return view;
     }
 }

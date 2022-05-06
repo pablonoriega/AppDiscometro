@@ -1,9 +1,7 @@
 package com.discometro.favoritos;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.discometro.MainActivity;
 import com.discometro.R;
@@ -82,7 +79,7 @@ public class FavoritosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewFavs);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewSubs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         listItems = new ArrayList<FavoritosCardItem>();

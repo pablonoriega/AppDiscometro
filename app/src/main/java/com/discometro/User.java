@@ -18,11 +18,12 @@ public class User implements Parcelable {
     private String dni;
     private String name;
     private ArrayList<String> listFavoritos;
+    private ArrayList<String> listSuscripciones;
     private String url;
 
 
 
-    public User(String correo, String contra, String name, String birthday, String surname , String dni, ArrayList<String> listFavoritos, String url) {
+    public User(String correo, String contra, String name, String birthday, String surname , String dni, ArrayList<String> listFavoritos, String url, ArrayList<String> listSuscripciones) {
         this.correo = correo;
         this.contra = contra;
         this.birthday=birthday;
@@ -31,6 +32,7 @@ public class User implements Parcelable {
         this.name=name;
         this.listFavoritos = listFavoritos;
         this.url=url;
+        this.listSuscripciones = listSuscripciones;
 
 
     }
@@ -45,6 +47,7 @@ public class User implements Parcelable {
         name = in.readString();
         listFavoritos = in.createStringArrayList();
         url = in.readString();
+        listSuscripciones = in.createStringArrayList();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -74,6 +77,7 @@ public class User implements Parcelable {
         parcel.writeString(name);
         parcel.writeStringList(listFavoritos);
         parcel.writeString(url);
+        parcel.writeStringList(listSuscripciones);
     }
 
 
@@ -90,7 +94,9 @@ public class User implements Parcelable {
     public void setName(String name) { this.name = name; }
     public void setListFavoritos(ArrayList<String> listFavoritos) { this.listFavoritos = listFavoritos; }
 
+    public void setListSuscripciones(ArrayList<String> listSuscripciones) {this.listSuscripciones = listSuscripciones; }
 
+    public ArrayList<String> getListSuscripciones() {return listSuscripciones; }
     public String getCorreo() {
         return this.correo;
     }
@@ -110,6 +116,13 @@ public class User implements Parcelable {
     }
     public void eliminarFavorito(String nameDisco){
         listFavoritos.remove(nameDisco);
+    }
+
+    public void añadirSuscripcion(String nameDisco){
+        this.listSuscripciones.add(nameDisco);
+    }
+    public void eliminarSuscripcion(String nameDisco){
+        this.listSuscripciones.remove(nameDisco);
     }
 
 

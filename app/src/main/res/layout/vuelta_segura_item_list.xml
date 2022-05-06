@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                app:layout_constraintStart_toEndOf="@+id/DiscoProfile"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -30,11 +30,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
-                app:layout_constraintStart_toEndOf="@+id/DiscoProfile"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
                 app:layout_constraintTop_toBottomOf="@+id/nombreObj_objetos_perdidos_item" />
 
             <ImageView
-                android:id="@+id/DiscoProfile"
+                android:id="@+id/fotoLogoSus"
                 android:layout_width="68dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="28dp"
@@ -50,7 +50,7 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/DiscoProfile"
+                app:layout_constraintTop_toBottomOf="@+id/fotoLogoSus"
                 app:srcCompat="@android:drawable/ic_menu_send" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/DiscoProfile" />
+                app:layout_constraintTop_toBottomOf="@+id/fotoLogoSus" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -82,7 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/objePerdidoDesc" />
 
             <Button
-                android:id="@+id/buttonReclamar"
+                android:id="@+id/buttonEliminarSus"
                 android:layout_width="102dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="40dp"
