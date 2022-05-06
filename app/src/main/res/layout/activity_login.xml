@@ -1,114 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    tools:ignore="SpeakableTextPresentCheck">
 
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="411dp"
-        android:layout_height="241dp"
-        android:contentDescription="@string/LogoDiscometro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/discometrologo" />
 
-    <Button
-        android:id="@+id/btn_login"
-        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="#AC67D3"
-        android:onClick="intentToMap"
-        android:outlineAmbientShadowColor="#3F51B5"
-        android:outlineSpotShadowColor="#3F51B5"
-        android:text="@string/login"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:iconTintMode="add"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cb_recuerdame"
-        app:strokeColor="#AC67D3" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <CheckBox
-        android:id="@+id/cb_recuerdame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="44dp"
-        android:buttonTint="#AC67D3"
-        android:text="@string/Recuérdame"
-        android:textColor="#95000000"
-        android:textColorHighlight="#AC67D3"
-        android:textColorLink="#AC67D3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_contra" />
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="411dp"
+            android:layout_height="241dp"
+            android:contentDescription="@string/LogoDiscometro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/discometrologo" />
 
-    <EditText
-        android:id="@+id/et_correo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="@string/CorreoDNI"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#AC67D3"
+            android:onClick="intentToMap"
+            android:outlineAmbientShadowColor="#3F51B5"
+            android:outlineSpotShadowColor="#3F51B5"
+            android:text="@string/login"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:iconTintMode="add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cb_recuerdame"
+            app:strokeColor="#AC67D3" />
 
-    <EditText
-        android:id="@+id/et_contra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="@string/Contraseña"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_correo" />
+        <CheckBox
+            android:id="@+id/cb_recuerdame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:buttonTint="#AC67D3"
+            android:text="@string/Recuérdame"
+            android:textColor="#95000000"
+            android:textColorHighlight="#AC67D3"
+            android:textColorLink="#AC67D3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_contra" />
 
-    <Button
-        android:id="@+id/btn_register"
-        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#AC67D3"
-        android:backgroundTintMode="add"
-        android:onClick="intentToRegister"
-        android:outlineAmbientShadowColor="#3F51B5"
-        android:outlineSpotShadowColor="#3F51B5"
-        android:text="@string/registrar"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:strokeColor="#AC67D3" />
+        <EditText
+            android:id="@+id/et_correo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="@string/CorreoDNI"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
-    <ImageButton
-        android:id="@+id/img_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toEndOf="@+id/et_contra"
-        app:layout_constraintTop_toBottomOf="@+id/et_correo"
-        app:srcCompat="?android:attr/fingerprintAuthDrawable"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <EditText
+            android:id="@+id/et_contra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="@string/Contraseña"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_correo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#AC67D3"
+            android:backgroundTintMode="add"
+            android:onClick="intentToRegister"
+            android:outlineAmbientShadowColor="#3F51B5"
+            android:outlineSpotShadowColor="#3F51B5"
+            android:text="@string/registrar"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            app:strokeColor="#AC67D3" />
+
+        <ImageButton
+            android:id="@+id/img_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toEndOf="@+id/et_contra"
+            app:layout_constraintTop_toBottomOf="@+id/et_correo"
+            app:srcCompat="?android:attr/fingerprintAuthDrawable"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

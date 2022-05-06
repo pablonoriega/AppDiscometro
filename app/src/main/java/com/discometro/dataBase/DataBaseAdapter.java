@@ -219,6 +219,7 @@ public class DataBaseAdapter extends Activity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion")));
                             }
+                            System.out.println(retrieved_s.size()+"DATABASE");
                             listener.setDiscos(retrieved_s);
 
                         } else {

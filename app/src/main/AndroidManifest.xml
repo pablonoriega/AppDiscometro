@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.discometro">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,14 +14,12 @@
         android:theme="@style/Theme.Discometro">
         <activity
             android:name=".ViewModel.ViewModelMain"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login" />
-        <activity
-            android:name=".objetosPerdidos.AgregarObjetoPerdidoActivity"
-            android:exported="false" />
         <activity
             android:name=".VueltaSegura.AgregarVueltaSeguraActivity"
             android:exported="false" />
