@@ -30,6 +30,9 @@
             android:name=".registro.RegistroActivity"
             android:exported="false" />
         <activity
+            android:name=".objetosPerdidos.AgregarObjetoPerdidoActivity"
+            android:exported="false" />
+        <activity
             android:name=".objetosPerdidos.ObjetosPerdidosActivity"
             android:exported="false" />
 

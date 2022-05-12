@@ -86,7 +86,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/eTxtAddDescription"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/addimagebtn"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -94,19 +94,15 @@
         android:id="@+id/txtAddImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="103dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="309dp"
         android:text="Añade una imagen"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:translationY="-10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addImageBtn"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eTxtAddDescription"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
 
     <Button
         android:id="@+id/subirObjBtn"
@@ -123,5 +119,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addImageBtn" />
+
+    <ImageView
+        android:id="@+id/objectImage"
+        android:layout_width="92dp"
+        android:layout_height="78dp"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addImageBtn"
+        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562"
+        app:srcCompat="@drawable/_fc20722_5368_e911_80d5_b82a72db46f21_680x680pr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
