@@ -19,6 +19,7 @@ import com.discometro.PerfilDisco.PerfilDiscoActivity;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
+import com.discometro.favoritos.FavoritosCardItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,15 +45,13 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     private ViewModelMain vm;
 
     // below are the latitude and longitude
-    LatLng shoko = new LatLng(41.38561716518406, 2.196849116060127);
-    LatLng pacha = new LatLng(41.3858729724748, 2.1970634975427625);
-    LatLng downtown = new LatLng(41.38125363306423, 2.114597924767517);
-    LatLng ottoZutz = new LatLng(41.40052854343992, 2.1500308266135137);
-    LatLng titus = new LatLng(41.45794352445815, 2.263403171770759);
+    LatLng centre = new LatLng(41.38561716518406, 2.196849116060127);
+
 
     // two array list for our lat long and location Name;
     private ArrayList<LatLng> latLngArrayList;
     private ArrayList<String> locationNameArraylist;
+    private ArrayList<PerfilDisco> listDiscos;
 
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -77,18 +76,31 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
             u=((MainActivity)getActivity()).getUser();
 
 
-            // below line is to add marker to google maps
-            for (int i = 0; i < latLngArrayList.size(); i++) {
+            // initializing our array lists.
+            listDiscos = vm.getDiscos();
+            latLngArrayList = new ArrayList<>();
+            locationNameArraylist = new ArrayList<>();
 
-                // adding marker to each location on google maps
-                mMap.addMarker(new MarkerOptions().position(latLngArrayList.get(i)).title(locationNameArraylist.get(i)));
+            if(!listDiscos.isEmpty()){
+                for(int i=0; i<listDiscos.size();i++){
+                    PerfilDisco disco = listDiscos.get(i);
+                    LatLng ubicacio = new LatLng(Double.parseDouble(disco.getLatitud()),Double.parseDouble(disco.getLongitud()));
+                    latLngArrayList.add(ubicacio);
+                    locationNameArraylist.add(disco.getNameDisco());
 
-                //Build camera position
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(shoko).zoom(11).build();
-                //Zoom in and animate the camera.
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }
+
             }
 
+            // below line is to add marker to google maps
+            for (int i = 0; i < latLngArrayList.size(); i++) {
+                // adding marker to each location on google maps
+                mMap.addMarker(new MarkerOptions().position(latLngArrayList.get(i)).title(locationNameArraylist.get(i)));
+            }
+            //Build camera position
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(centre).zoom(11).build();
+            //Zoom in and animate the camera.
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             // adding on click listener to marker of google maps.
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
@@ -157,29 +169,6 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
-
-        // initializing our array lists.
-        latLngArrayList = new ArrayList<>();
-        locationNameArraylist = new ArrayList<>();
-
-        // on below line we are adding
-        // data to our array list.
-
-        latLngArrayList.add(shoko);
-        latLngArrayList.add(pacha);
-        latLngArrayList.add(downtown);
-        latLngArrayList.add(ottoZutz);
-        latLngArrayList.add(titus);
-
-
-        locationNameArraylist.add(("Shoko"));
-        locationNameArraylist.add(("Pacha"));
-        locationNameArraylist.add(("Downtown"));
-        locationNameArraylist.add(("OttoZutz"));
-        locationNameArraylist.add(("Titus"));
-
-
-
     }
 
     @Override

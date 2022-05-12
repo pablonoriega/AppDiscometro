@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.discometro.AllDiscos;
 import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.User;
@@ -206,6 +207,7 @@ public class DataBaseAdapter extends Activity {
                 });
     }
     public void getDiscos() {
+
         Log.d(TAG, "updateDiscos");
         DataBaseAdapter.db.collection("discos")
                 .get()
@@ -217,10 +219,10 @@ public class DataBaseAdapter extends Activity {
                             ArrayList<PerfilDisco> retrieved_s = new ArrayList<PerfilDisco>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion")));
+                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion"),document.getString("latitud"),document.getString("longitud")));
                             }
-                            System.out.println(retrieved_s.size()+"DATABASE");
-                            listener.setDiscos(retrieved_s);
+                            AllDiscos allDiscos = AllDiscos.getInstance();
+                            allDiscos.setAllDiscos(retrieved_s);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

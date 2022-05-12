@@ -21,6 +21,7 @@ import com.discometro.MainActivity;
 import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.ViewModel.ViewModelMain;
+import com.discometro.dataBase.DataBaseAdapter;
 import com.discometro.registro.RegistroActivity;
 import com.discometro.User;
 

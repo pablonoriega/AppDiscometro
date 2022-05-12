@@ -1,5 +1,6 @@
 package com.discometro.PerfilDisco;
 
+import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,10 +14,11 @@ public class PerfilDisco implements Parcelable {
     private String logo;
     private String banner;
     private String descripcion;
-
+    private String latitud;
+    private String longitud;
     private String correo;
 
-    public PerfilDisco(String nameDisco,String logo, String foto1,String foto2,String foto3,String foto4, String correo,String banner, String descripcion) {
+    public PerfilDisco(String nameDisco, String logo, String foto1, String foto2, String foto3, String foto4, String correo, String banner, String descripcion, String latitud, String longitud) {
 
         this.nameDisco = nameDisco;
         this.logo = logo;
@@ -27,6 +29,8 @@ public class PerfilDisco implements Parcelable {
         this.correo=correo;
         this.banner=banner;
         this.descripcion=descripcion;
+        this.longitud = longitud;
+        this.latitud =latitud;
     }
 
 
@@ -40,6 +44,8 @@ public class PerfilDisco implements Parcelable {
         correo = in.readString();
         banner= in.readString();
         descripcion=in.readString();
+        latitud= in.readString();
+        longitud=in.readString();
     }
 
     public static final Creator<PerfilDisco> CREATOR = new Creator<PerfilDisco>() {
@@ -57,6 +63,10 @@ public class PerfilDisco implements Parcelable {
     public String getBanner() {
         return banner;
     }
+
+    public String getLatitud(){return latitud; }
+
+    public String getLongitud(){return  longitud;}
 
     public String getDescripcion() {
         return descripcion;
@@ -110,6 +120,8 @@ public class PerfilDisco implements Parcelable {
         parcel.writeString(correo);
         parcel.writeString(banner);
         parcel.writeString(descripcion);
+        parcel.writeString(latitud);
+        parcel.writeString(longitud);
 
     }
 }
