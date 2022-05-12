@@ -102,17 +102,19 @@ public class PerfilUserFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                //cargarImagen();
+                cargarImagen();
             }
         });
         return view;
     }
 
-    /*
-    public void cargarImagen(){
+
+    public void cargarImagen() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent,"Seleccione la aplicación"),10);
+        startActivityForResult(intent.createChooser(intent, "Seleccione la aplicación"), 10);
+
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -122,7 +124,7 @@ public class PerfilUserFragment extends Fragment {
         }
     }
 
-     */
+
 
 
 
