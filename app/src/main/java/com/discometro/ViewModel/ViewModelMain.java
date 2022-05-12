@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import android.app.Application;
 import android.widget.Toast;
 
+import com.discometro.AllDiscos;
 import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
@@ -37,15 +38,21 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
 
         da = new DataBaseAdapter(this);
         da.getUsers();
-        da.getDiscos();
         da.getVueltaSeguraCard();
         da.getObjetosPerdidoCards();
 
+        AllDiscos allDiscos  = AllDiscos.getInstance();
+        if(allDiscos.getAllDiscos().isEmpty()){
+            da.getDiscos();
+            mPerfilDisco.setValue(allDiscos.getAllDiscos());
+        }
+        else {
+            mPerfilDisco.setValue(allDiscos.getAllDiscos());
+        }
+
+
 
     }
-
-
-
 
 
     @Override
@@ -109,6 +116,10 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
             }
         }
         return u;
+    }
+
+    public ArrayList<PerfilDisco> getDiscos(){
+        return mPerfilDisco.getValue();
     }
 
     public PerfilDisco getDiscoByName(String name){
