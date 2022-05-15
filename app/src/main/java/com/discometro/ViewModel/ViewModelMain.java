@@ -5,11 +5,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import android.app.Application;
-import android.view.View;
 import android.widget.Toast;
 
 import com.discometro.AllDiscos;
-import com.discometro.AllUsers;
 import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
@@ -52,13 +50,7 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
             mPerfilDisco.setValue(allDiscos.getAllDiscos());
         }
 
-        AllUsers allUsers = AllUsers.getInstance();
-        if(allUsers.getAllUsers().isEmpty()) {
-            da.getUsers();
-            mUser.setValue(allUsers.getAllUsers());
-        } else {
-            mUser.setValue(allUsers.getAllUsers());
-        }
+
 
     }
 
@@ -172,6 +164,7 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
         }
         return listAux;
     }
+
 
 
 

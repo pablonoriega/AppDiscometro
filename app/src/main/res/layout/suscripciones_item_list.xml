@@ -39,11 +39,10 @@
                 android:id="@+id/txtViewPuntos"
                 android:layout_width="86dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="44dp"
                 android:text="0 puntos"
                 app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:layout_editor_absoluteY="25dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

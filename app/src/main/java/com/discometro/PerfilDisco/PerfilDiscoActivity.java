@@ -50,6 +50,7 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         Bundle extras = intent.getExtras();
         u= extras.getParcelable("usuario");
         disco= extras.getParcelable("disco");
+
         setContentView(R.layout.activity_perfil_disco);
 
         ActionBar actionBar = getSupportActionBar();
@@ -166,9 +167,14 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
         if(!u.getListSuscripciones().contains(disco.getLogo())){
             u.añadirSuscripcion(disco.getLogo());
-            System.out.println("AÑADIR:" + u.getListSuscripciones().size());
             vm.saveUser(u);
-            Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getLogo()+" a suscripciones", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getNameDisco()+" a suscripciones", Toast.LENGTH_SHORT).show();
+
+        }
+        else if(u.getListSuscripciones().contains(disco.getLogo())){
+            u.eliminarSuscripcion(disco.getLogo());
+            vm.saveUser(u);
+            Toast.makeText(getApplicationContext(),"Se ha eliminado "+disco.getNameDisco() + " de suscripciones", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.discometro.Suscripciones;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.discometro.MainActivity;
-import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
@@ -35,7 +33,6 @@ public class SuscripcionesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private Intent intent;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -47,8 +44,7 @@ public class SuscripcionesFragment extends Fragment {
     private ArrayList<SuscripcionesCardItem> listItems;
     private ArrayList<String> listNombres;
     private RecyclerView recyclerView;
-    private String correo;
-    private User u;
+    private static User u;
     private ImageView imgLogo;
     private ViewModelMain vm;
 
@@ -93,10 +89,9 @@ public class SuscripcionesFragment extends Fragment {
         vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         listItems = new ArrayList<SuscripcionesCardItem>();
 
-        if (((MainActivity)getActivity()).getUserCorreo() != null) {
-            correo = ((MainActivity)getActivity()).getUserCorreo();
+        if (vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo()) != null) {
+            u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
         }
-        u = vm.getUserById(correo);
 
         listNombres = u.getListSuscripciones();
         if(!listNombres.isEmpty()){
@@ -107,12 +102,9 @@ public class SuscripcionesFragment extends Fragment {
             }
 
         }
-        SuscripcionesItemAdapter adapter = new SuscripcionesItemAdapter(listItems, u, vm);
-
+        SuscripcionesItemAdapter adapter = new SuscripcionesItemAdapter(listItems,u,vm);
         recyclerView.setAdapter(adapter);
 
         return view;
     }
-
-
 }
