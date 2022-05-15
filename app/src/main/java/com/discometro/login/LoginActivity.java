@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                         savePreferences();
                     }
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("usuario",u);
+                    intent.putExtra("usuario", u.getCorreo());
                     startActivity(intent);
                 }
             }

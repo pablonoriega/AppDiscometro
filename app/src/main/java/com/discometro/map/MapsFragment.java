@@ -40,6 +40,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     private Intent intent;
     private Class claseDisco;
     private User u;
+    private String correo;
     PerfilDisco disco;
 
     private ViewModelMain vm;
@@ -73,7 +74,12 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
              **/
             mMap = googleMap;
             vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
-            u=((MainActivity)getActivity()).getUser();
+
+            if (((MainActivity)getActivity()).getUserCorreo() != null) {
+                correo = ((MainActivity)getActivity()).getUserCorreo();
+            }
+            u = vm.getUserById(correo);
+
 
 
             // initializing our array lists.

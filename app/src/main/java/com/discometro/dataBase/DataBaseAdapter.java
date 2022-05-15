@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.discometro.AllDiscos;
+import com.discometro.AllUsers;
 import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.User;
@@ -198,6 +199,8 @@ public class DataBaseAdapter extends Activity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 retrieved_s.add(new User(document.getString("correo"),document.getString("contra"), document.getString("name"),document.getString("birthday"),document.getString("surname"),document.getString("dni"),(ArrayList<String>) document.get("listFavoritos"),document.getString("url"),(ArrayList<String>) document.get("listSuscripciones")));
                             }
+                            AllUsers allUsers = AllUsers.getInstance();
+                            allUsers.setAllUsers(retrieved_s);
                             listener.setUser(retrieved_s);
 
                         } else {
