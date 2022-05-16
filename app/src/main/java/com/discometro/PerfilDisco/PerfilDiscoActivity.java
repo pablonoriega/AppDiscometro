@@ -158,11 +158,6 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
             Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getNameDisco()+" a favoritos", Toast.LENGTH_SHORT).show();
 
         }
-        else if(u.getListFavoritos().contains(disco.getLogo())){
-            u.eliminarFavorito(disco.getLogo());
-            vm.saveUser(u);
-            Toast.makeText(getApplicationContext(),"Se ha eliminado "+disco.getNameDisco() + " de favoritos", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void añadirSuscripción(View view){

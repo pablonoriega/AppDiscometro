@@ -44,6 +44,13 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
         String nameDisco= listItems.get(position).getNameDisco();
 
         ((ViewHolderItems)holder).asignarItems(nameDisco);
+
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                u.eliminarFavorito(nameDisco);
+            }
+        });
     }
 
     @Override

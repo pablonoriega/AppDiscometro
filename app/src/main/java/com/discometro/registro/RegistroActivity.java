@@ -166,7 +166,7 @@ public class RegistroActivity extends AppCompatActivity {
                                         User u = new User(txt_email, txt_pwd, txt_name, txt_birthday, txt_surname, txt_dni, new ArrayList<String>(), "", new ArrayList<String>());
                                         vm.saveUser(u);
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        intent.putExtra("usuario", u);
+                                        intent.putExtra("usuario", u.getCorreo());
                                         startActivity(intent);
                                     } else {
                                         Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();

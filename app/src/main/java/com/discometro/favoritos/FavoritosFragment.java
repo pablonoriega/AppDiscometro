@@ -39,6 +39,7 @@ public class FavoritosFragment extends Fragment {
     private ArrayList<String> listNombres;
     private RecyclerView recyclerView;
     private User u;
+    private String correo;
     private ImageView imgLogo;
     private ViewModelMain vm;
 
@@ -84,7 +85,11 @@ public class FavoritosFragment extends Fragment {
         vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         listItems = new ArrayList<FavoritosCardItem>();
 
-        u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
+        if (((MainActivity)getActivity()).getUserCorreo() != null) {
+            correo = ((MainActivity)getActivity()).getUserCorreo();
+        }
+        u = vm.getUserById(correo);
+
         listNombres = u.getListFavoritos();
 
 

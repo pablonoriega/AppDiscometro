@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -97,6 +98,7 @@ public class SuscripcionesFragment extends Fragment {
             correo = ((MainActivity)getActivity()).getUserCorreo();
         }
         u = vm.getUserById(correo);
+
 
         listNombres = u.getListSuscripciones();
         if(!listNombres.isEmpty()){
