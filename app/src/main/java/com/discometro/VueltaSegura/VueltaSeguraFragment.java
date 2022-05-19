@@ -12,13 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.discometro.MainActivity;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.favoritos.FavoritosCardItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ public class VueltaSeguraFragment extends Fragment {
     private Button btn;
     private List<VueltaSeguraCardItem> listItems;
     private RecyclerView recyclerView;
-    private User u;
+    private static User u;
     private ViewModelMain vm;
     private FloatingActionButton btn_addCard;
     private View view;
@@ -81,12 +79,13 @@ public class VueltaSeguraFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_vuelta_segura, container, false);
         vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewVuelta);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragmentsafereturn_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
+        if (u == null) {
+            u = vm.getUserById(((MainActivity) getActivity()).getUser().getCorreo());
+        }
 
-
-        btn_addCard= (FloatingActionButton) view.findViewById(R.id.btn_addcard);
+        btn_addCard= (FloatingActionButton) view.findViewById(R.id.FAB_fragmentsafereturn_addsafereturn);
         btn_addCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,8 +98,9 @@ public class VueltaSeguraFragment extends Fragment {
 
         listItems = new ArrayList<VueltaSeguraCardItem>();
         listItems = vm.getVueltaSeguraCards();
+        System.out.println(listItems.size() + "BBBB");
         if(!listItems.isEmpty()){
-            VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems);
+            VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems, u, vm);
             recyclerView.setAdapter(adapter);
         }
 

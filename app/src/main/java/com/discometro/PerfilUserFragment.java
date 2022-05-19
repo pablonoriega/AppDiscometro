@@ -81,11 +81,11 @@ public class PerfilUserFragment extends Fragment {
         vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
 
-        name = (TextView) view.findViewById(R.id.tv_username);
-        birthday = (TextView) view.findViewById(R.id.tv_bday_user);
-        password = (TextView) view.findViewById(R.id.tv_password_user);
-        dni = (TextView) view.findViewById(R.id.tv_DNI_user);
-        email = (TextView) view.findViewById(R.id.tv_email_user);
+        name = (TextView) view.findViewById(R.id.tv_profile_name);
+        birthday = (TextView) view.findViewById(R.id.tv_profile_birthday);
+        password = (TextView) view.findViewById(R.id.tv_profile_password);
+        dni = (TextView) view.findViewById(R.id.tv_profile_dni);
+        email = (TextView) view.findViewById(R.id.tv_profile_email);
 
 
         name.setText(u.getName());
@@ -95,9 +95,9 @@ public class PerfilUserFragment extends Fragment {
         email.setText(u.getCorreo());
 
 
-        mImageView = (ImageView) view.findViewById(R.id.imageView2);
+        mImageView = (ImageView) view.findViewById(R.id.iv_profile_avatar);
         mImageView.setImageResource(R.drawable.ottozutz1);
-        cambiarImagen = (ImageButton) view.findViewById(R.id.changePhotoBtn);
+        cambiarImagen = (ImageButton) view.findViewById(R.id.btn_profile_changeavatar);
         cambiarImagen.setOnClickListener(new View.OnClickListener() {
 
             @Override

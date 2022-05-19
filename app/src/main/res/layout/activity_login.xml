@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_logo"
+            android:id="@+id/iv_login_banner"
             android:layout_width="411dp"
             android:layout_height="241dp"
             android:contentDescription="@string/LogoDiscometro"
@@ -21,8 +21,62 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/discometrologo" />
 
+        <EditText
+            android:id="@+id/et_login_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="@string/CorreoDNI"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_login_banner" />
+
+        <EditText
+            android:id="@+id/et_login_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="@string/Contraseña"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_login_email" />
+
+        <ImageButton
+            android:id="@+id/btn_login_showpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toEndOf="@+id/et_login_password"
+            app:layout_constraintTop_toBottomOf="@+id/et_login_email"
+            app:srcCompat="?android:attr/fingerprintAuthDrawable"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <CheckBox
+            android:id="@+id/cb_login_remember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:buttonTint="#AC67D3"
+            android:text="@string/Recuérdame"
+            android:textColor="#95000000"
+            android:textColorHighlight="#AC67D3"
+            android:textColorLink="#AC67D3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_login_password" />
+
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_login_login"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,53 +93,11 @@
             android:textStyle="bold"
             app:iconTintMode="add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cb_recuerdame"
+            app:layout_constraintTop_toBottomOf="@+id/cb_login_remember"
             app:strokeColor="#AC67D3" />
 
-        <CheckBox
-            android:id="@+id/cb_recuerdame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
-            android:buttonTint="#AC67D3"
-            android:text="@string/Recuérdame"
-            android:textColor="#95000000"
-            android:textColorHighlight="#AC67D3"
-            android:textColorLink="#AC67D3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_contra" />
-
-        <EditText
-            android:id="@+id/et_correo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
-            android:ems="10"
-            android:hint="@string/CorreoDNI"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:textColorHint="#757575"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
-
-        <EditText
-            android:id="@+id/et_contra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
-            android:ems="10"
-            android:hint="@string/Contraseña"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:textColorHint="#757575"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_correo" />
-
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/btn_login_register"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,20 +114,8 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_login"
             app:strokeColor="#AC67D3" />
-
-        <ImageButton
-            android:id="@+id/img_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="48dp"
-            android:minHeight="48dp"
-            app:layout_constraintStart_toEndOf="@+id/et_contra"
-            app:layout_constraintTop_toBottomOf="@+id/et_correo"
-            app:srcCompat="?android:attr/fingerprintAuthDrawable"
-            tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -135,6 +135,7 @@ public class DataBaseAdapter extends Activity {
         usuario.put("number",card.getNumber());
         usuario.put("origen",card.getOrigen());
         usuario.put("fotoLogo",card.getFotoLogo());
+        usuario.put("userList", card.getUserList());
 
 
         Log.d(TAG, "saveVueltaSegura");
@@ -247,7 +248,7 @@ public class DataBaseAdapter extends Activity {
                             ArrayList<VueltaSeguraCardItem> retrieved_s = new ArrayList<VueltaSeguraCardItem>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new VueltaSeguraCardItem(document.getString("name"),document.getString("usuarioid"), document.getString("vehicle"),document.getString("location"),document.getString("number"),document.getString("origen"),document.getString("fotoLogo")));
+                                retrieved_s.add(new VueltaSeguraCardItem(document.getString("name"),document.getString("usuarioid"), document.getString("vehicle"),document.getString("location"),document.getString("number"),document.getString("origen"),document.getString("fotoLogo"), (ArrayList<String>) document.get("userList")));
                             }
                             listener.setVueltaSeguraCards(retrieved_s);
 

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -18,15 +19,10 @@ import android.widget.Toast;
 
 import com.discometro.CarteraUser;
 import com.discometro.MainActivity;
-import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.dataBase.DataBaseAdapter;
 import com.discometro.registro.RegistroActivity;
 import com.discometro.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -44,11 +40,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        email = findViewById(R.id.et_correo);
-        password = findViewById(R.id.et_contra);
-        remember = findViewById(R.id.cb_recuerdame);
-        login = findViewById(R.id.btn_login);
-        img_btn = findViewById(R.id.img_btn);
+        email = findViewById(R.id.et_login_email);
+        password = findViewById(R.id.et_login_password);
+        remember = findViewById(R.id.cb_login_remember);
+        login = findViewById(R.id.btn_login_login);
+        img_btn = findViewById(R.id.btn_login_showpassword);
         num = 0;
         vm = new ViewModelProvider(this).get(ViewModelMain.class);
         loadPreferences();

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,15 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.discometro.MainActivity;
-import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.favoritos.FavoritosCardItem;
-import com.discometro.favoritos.FavoritosItemAdapter;
 
 import java.util.ArrayList;
 
@@ -89,7 +84,7 @@ public class SuscripcionesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_suscripciones, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewSubs);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragmentsubs_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         listItems = new ArrayList<SuscripcionesCardItem>();

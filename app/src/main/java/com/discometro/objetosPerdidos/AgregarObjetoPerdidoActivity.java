@@ -4,29 +4,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.transition.TransitionManager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.discometro.MainActivity;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.VueltaSegura.VueltaSeguraCardItem;
-
-import java.util.ArrayList;
 
 public class AgregarObjetoPerdidoActivity extends AppCompatActivity {
 
@@ -57,11 +47,11 @@ public class AgregarObjetoPerdidoActivity extends AppCompatActivity {
 
 
 
-        nombre = findViewById(R.id.eTxtObjectName);
-        descripcion= findViewById(R.id.eTxtAddDescription);
-        subirObjeto = findViewById(R.id.subirObjBtn);
-        objectImage = findViewById(R.id.objectImage);
-        addImageBtn = findViewById(R.id.addImageBtn);
+        nombre = findViewById(R.id.tv_addobject_objectname);
+        descripcion= findViewById(R.id.tv_addobject_objectdescr);
+        subirObjeto = findViewById(R.id.btn_addobject_addobject);
+        objectImage = findViewById(R.id.iv_addobject_objectimg);
+        addImageBtn = findViewById(R.id.ib_addobject_addobjectimg);
 
         addImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override

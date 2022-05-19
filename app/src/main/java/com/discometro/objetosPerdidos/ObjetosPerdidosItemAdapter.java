@@ -1,6 +1,5 @@
 package com.discometro.objetosPerdidos;
 
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +48,10 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
 
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
-            nombreObj = (TextView) itemView.findViewById(R.id.nombreObj_objetos_perdidos_item);
-            usuario = (TextView) itemView.findViewById(R.id.usuario_objetos_perdidos_item);
-            descripcion = (TextView) itemView.findViewById(R.id.objePerdidoDesc);
-            imagen = (ImageView) itemView.findViewById(R.id.objetoPerdidoImagen);
+            nombreObj = (TextView) itemView.findViewById(R.id.tv_objectitemlist_username);
+            usuario = (TextView) itemView.findViewById(R.id.tv_objectitemlist_useremail);
+            descripcion = (TextView) itemView.findViewById(R.id.tv_objectitemlist_descr);
+            imagen = (ImageView) itemView.findViewById(R.id.iv_objectitemlist_objectimg);
         }
 
         public void asignarItems(String nombreObj, String usuario, String descripcion, String imagen) {

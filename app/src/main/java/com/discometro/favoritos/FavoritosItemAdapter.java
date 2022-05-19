@@ -34,7 +34,7 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
     public FavoritosItemAdapter.ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favoritos_item_list, null, false);
 
-        eliminar=view.findViewById(R.id.buttonEliminarSus);
+        eliminar=view.findViewById(R.id.btn_favsitemlist_delete);
 
         return new ViewHolderItems(view);
     }
@@ -68,7 +68,7 @@ public class FavoritosItemAdapter extends RecyclerView.Adapter<FavoritosItemAdap
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
 
-            logoDisco= (ImageView) itemView.findViewById(R.id.fotoLogoSus);
+            logoDisco= (ImageView) itemView.findViewById(R.id.iv_favsitemlist_logo);
 
         }
         public void asignarItems(String nameDisco) {

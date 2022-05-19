@@ -42,15 +42,15 @@ public class RegistroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        email = findViewById(R.id.email);
-        surname = findViewById(R.id.surname);
-        name = findViewById(R.id.name);
-        dni = findViewById(R.id.dni);
-        birthday = findViewById(R.id.birthDate);
-        password = findViewById(R.id.password);
-        passwordRepeat = findViewById(R.id.password2);
-        acceptTerms = findViewById(R.id.acceptTerms);
-        register = findViewById(R.id.registerButton);
+        email = findViewById(R.id.tv_register_email);
+        surname = findViewById(R.id.tv_register_surname);
+        name = findViewById(R.id.tv_register_name);
+        dni = findViewById(R.id.tv_register_dni);
+        birthday = findViewById(R.id.tv_register_birthday);
+        password = findViewById(R.id.tv_register_password);
+        passwordRepeat = findViewById(R.id.tv_register_passwordconfirm);
+        acceptTerms = findViewById(R.id.cb_register_acceptterms);
+        register = findViewById(R.id.btn_register_register);
         vm = new ViewModelProvider(this).get(ViewModelMain.class);
 
 

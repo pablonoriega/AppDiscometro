@@ -141,8 +141,21 @@ public class ViewModelMain extends AndroidViewModel implements DataBaseAdapter.v
             }
         }
         return u;
-
     }
+
+    public VueltaSeguraCardItem getCardByName(String name) {
+        ArrayList<VueltaSeguraCardItem> listCard = mVueltaSegura.getValue();
+        Iterator it = listCard.iterator();
+        VueltaSeguraCardItem u = null;
+        while (it.hasNext()) {
+            VueltaSeguraCardItem aux = (VueltaSeguraCardItem) it.next();
+            if (aux.getUserList().get(0).equals(name)) {
+                u = aux;
+            }
+        }
+        return u;
+    }
+
     public ArrayList<String> getNameDiscos(){
         ArrayList<PerfilDisco> listDiscos = mPerfilDisco.getValue();
         ArrayList<String>listNombres=new ArrayList<>();

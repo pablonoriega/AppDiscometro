@@ -1,24 +1,18 @@
 package com.discometro.Suscripciones;
 
-import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.discometro.MainActivity;
-import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.favoritos.FavoritosCardItem;
 
 import java.util.List;
 
@@ -41,8 +35,8 @@ public class SuscripcionesItemAdapter extends RecyclerView.Adapter<Suscripciones
     public SuscripcionesItemAdapter.ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.suscripciones_item_list, null, false);
 
-        eliminar=view.findViewById(R.id.buttonEliminarSus);
-        iv = view.findViewById(R.id.fotoLogoSus);
+        eliminar=view.findViewById(R.id.btn_subsitemlist_delete);
+        iv = view.findViewById(R.id.iv_subsitemlist_logo);
 
         return new ViewHolderItems(view);
     }
@@ -79,7 +73,7 @@ public class SuscripcionesItemAdapter extends RecyclerView.Adapter<Suscripciones
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
 
-            logoDisco= (ImageView) itemView.findViewById(R.id.fotoLogoSus);
+            logoDisco= (ImageView) itemView.findViewById(R.id.iv_subsitemlist_logo);
 
         }
         public void asignarItems(String nameDisco) {

@@ -80,7 +80,7 @@ public class FavoritosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewSubs);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragmentfavs_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         listItems = new ArrayList<FavoritosCardItem>();

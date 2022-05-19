@@ -33,9 +33,9 @@ public class ObjetosPerdidosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_objetos_perdidos);
         vm = new ViewModelProvider(this).get(ViewModelMain.class);
 
-        addObject = findViewById(R.id.addObjectBtn);
+        addObject = findViewById(R.id.ib_object_addobject);
 
-        recyclerView = (RecyclerView) findViewById(R.id.objPerdidosRecycler);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_object_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
         Intent getDatos = getIntent();

@@ -1,7 +1,6 @@
 package com.discometro;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -11,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.discometro.PerfilDisco.PerfilDisco;
 import com.discometro.Suscripciones.SuscripcionesFragment;
 import com.discometro.ViewModel.ViewModelMain;
 import com.discometro.VueltaSegura.AgregarVueltaSeguraActivity;
@@ -38,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         vm = new ViewModelMain(getApplication());
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bnv_main_bottomNavigationView);
+        NavController navController = Navigation.findNavController(this, R.id.fragment_main_fragment);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.mapsFragment, R.id.vueltaSeguraFragment, R.id.suscripcionesFragment, R.id.favoritosFragment, R.id.perfilUserFragment).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
@@ -48,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         if (extras.getString("usuario") != null) {
             correo = extras.getString("usuario");
         }
-        System.out.println(correo + "HOLAAA");
         user = vm.getUserById(correo);
     }
 

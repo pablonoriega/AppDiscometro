@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.discometro.MainActivity;
 import com.discometro.PerfilDisco.PerfilDisco;
@@ -19,7 +18,6 @@ import com.discometro.PerfilDisco.PerfilDiscoActivity;
 import com.discometro.R;
 import com.discometro.User;
 import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.favoritos.FavoritosCardItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -126,7 +124,12 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                     return false;
                 }
             });
-
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(@NonNull LatLng latLng) {
+                    button.setVisibility(View.INVISIBLE);
+                }
+            });
         }
     };
 
@@ -137,8 +140,8 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                              @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_maps, container, false);
-        button = (Button) view.findViewById(R.id.botonMapa);
-        button.setVisibility(view.INVISIBLE);
+        button = (Button) view.findViewById(R.id.btn_fragmentmap_gotoprofile);
+        button.setVisibility(View.INVISIBLE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,7 +174,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_fragmentmap_map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
