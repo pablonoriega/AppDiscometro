@@ -98,7 +98,7 @@ public class VueltaSeguraFragment extends Fragment {
 
         listItems = new ArrayList<VueltaSeguraCardItem>();
         listItems = vm.getVueltaSeguraCards();
-        System.out.println(listItems.size() + "BBBB");
+
         if(!listItems.isEmpty()){
             VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems, u, vm);
             recyclerView.setAdapter(adapter);
