@@ -1,7 +1,4 @@
-package com.discometro.registro;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+package com.discometro.Registro;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,17 +8,22 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.discometro.CarteraUser;
-import com.discometro.MainActivity;
-import com.discometro.R;
-import com.discometro.User;
-import com.discometro.ViewModel.ViewModelMain;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import com.discometro.MainActivity.MainActivity;
+import com.discometro.R;
+import com.discometro.User.User;
+
+import com.discometro.ViewModels.ViewModelRegistroActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistroActivity extends AppCompatActivity {
 
@@ -34,8 +36,10 @@ public class RegistroActivity extends AppCompatActivity {
     private EditText passwordRepeat;
     private CheckBox acceptTerms;
     private Button register;
-    private CarteraUser carteraUser;
-    private ViewModelMain vm;
+
+    private ViewModelRegistroActivity vm;
+    private User u;
+    private String txt_pwd,txt_pwd2,txt_email, txt_name, txt_birthday, txt_surname, txt_dni;
 
 
     @Override
@@ -51,7 +55,8 @@ public class RegistroActivity extends AppCompatActivity {
         passwordRepeat = findViewById(R.id.password2);
         acceptTerms = findViewById(R.id.acceptTerms);
         register = findViewById(R.id.registerButton);
-        vm = new ViewModelProvider(this).get(ViewModelMain.class);
+
+        setLiveDataObservers();
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -133,13 +138,13 @@ public class RegistroActivity extends AppCompatActivity {
 
 
     public void intentToMapReg(View view) {
-        String txt_email = email.getText().toString();
-        String txt_pwd = password.getText().toString();
-        String txt_pwd2 = passwordRepeat.getText().toString();
-        String txt_name = name.getText().toString();
-        String txt_surname = surname.getText().toString();
-        String txt_dni = dni.getText().toString();
-        String txt_birthday = birthday.getText().toString();
+         txt_email = email.getText().toString();
+         txt_pwd = password.getText().toString();
+         txt_pwd2 = passwordRepeat.getText().toString();
+         txt_name = name.getText().toString();
+         txt_surname = surname.getText().toString();
+         txt_dni = dni.getText().toString();
+         txt_birthday = birthday.getText().toString();
         Boolean acceptedTerms = acceptTerms.isChecked();
 
         if (txt_email.equals("") || txt_pwd.equals("") || txt_pwd2.equals("") || txt_name.equals("") || txt_surname.equals("") || txt_dni.equals("") || txt_birthday.equals("")) {
@@ -158,27 +163,53 @@ public class RegistroActivity extends AppCompatActivity {
                             if (acceptedTerms == Boolean.FALSE) {
                                 Toast.makeText(this, "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show();
                             } else {
-                                User user = vm.getUserById(txt_email);
-                                if (user != null) {
-                                    Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    if (txt_pwd.equals(txt_pwd2)) {
-                                        User u = new User(txt_email, txt_pwd, txt_name, txt_birthday, txt_surname, txt_dni, new ArrayList<String>(), "", new ArrayList<String>());
-                                        vm.saveUser(u);
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        intent.putExtra("usuario", u);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();
-                                    }
+                                vm.iniUser(txt_email);
 
-                                }
 
                             }
                         }
                     }
                 }
 
+            }
+
+        }
+    }
+
+    public void setLiveDataObservers() {
+        //Subscribe the activity to the observable
+        vm = new ViewModelProvider(this).get(ViewModelRegistroActivity.class);
+        final Observer<User> observerUsuario = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                u= vm.getUser().getValue();
+                validacionFinal();
+            }
+        };
+
+        final Observer<String> observerToast = new Observer<String>() {
+            @Override
+            public void onChanged(String t) {
+                Toast.makeText(RegistroActivity.this, t, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        vm.getToast().observe(this, observerToast);
+        vm.getUser().observe(this, observerUsuario);
+    }
+
+    public void validacionFinal(){
+        if (u != null) {
+            Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
+        } else {
+            if (txt_pwd.equals(txt_pwd2)) {
+                User u = new User(txt_email, txt_pwd, txt_name, txt_birthday, txt_surname, txt_dni, new ArrayList<String>(), "", new ArrayList<String>());
+                vm.saveUser(u);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("usuario", u.getCorreo());
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Asegúrate de introducir la misma contraseña", Toast.LENGTH_SHORT).show();
             }
 
         }

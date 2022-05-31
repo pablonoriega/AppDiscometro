@@ -1,10 +1,5 @@
 package com.discometro.map;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,13 +8,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.discometro.MainActivity;
-import com.discometro.PerfilDisco.PerfilDisco;
-import com.discometro.PerfilDisco.PerfilDiscoActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.discometro.Discos.PerfilDisco;
+
+
+import com.discometro.Discos.PerfilDiscoActivity;
+import com.discometro.MainActivity.MainActivity;
 import com.discometro.R;
-import com.discometro.User;
-import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.favoritos.FavoritosCardItem;
+import com.discometro.User.User;
+
+import com.discometro.ViewModels.ViewModelMapFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -40,9 +43,9 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     private Intent intent;
     private Class claseDisco;
     private User u;
+    private String correo;
     PerfilDisco disco;
-
-    private ViewModelMain vm;
+    private ViewModelMapFragment vm;
 
     // below are the latitude and longitude
     LatLng centre = new LatLng(41.38561716518406, 2.196849116060127);
@@ -55,7 +58,6 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
 
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-
         /**
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
@@ -72,31 +74,10 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
              mMap.moveCamera(CameraUpdateFactory.newLatLng(barcelona));
              **/
             mMap = googleMap;
-            vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
-            u=((MainActivity)getActivity()).getUser();
 
+            setLiveDataObservers();
+            vm.iniUser(((MainActivity)getActivity()).getCorreo());
 
-            // initializing our array lists.
-            listDiscos = vm.getDiscos();
-            latLngArrayList = new ArrayList<>();
-            locationNameArraylist = new ArrayList<>();
-
-            if(!listDiscos.isEmpty()){
-                for(int i=0; i<listDiscos.size();i++){
-                    PerfilDisco disco = listDiscos.get(i);
-                    LatLng ubicacio = new LatLng(Double.parseDouble(disco.getLatitud()),Double.parseDouble(disco.getLongitud()));
-                    latLngArrayList.add(ubicacio);
-                    locationNameArraylist.add(disco.getNameDisco());
-
-                }
-
-            }
-
-            // below line is to add marker to google maps
-            for (int i = 0; i < latLngArrayList.size(); i++) {
-                // adding marker to each location on google maps
-                mMap.addMarker(new MarkerOptions().position(latLngArrayList.get(i)).title(locationNameArraylist.get(i)));
-            }
             //Build camera position
             CameraPosition cameraPosition = new CameraPosition.Builder().target(centre).zoom(11).build();
             //Zoom in and animate the camera.
@@ -106,21 +87,13 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                 @Override
                 public boolean onMarkerClick(Marker marker) {
                     // on marker click we are getting the title of our marker
-                    // which is clicked and displaying it in a toast message.
-                    //String markerName = marker.getTitle();
-                    //Toast.makeText(getActivity(), "Clicked location is " + markerName, Toast.LENGTH_SHORT).show();
-                    //Fragment perfil = new PerfilUserFragment();
                     //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.map,perfil).addToBackStack(null).commit();
                     button.setVisibility(view.VISIBLE);
-                    nameDisco=marker.getTitle();
-
-
-
+                    nameDisco = marker.getTitle();
 
                     return false;
                 }
             });
-
         }
     };
 
@@ -129,29 +102,26 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.fragment_maps, container, false);
         button = (Button) view.findViewById(R.id.botonMapa);
         button.setVisibility(view.INVISIBLE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 try {
                     claseDisco = Class.forName(nameDisco);
-                }
-                catch(Exception e) {
+                } catch (Exception e) {
                     //  Block of code to handle errors
                 }
 
                 intent = new Intent(getContext(), PerfilDiscoActivity.class);
-                disco = vm.getDiscoByName(nameDisco);
-
                 Bundle extras = new Bundle();
-                extras.putParcelable("usuario",u);
-                extras.putParcelable("disco",disco);
+                extras.putString("usuario",u.getCorreo());
+                extras.putString("disco",nameDisco);
                 intent.putExtras(extras);
                 startActivity(intent);
+
+
             }
         });
 
@@ -163,6 +133,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
         mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -175,7 +146,68 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
     public boolean onMarkerClick(@NonNull Marker marker) {
         return false;
     }
+
+    public void inicializarMapa() {
+        // initializing our array lists.
+        latLngArrayList = new ArrayList<>();
+        locationNameArraylist = new ArrayList<>();
+        if (!listDiscos.isEmpty()) {
+            for (int i = 0; i < listDiscos.size(); i++) {
+                PerfilDisco disco = listDiscos.get(i);
+                LatLng ubicacio = new LatLng(Double.parseDouble(disco.getLatitud()), Double.parseDouble(disco.getLongitud()));
+                latLngArrayList.add(ubicacio);
+                locationNameArraylist.add(disco.getNameDisco());
+            }
+        }
+        // below line is to add marker to google maps
+        for (int i = 0; i < latLngArrayList.size(); i++) {
+            // adding marker to each location on google maps
+            mMap.addMarker(new MarkerOptions().position(latLngArrayList.get(i)).title(locationNameArraylist.get(i)));
+        }
+
+    }
+
+    public void setLiveDataObservers() {
+        //Subscribe the activity to the observable
+        vm = new ViewModelProvider(this).get(ViewModelMapFragment.class);
+
+        final Observer<User> observerUsuario = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (vm.getUser().getValue().equals(null)) {
+                    Toast.makeText(getActivity(), "El usuario o la contraseÃ±a son incorrectos", Toast.LENGTH_SHORT).show();
+                } else {
+                    MapsFragment.this.u = (User) vm.getUser().getValue();
+
+                }
+            }
+        };
+        final Observer<ArrayList<PerfilDisco>> observerDiscos = new Observer<ArrayList<PerfilDisco>>() {
+            @Override
+            public void onChanged(ArrayList<PerfilDisco> perfilDiscos) {
+                if (vm.getDiscos().getValue().equals(null)) {
+
+                } else {
+                    listDiscos = vm.getDiscos().getValue();
+                    inicializarMapa();
+                }
+            }
+        };
+
+        final Observer<String> observerToast = new Observer<String>() {
+            @Override
+            public void onChanged(String t) {
+                Toast.makeText(getActivity(), t, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        vm.getToast().observe(getViewLifecycleOwner(), observerToast);
+        vm.getUser().observe(getViewLifecycleOwner(), observerUsuario);
+        vm.getDiscos().observe(getViewLifecycleOwner(),observerDiscos);
+
+    }
 }
+
 
 
 

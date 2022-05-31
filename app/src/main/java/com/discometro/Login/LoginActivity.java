@@ -1,7 +1,4 @@
-package com.discometro.login;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+package com.discometro.Login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,29 +13,28 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.discometro.CarteraUser;
-import com.discometro.MainActivity;
-import com.discometro.PerfilDisco.PerfilDisco;
-import com.discometro.R;
-import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.dataBase.DataBaseAdapter;
-import com.discometro.registro.RegistroActivity;
-import com.discometro.User;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.discometro.MainActivity.MainActivity;
+import com.discometro.R;
+import com.discometro.Registro.RegistroActivity;
+import com.discometro.User.User;
+import com.discometro.ViewModels.ViewModelLoginActivity;
 
 public class LoginActivity extends AppCompatActivity {
-
     private EditText email;
     private EditText password;
     private CheckBox remember;
     private Button login;
-    private CarteraUser carteraUser;
     private ImageButton img_btn;
     private User u;
     private static int num;
-    private  ViewModelMain vm;
+    private ViewModelLoginActivity vm;
+    private String txt_email;
+    private String txt_pwd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.btn_login);
         img_btn = findViewById(R.id.img_btn);
         num = 0;
-        vm = new ViewModelProvider(this).get(ViewModelMain.class);
+        setLiveDataObservers();
         loadPreferences();
         img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,29 +69,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void intentToMap(View view) {
-        String txt_email = email.getText().toString();
-        String txt_pwd = password.getText().toString();
+        txt_email = email.getText().toString();
+        txt_pwd = password.getText().toString();
         if (txt_email.equals("") || txt_pwd.equals("")) {
             Toast.makeText(this, "Rellena los espacios", Toast.LENGTH_SHORT).show();
         }
         else {
-            u = vm.getUserById(txt_email);
-            if (u == null) {
-                Toast.makeText(this, "Correo incorrecto", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                if (!u.getContra().equals(txt_pwd)) {
-                    Toast.makeText(this, "La contraseña no es correcta", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (remember.isChecked()) {
-                        savePreferences();
-                    }
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("usuario", u.getCorreo());
-                    startActivity(intent);
-                }
-            }
+            vm.iniUser(txt_email);
+
         }
     }
 
@@ -120,4 +101,55 @@ public class LoginActivity extends AppCompatActivity {
         email.setText(correo);
         password.setText(pwd);
     }
+
+    public void setLiveDataObservers() {
+        //Subscribe the activity to the observable
+        vm = new ViewModelProvider(this).get(ViewModelLoginActivity.class);
+        final Observer<User> observerUsuario = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (vm.getUser().getValue().equals(null)) {
+                    Toast.makeText(LoginActivity.this, "El usuario o la contraseÃ±a son incorrectos", Toast.LENGTH_SHORT).show();
+                } else {
+                    validacionFinal();
+                }
+            }
+        };
+
+        final Observer<String> observerToast = new Observer<String>() {
+            @Override
+            public void onChanged(String t) {
+                Toast.makeText(LoginActivity.this, t, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        vm.getToast().observe(this, observerToast);
+        vm.getUser().observe(this, observerUsuario);
+    }
+
+    public void validacionFinal(){
+        u=vm.getUser().getValue();
+        if (u == null) {
+            Toast.makeText(LoginActivity.this, "Correo incorrecto", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            if (!u.getContra().equals(txt_pwd)) {
+                Toast.makeText(LoginActivity.this, "La contraseña no es correcta", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                if (remember.isChecked()) {
+                    savePreferences();
+                }
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("usuario", u.getCorreo());
+                startActivity(intent);
+
+
+            }
+        }
+
+    }
+
+
+
 }

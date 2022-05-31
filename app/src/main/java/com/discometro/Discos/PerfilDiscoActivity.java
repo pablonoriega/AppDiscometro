@@ -1,9 +1,4 @@
-package com.discometro.PerfilDisco;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+package com.discometro.Discos;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -21,12 +16,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.discometro.MainActivity;
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.discometro.MainActivity.MainActivity;
+import com.discometro.ObjetosPerdidos.ObjetosPerdidosActivity;
 import com.discometro.R;
-import com.discometro.User;
-import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.objetosPerdidos.ObjetosPerdidosActivity;
+import com.discometro.User.User;
+
+import com.discometro.ViewModels.ViewModelPerfilDiscoActivity;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPerfilDisco {
 
@@ -34,10 +39,12 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
     private ImageView logo, banner;
     private FloatingActionButton fab_msg, fab_items, fab_favs, fab_subs;
     private TextView descripcion;
-    private ViewModelMain vm;
+    private ViewModelPerfilDiscoActivity vm;
 
     Intent intent;
     private User u;
+    private String correo;
+    private String nameDisco;
 
     private PerfilDisco disco;
 
@@ -45,12 +52,15 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        vm = new ViewModelProvider(this).get(ViewModelMain.class);
+        setContentView(R.layout.activity_perfil_disco);
+
         intent=getIntent();
         Bundle extras = intent.getExtras();
-        u= extras.getParcelable("usuario");
-        disco= extras.getParcelable("disco");
-        setContentView(R.layout.activity_perfil_disco);
+        correo = extras.getString("usuario");
+        nameDisco= extras.getString("disco");
+
+        setLiveDataObservers();
+        vm.iniUser(correo);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -67,23 +77,7 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         banner=findViewById(R.id.banner_disco);
         descripcion= findViewById(R.id.descripcion_disco);
 
-        String foto1 = disco.getFoto1();
-        String foto2 = disco.getFoto2();
-        String foto3 = disco.getFoto3();
-        String foto4 = disco.getFoto4();
-        String logo_text = disco.getLogo();
-        String banner_text =disco.getBanner();
-        String descripcion_text=disco.getDescripcion();
 
-
-
-        ib_1.setImageResource(Integer.parseInt(foto1));
-        ib_2.setImageResource(Integer.parseInt(foto2));
-        ib_3.setImageResource(Integer.parseInt(foto3));
-        ib_4.setImageResource(Integer.parseInt(foto4));
-        logo.setImageResource(Integer.parseInt(logo_text));
-        banner.setImageResource(Integer.parseInt(banner_text));
-        descripcion.setText(descripcion_text);
 
 
 
@@ -91,8 +85,8 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Intent vuelta = new Intent(getApplicationContext(), MainActivity.class);
-                vuelta.putExtra("usuario",u);
+                Intent vuelta = new Intent(getApplicationContext(),MainActivity.class);
+                 vuelta.putExtra("usuario",u.getCorreo());
                 startActivity(vuelta);
 
             }
@@ -130,6 +124,70 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         builder.show();
     }
 
+    public void inicializarFotos(){
+
+        String foto1 = disco.getFoto1();
+        String foto2 = disco.getFoto2();
+        String foto3 = disco.getFoto3();
+        String foto4 = disco.getFoto4();
+        String logo_text = disco.getLogo();
+        String banner_text =disco.getBanner();
+        String descripcion_text=disco.getDescripcion();
+
+
+
+        ib_1.setImageResource(Integer.parseInt(foto1));
+        ib_2.setImageResource(Integer.parseInt(foto2));
+        ib_3.setImageResource(Integer.parseInt(foto3));
+        ib_4.setImageResource(Integer.parseInt(foto4));
+        logo.setImageResource(Integer.parseInt(logo_text));
+        banner.setImageResource(Integer.parseInt(banner_text));
+        descripcion.setText(descripcion_text);
+
+    }
+
+    public void setLiveDataObservers() {
+        //Subscribe the activity to the observable
+        vm = new ViewModelProvider(this).get(ViewModelPerfilDiscoActivity.class);
+        final Observer<User> observerUsuario = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (vm.getUser().getValue().equals(null)) {
+                    Toast.makeText(PerfilDiscoActivity.this, "Se ha producido un error", Toast.LENGTH_SHORT).show();
+                } else {
+                    u= vm.getUser().getValue();
+                }
+            }
+        };
+
+        final Observer<ArrayList<PerfilDisco>> observerDiscos = new Observer<ArrayList<PerfilDisco>>() {
+            @Override
+            public void onChanged(ArrayList<PerfilDisco> perfilDiscos) {
+                if (vm.getDiscos().getValue().equals(null)) {
+
+                } else {
+                    disco = vm.getDiscoByName(nameDisco);
+                    inicializarFotos();
+                }
+            }
+        };
+
+        final Observer<String> observerToast = new Observer<String>() {
+            @Override
+            public void onChanged(String t) {
+                Toast.makeText(PerfilDiscoActivity.this, t, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        vm.getToast().observe(this, observerToast);
+        vm.getUser().observe(this, observerUsuario);
+        vm.getDiscos().observe(this,observerDiscos);
+    }
+
+
+
+
+
     @Override
     public void intentToEmail(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
@@ -139,12 +197,15 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
     @Override
     public void intentToObjetosPerdidos(View view) {
+
         Intent enviarDatos = new Intent(this, ObjetosPerdidosActivity.class);
         Bundle extras = new Bundle();
         extras.putString("nameDisco",disco.getNameDisco());
-        extras.putParcelable("usuario",u);
+        extras.putString("usuario",correo);
         enviarDatos.putExtras(extras);
         startActivity(enviarDatos);
+
+
 
     }
 
@@ -156,9 +217,7 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
         }
         else if(u.getListFavoritos().contains(disco.getLogo())){
-            u.eliminarFavorito(disco.getLogo());
-            vm.saveUser(u);
-            Toast.makeText(getApplicationContext(),"Se ha eliminado "+disco.getNameDisco() + " de favoritos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),disco.getNameDisco() + " ya se encuentra en favoritos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -166,9 +225,11 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
         if(!u.getListSuscripciones().contains(disco.getLogo())){
             u.añadirSuscripcion(disco.getLogo());
-            System.out.println("AÑADIR:" + u.getListSuscripciones().size());
             vm.saveUser(u);
-            Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getLogo()+" a suscripciones", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getNameDisco()+" a suscripciones", Toast.LENGTH_SHORT).show();
+        }
+        else if(u.getListSuscripciones().contains(disco.getLogo())){
+            Toast.makeText(getApplicationContext(),disco.getNameDisco() + " ya se encuentra en suscripciones", Toast.LENGTH_SHORT).show();
         }
     }
 }

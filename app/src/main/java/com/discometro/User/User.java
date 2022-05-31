@@ -1,15 +1,11 @@
-package com.discometro;
+package com.discometro.User;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
-
-import com.discometro.dataBase.DataBaseAdapter;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
-public class User implements Parcelable {
+public class User  {
 
     private String correo;
     private String contra;
@@ -19,11 +15,11 @@ public class User implements Parcelable {
     private String name;
     private ArrayList<String> listFavoritos;
     private ArrayList<String> listSuscripciones;
-    private String url;
+    private String uri;
 
 
 
-    public User(String correo, String contra, String name, String birthday, String surname , String dni, ArrayList<String> listFavoritos, String url, ArrayList<String> listSuscripciones) {
+    public User(String correo, String contra, String name, String birthday, String surname , String dni, ArrayList<String> listFavoritos, String uri, ArrayList<String> listSuscripciones) {
         this.correo = correo;
         this.contra = contra;
         this.birthday=birthday;
@@ -31,53 +27,10 @@ public class User implements Parcelable {
         this.dni=dni;
         this.name=name;
         this.listFavoritos = listFavoritos;
-        this.url=url;
+        this.uri=uri;
         this.listSuscripciones = listSuscripciones;
 
 
-    }
-
-
-    protected User(Parcel in) {
-        correo = in.readString();
-        contra = in.readString();
-        birthday = in.readString();
-        surname = in.readString();
-        dni = in.readString();
-        name = in.readString();
-        listFavoritos = in.createStringArrayList();
-        url = in.readString();
-        listSuscripciones = in.createStringArrayList();
-    }
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(correo);
-        parcel.writeString(contra);
-        parcel.writeString(birthday);
-        parcel.writeString(surname);
-        parcel.writeString(dni);
-        parcel.writeString(name);
-        parcel.writeStringList(listFavoritos);
-        parcel.writeString(url);
-        parcel.writeStringList(listSuscripciones);
     }
 
 
@@ -93,7 +46,7 @@ public class User implements Parcelable {
     public void setDni(String dni) { this.dni = dni; }
     public void setName(String name) { this.name = name; }
     public void setListFavoritos(ArrayList<String> listFavoritos) { this.listFavoritos = listFavoritos; }
-
+    public void setUri(String uri){this.uri=uri;}
     public void setListSuscripciones(ArrayList<String> listSuscripciones) {this.listSuscripciones = listSuscripciones; }
 
     public ArrayList<String> getListSuscripciones() {return listSuscripciones; }
@@ -108,7 +61,8 @@ public class User implements Parcelable {
     public String getDni() { return dni; }
     public String getSurname() { return surname; }
     public String getName() { return name; }
-    public String getUrl() { return url; }
+    public String getUrl() {
+        return uri; }
 
 
     public void añadirFavorito(String nameDisco){

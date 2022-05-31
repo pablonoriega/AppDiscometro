@@ -16,12 +16,23 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/objePerdidoUser"
+                android:layout_width="117dp"
+                android:layout_height="33dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.199"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.863" />
+
+            <TextView
                 android:id="@+id/nombreObj_objetos_perdidos_item"
                 android:layout_width="4dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -30,29 +41,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
-                app:layout_constraintStart_toEndOf="@+id/fotoLogoSus"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
                 app:layout_constraintTop_toBottomOf="@+id/nombreObj_objetos_perdidos_item" />
 
             <ImageView
-                android:id="@+id/fotoLogoSus"
+                android:id="@+id/fotoLogoObjetosPerdidos"
                 android:layout_width="63dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/downtownlogocrop" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/objePerdidoDesc"
-                android:layout_width="168dp"
-                android:layout_height="55dp"
+                android:id="@+id/obje_PerdidosDesc"
+                android:layout_width="172dp"
+                android:layout_height="33dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.411"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.147"
+                app:layout_constraintStart_toEndOf="@+id/objetoPerdidoImagenObjeto"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.836" />
+                app:layout_constraintVertical_bias="0.504" />
 
             <TextView
                 android:id="@+id/objePerdidoName"
@@ -60,10 +70,10 @@
                 android:layout_height="33dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.411"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.236"
+                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.275" />
+                app:layout_constraintVertical_bias="0.136" />
 
             <Button
                 android:id="@+id/buttonEliminarSus"
@@ -71,17 +81,19 @@
                 android:layout_height="38dp"
                 android:layout_marginTop="112dp"
                 android:layout_marginEnd="6dp"
-                android:layout_marginBottom="3dp"
                 android:text="RECLAMAR"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.444"
+                app:layout_constraintStart_toEndOf="@+id/obje_PerdidosDesc"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <ImageView
-                android:id="@+id/objetoPerdidoImagen"
+                android:id="@+id/objetoPerdidoImagenObjeto"
                 android:layout_width="58dp"
                 android:layout_height="54dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +101,7 @@
                 app:layout_constraintHorizontal_bias="0.07"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.838"
+                app:layout_constraintVertical_bias="0.833"
                 tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

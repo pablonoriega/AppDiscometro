@@ -22,13 +22,13 @@ public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraIt
     }
 
     @Override
-    public VueltaSeguraItemAdapter.ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vuelta_segura_item_list, null, false);
         return new ViewHolderItems(view);
     }
 
     @Override
-    public void onBindViewHolder(VueltaSeguraItemAdapter.ViewHolderItems holder, int position) {
+    public void onBindViewHolder(ViewHolderItems holder, int position) {
         String usuario = listItems.get(position).getName();
         String usuarioid = listItems.get(position).getUsuarioid();
         String vehicle = listItems.get(position).getVehicle();
@@ -51,9 +51,9 @@ public class VueltaSeguraItemAdapter extends RecyclerView.Adapter<VueltaSeguraIt
             super(itemView);
             usuario = (TextView) itemView.findViewById(R.id.nombreObj_objetos_perdidos_item);
             usuarioid = (TextView) itemView.findViewById(R.id.usuario_objetos_perdidos_item);
-            vehicle = (TextView) itemView.findViewById(R.id.objePerdidoDesc);
+            vehicle = (TextView) itemView.findViewById(R.id.metodoTrans_vueltaSegura);
             location = (TextView) itemView.findViewById(R.id.tv_location_vuelta_segura_item);
-            foto_logo= (ImageView)  itemView.findViewById(R.id.fotoLogoSus);
+            foto_logo= (ImageView)  itemView.findViewById(R.id.fotoLogoObjetosPerdidos);
 
 
         }

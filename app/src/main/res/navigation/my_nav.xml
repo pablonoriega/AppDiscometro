@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_favoritos" />
     <fragment
         android:id="@+id/perfilUserFragment"
-        android:name="com.discometro.PerfilUserFragment"
+        android:name="com.discometro.User.PerfilUserFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_perfil_user" />
 </navigation>

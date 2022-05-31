@@ -5,7 +5,7 @@ public class VueltaSeguraCardItem {
     private String name, usuarioid, vehicle, location,number,origen,fotoLogo;
 
 
-    public VueltaSeguraCardItem(String name, String usuarioid, String vehicle, String location, String number, String origen,String fotoLogo) {
+    public VueltaSeguraCardItem(String name, String usuarioid, String vehicle, String location, String number, String origen, String fotoLogo) {
         this.name = name;
         this.usuarioid = usuarioid;
         this.vehicle = vehicle;

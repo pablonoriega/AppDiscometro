@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilUserFragment">
+    tools:context=".User.PerfilUserFragment">
 
     <TextView
         android:id="@+id/tv_nombre"
@@ -134,24 +134,20 @@
         android:id="@+id/imageView2"
         android:layout_width="111dp"
         android:layout_height="79dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <ImageButton
-        android:id="@+id/changePhotoBtn"
-        android:layout_width="32dp"
-        android:layout_height="37dp"
-        android:background="@color/common_google_signin_btn_tint"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/changeUserImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="52dp"
+        android:text="Cambiar imagen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.112"
-        app:tint="#AC67D3"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
-package com.discometro.PerfilDisco;
+package com.discometro.Discos;
 
-import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
 

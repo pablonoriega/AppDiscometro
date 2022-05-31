@@ -2,23 +2,24 @@ package com.discometro.VueltaSegura;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.discometro.MainActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.discometro.MainActivity.MainActivity;
 import com.discometro.R;
-import com.discometro.User;
-import com.discometro.ViewModel.ViewModelMain;
-import com.discometro.favoritos.FavoritosCardItem;
+import com.discometro.User.User;
+
+import com.discometro.ViewModels.ViewModelVueltaSeguraFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -44,7 +45,8 @@ public class VueltaSeguraFragment extends Fragment {
     private List<VueltaSeguraCardItem> listItems;
     private RecyclerView recyclerView;
     private User u;
-    private ViewModelMain vm;
+    private String correo;
+    private ViewModelVueltaSeguraFragment vm;
     private FloatingActionButton btn_addCard;
     private View view;
     Intent intent;
@@ -80,10 +82,12 @@ public class VueltaSeguraFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_vuelta_segura, container, false);
-        vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewVuelta);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
+
+        setLiveDataObservers();
+        correo = ((MainActivity)getActivity()).getCorreo();
+        vm.iniUser(correo);
 
 
         btn_addCard= (FloatingActionButton) view.findViewById(R.id.btn_addcard);
@@ -91,21 +95,58 @@ public class VueltaSeguraFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 intent = new Intent(getContext(),AgregarVueltaSeguraActivity.class);
-                intent.putExtra("usuario",u);
+                intent.putExtra("usuario",correo);
                 startActivity(intent);
             }
         });
 
-
-        listItems = new ArrayList<VueltaSeguraCardItem>();
-        listItems = vm.getVueltaSeguraCards();
-        if(!listItems.isEmpty()){
-            VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems);
-            recyclerView.setAdapter(adapter);
-        }
-
         return view;
 
+
+    }
+
+    public void setLiveDataObservers() {
+        //Subscribe the activity to the observable
+        vm = new ViewModelProvider(this).get(ViewModelVueltaSeguraFragment.class);
+
+        final Observer<User> observerUsuario = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (vm.getUser().getValue().equals(null)) {
+                    Toast.makeText(getContext(), "El usuario o la contraseÃ±a son incorrectos", Toast.LENGTH_SHORT).show();
+                } else {
+                    u=(User) vm.getUser().getValue();
+                }
+            }
+        };
+        final Observer<ArrayList<VueltaSeguraCardItem>> observerCards = new Observer<ArrayList<VueltaSeguraCardItem>>() {
+            @Override
+            public void onChanged(ArrayList<VueltaSeguraCardItem> vueltaSeguraCardItems) {
+                if(vm.getVueltaSeguraCards().getValue().equals(null)){
+
+                }
+                else {
+                    listItems= new ArrayList<>();
+                    listItems= vm.getVueltaSeguraCards().getValue();
+                    if(!listItems.isEmpty()){
+                        VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems);
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+            }
+        };
+
+
+        final Observer<String> observerToast = new Observer<String>() {
+            @Override
+            public void onChanged(String t) {
+                Toast.makeText(getContext(), t, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        vm.getToast().observe(getViewLifecycleOwner(), observerToast);
+        vm.getUser().observe(getViewLifecycleOwner(), observerUsuario);
+        vm.getVueltaSeguraCards().observe(getViewLifecycleOwner(),observerCards);
 
     }
 

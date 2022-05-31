@@ -1,21 +1,25 @@
 package com.discometro.favoritos;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.discometro.MainActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.discometro.Discos.PerfilDiscoActivity;
+import com.discometro.MainActivity.MainActivity;
 import com.discometro.R;
-import com.discometro.User;
-import com.discometro.ViewModel.ViewModelMain;
+import com.discometro.User.User;
+import com.discometro.ViewModels.ViewModelFavoritosFragment;
 
 import java.util.ArrayList;
 
@@ -40,7 +44,8 @@ public class FavoritosFragment extends Fragment {
     private RecyclerView recyclerView;
     private User u;
     private ImageView imgLogo;
-    private ViewModelMain vm;
+    private ViewModelFavoritosFragment vm;
+    private String correo;
 
 
     public FavoritosFragment() {
@@ -81,28 +86,73 @@ public class FavoritosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewSubs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        vm = new ViewModelProvider(getActivity()).get(ViewModelMain.class);
-        listItems = new ArrayList<FavoritosCardItem>();
 
-        u=vm.getUserById(((MainActivity)getActivity()).getUser().getCorreo());
-        listNombres = u.getListFavoritos();
-
-
-        if(!listNombres.isEmpty()){
-            for(int i=0; i<listNombres.size();i++){
-                String logoDisco=listNombres.get(i);
-                FavoritosCardItem card= new FavoritosCardItem(u.getName(), u.getCorreo(),logoDisco);
-                listItems.add(card);
-            }
-
-        }
-
-
-        FavoritosItemAdapter adapter = new FavoritosItemAdapter(listItems,u,vm);
-        recyclerView.setAdapter(adapter);
+        setLiveDataObservers();
+        correo = ((MainActivity)getActivity()).getCorreo();
+        vm.iniUser(correo);
         return view;
 
     }
+
+    public void setLiveDataObservers() {
+        //Subscribe the activity to the observable
+        vm = new ViewModelProvider(this).get(ViewModelFavoritosFragment.class);
+        final Observer<User> observerUsuario = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (vm.getUser().getValue().equals(null)) {
+                    Toast.makeText(getActivity(), "El usuario o la contraseÃ±a son incorrectos", Toast.LENGTH_SHORT).show();
+                } else {
+                    listItems= new ArrayList<FavoritosCardItem>();
+                    u=vm.getUser().getValue();
+                    listNombres=u.getListFavoritos();
+
+                    if(!listNombres.isEmpty()){
+                        for(int i=0; i<listNombres.size();i++){
+                            String logoDisco=listNombres.get(i);
+                            FavoritosCardItem card= new FavoritosCardItem(u.getName(), u.getCorreo(),logoDisco);
+                            listItems.add(card);
+                        }
+                    }
+                    FavoritosItemAdapter adapter = new FavoritosItemAdapter(listItems,u,vm);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+            };
+
+           final Observer<String> observerVisitarPerfil = new Observer<String>() {
+               @Override
+               public void onChanged(String s) {
+                   if(vm.getVisitarPerfil().getValue().equals(null)){
+
+                   }
+                   else{
+                       if(!vm.getVisitarPerfil().getValue().equals("null")){
+                           System.out.println("entraaaaaaaaaaaaa");
+                           String nameDisco = vm.getVisitarPerfil().getValue();
+                           Intent intent = new Intent(getContext(), PerfilDiscoActivity.class);
+                           Bundle extras = new Bundle();
+                           extras.putString("usuario",u.getCorreo());
+                           extras.putString("disco",nameDisco);
+                           intent.putExtras(extras);
+                           startActivity(intent);
+                       }
+                   }
+               }
+           };
+
+            final Observer<String> observerToast = new Observer<String>() {
+                @Override
+                public void onChanged(String t) {
+                    Toast.makeText(getActivity(), t, Toast.LENGTH_SHORT).show();
+                }
+            };
+
+        vm.getToast().observe(getViewLifecycleOwner(),observerToast);
+        vm.getUser().observe(getViewLifecycleOwner(),observerUsuario);
+        vm.getVisitarPerfil().observe(getViewLifecycleOwner(),observerVisitarPerfil);
+        }
+
 
 }
 

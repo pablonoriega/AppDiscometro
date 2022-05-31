@@ -1,4 +1,4 @@
-package com.discometro.PerfilDisco;
+package com.discometro.Discos;
 
 import android.view.View;
 

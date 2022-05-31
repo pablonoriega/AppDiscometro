@@ -12,36 +12,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Discometro">
+
+
         <activity
-            android:name=".ViewModel.ViewModelMain"
+            android:name=".VueltaSegura.AgregarVueltaSeguraActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+
+        <activity
+            android:name=".Registro.RegistroActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+
+        <activity
+            android:name=".ObjetosPerdidos.AgregarObjetoPerdidoActivity"
             android:exported="false"
             tools:ignore="Instantiatable" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".ObjetosPerdidos.ObjetosPerdidosActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".Discos.PerfilDiscoActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".ViewModels.ViewModelLoginActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".Login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login" />
-        <activity
-            android:name=".VueltaSegura.AgregarVueltaSeguraActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PerfilDisco.PerfilDiscoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".registro.RegistroActivity"
-            android:exported="false" />
-        <activity
-            android:name=".objetosPerdidos.AgregarObjetoPerdidoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".objetosPerdidos.ObjetosPerdidosActivity"
-            android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity.MainActivity"
             android:exported="true"
             android:label="@string/title_activity_maps" />
         <activity

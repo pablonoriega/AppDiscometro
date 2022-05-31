@@ -23,11 +23,11 @@
                 android:layout_marginTop="4dp"
                 android:text="VISITAR PERFIL"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/fotoLogoSus"
-                app:layout_constraintTop_toTopOf="@id/fotoLogoSus" />
+                app:layout_constraintStart_toEndOf="@id/fotoLogoFavs"
+                app:layout_constraintTop_toTopOf="@id/fotoLogoFavs" />
 
             <ImageView
-                android:id="@+id/fotoLogoSus"
+                android:id="@+id/fotoLogoFavs"
                 android:layout_width="116dp"
                 android:layout_height="101dp"
                 android:layout_marginStart="28dp"
@@ -36,15 +36,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/buttonEliminarSus"
+                android:id="@+id/eliminarFav"
                 android:layout_width="102dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="52dp"
                 android:text="ELIMINAR"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/fotoLogoSus"
-                app:layout_constraintTop_toTopOf="@id/fotoLogoSus" />
+                app:layout_constraintStart_toEndOf="@id/fotoLogoFavs"
+                app:layout_constraintTop_toTopOf="@id/fotoLogoFavs" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

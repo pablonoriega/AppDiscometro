@@ -1,8 +1,5 @@
 package com.discometro.VueltaSegura;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.TransitionManager;
@@ -15,14 +12,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.discometro.MainActivity;
-import com.discometro.PerfilDisco.PerfilDisco;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+
+import com.discometro.MainActivity.MainActivity;
 import com.discometro.R;
-import com.discometro.User;
-import com.discometro.ViewModel.ViewModelMain;
+import com.discometro.User.User;
+import com.discometro.ViewModels.ViewModelVueltaSeguraFragment;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
@@ -30,8 +30,9 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     private TextView number_amount;
     private EditText location, number, origen;
     private ViewGroup container;
-    private ViewModelMain vm;
+    private ViewModelVueltaSeguraFragment vm;
     private User u;
+    private String correo;
     VueltaSeguraCardItem card;
 
 
@@ -40,9 +41,11 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_vuelta_segura);
-        vm = new ViewModelProvider(this).get(ViewModelMain.class);
+
         Intent intent = getIntent();
-        u=intent.getParcelableExtra("usuario");
+        correo =intent.getStringExtra("usuario");
+        setLiveDataObservers();
+        vm.iniUser(correo);
 
         spinner = findViewById(R.id.spinner_vehicles);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.vehicles, android.R.layout.simple_spinner_item);
@@ -80,14 +83,40 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
     public void intentToVueltaSegura(View view) {
         Intent vuelta = new Intent(getApplicationContext(), MainActivity.class);
+        vuelta.putExtra("usuario",correo);
         if(comprobar()){
             vm.saveVueltaSeguraCard(card);
-            vuelta.putExtra("usuario",u);
             startActivity(vuelta);
         }
+    }
 
+    public void setLiveDataObservers() {
+        //Subscribe the activity to the observable
+        vm = new ViewModelProvider(this).get(ViewModelVueltaSeguraFragment.class);
+
+        final Observer<User> observerUsuario = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (vm.getUser().getValue().equals(null)) {
+                    Toast.makeText(AgregarVueltaSeguraActivity.this, "El usuario o la contraseÃ±a son incorrectos", Toast.LENGTH_SHORT).show();
+                } else {
+                    u=(User) vm.getUser().getValue();
+                }
+            }
+        };
+
+        final Observer<String> observerToast = new Observer<String>() {
+            @Override
+            public void onChanged(String t) {
+                Toast.makeText(AgregarVueltaSeguraActivity.this, t, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        vm.getToast().observe(this, observerToast);
+        vm.getUser().observe(this, observerUsuario);
 
     }
+
     public boolean comprobar(){
         String txt_location= location.getText().toString();
         String txt_number = number.getText().toString();

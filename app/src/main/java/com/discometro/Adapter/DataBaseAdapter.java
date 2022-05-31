@@ -1,19 +1,18 @@
-package com.discometro.dataBase;
-
-import androidx.annotation.NonNull;
+package com.discometro.Adapter;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.discometro.AllDiscos;
-import com.discometro.AllUsers;
-import com.discometro.PerfilDisco.PerfilDisco;
-import com.discometro.R;
-import com.discometro.User;
+import androidx.annotation.NonNull;
+
+import com.discometro.Discos.PerfilDisco;
+import com.discometro.ObjetosPerdidos.ObjetosPerdidosCardItem;
+import com.discometro.User.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
-import com.discometro.objetosPerdidos.ObjetosPerdidosCardItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,27 +20,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.android.gms.tasks.Continuation;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DataBaseAdapter extends Activity {
-
     public static final String TAG = "DatabaseAdapter";
 
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser user;
 
@@ -58,15 +53,17 @@ public class DataBaseAdapter extends Activity {
     public interface vmInterface {
 
         void setToast(String s);
-        void setUser(ArrayList<User> s);
         void setDiscos(ArrayList<PerfilDisco> p);
-        void setVueltaSeguraCards(ArrayList<VueltaSeguraCardItem> c);
-        void setObjetosPerdidosCards(ArrayList<ObjetosPerdidosCardItem> c);
+        void  setUsuario(User u);
+        void setObjetosPerdidos(ArrayList<ObjetosPerdidosCardItem> o);
+        void setVueltaSeguraCards(ArrayList<VueltaSeguraCardItem> retrieved_s);
+        void setVisitarPerfil(String m);
+        void setBitmapPerfil(Bitmap p);
+        void setBitmapObjetosPerdidos(HashMap<String,Bitmap> map);
     }
 
     public void initFirebase() {
         user = mAuth.getCurrentUser();
-
         if (user == null) {
             mAuth.signInAnonymously()
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -80,7 +77,6 @@ public class DataBaseAdapter extends Activity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInAnonymously:failure", task.getException());
-                                listener.setToast("Authentication failed.");
 
                             }
                         }
@@ -124,6 +120,141 @@ public class DataBaseAdapter extends Activity {
                 });
     }
 
+    public void saveObjetoPerdido (ObjetosPerdidosCardItem card) {
+
+        // Create a new user with a first and last name
+        Map<String, Object> usuario = new HashMap<>();
+        usuario.put("nombreObj", card.getNombreObj());
+        usuario.put("usuario", card.getUsuario());
+        usuario.put("descripcion",card.getDescripcion());
+        usuario.put("imagenLogo",card.getImagenLogo());
+        usuario.put("nameDisco",card.getNameDisco());
+        usuario.put("imagenObjeto",card.getImagenObjeto());
+
+
+
+        Log.d(TAG, "saveObjetoPerdido");
+        // Add a new document with a generated ID
+        db.collection("objetosPerdidos").document(card.getUsuario())
+                .set(usuario)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+    public void getObjetosPerdidoCards() {
+        Log.d(TAG, "updateObjetosPerdidosCards");
+        DataBaseAdapter.db.collection("objetosPerdidos")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            ArrayList<ObjetosPerdidosCardItem> retrieved_s = new ArrayList<ObjetosPerdidosCardItem>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                retrieved_s.add(new ObjetosPerdidosCardItem(document.getString("nombreObj"),document.getString("usuario"), document.getString("descripcion"),document.getString("imagenLogo"),document.getString("nameDisco"),document.getString("imagenObjeto")));
+                            }
+
+                            listener.setObjetosPerdidos(retrieved_s);
+
+
+
+
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+
+
+
+
+    public void iniUser(String correo) {
+        Log.d(TAG, "updateUsers");
+        DataBaseAdapter.db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            User u = null;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                if(document.getString("correo").equals(correo)) {
+                                    u= new User(document.getString("correo"), document.getString("contra"), document.getString("name"), document.getString("birthday"), document.getString("surname"), document.getString("dni"), (ArrayList<String>) document.get("listFavoritos"), document.getString("url"), (ArrayList<String>) document.get("listSuscripciones"));
+                                }
+                            }
+                            listener.setUsuario(u);
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+    }
+
+    public void iniAllDiscos() {
+
+        Log.d(TAG, "updateDiscos");
+        DataBaseAdapter.db.collection("discos")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            ArrayList<PerfilDisco> retrieved_s = new ArrayList<PerfilDisco>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion"),document.getString("latitud"),document.getString("longitud")));
+                            }
+                            listener.setDiscos(retrieved_s);
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public void getVueltaSeguraCard() {
+        Log.d(TAG, "updateVueltaSeguraCards");
+        DataBaseAdapter.db.collection("vueltaSegura")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            ArrayList<VueltaSeguraCardItem> retrieved_s = new ArrayList<VueltaSeguraCardItem>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                retrieved_s.add(new VueltaSeguraCardItem(document.getString("name"),document.getString("usuarioid"), document.getString("vehicle"),document.getString("location"),document.getString("number"),document.getString("origen"),document.getString("fotoLogo")));
+                            }
+                            listener.setVueltaSeguraCards(retrieved_s);
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
     public void saveVueltaSegura (VueltaSeguraCardItem card) {
 
         // Create a new user with a first and last name
@@ -155,108 +286,83 @@ public class DataBaseAdapter extends Activity {
                 });
     }
 
-    public void saveObjetoPerdido (ObjetosPerdidosCardItem card) {
+    public void saveImage(Uri uri, String name) {
 
-        // Create a new user with a first and last name
-        Map<String, Object> usuario = new HashMap<>();
-        usuario.put("nombreObj", card.getNombreObj());
-        usuario.put("usuario", card.getUsuario());
-        usuario.put("descripcion",card.getDescripcion());
-        usuario.put("imagen",card.getImagen());
-        usuario.put("nameDisco",card.getNameDisco());
-
-
-
-        Log.d(TAG, "saveObjetoPerdido");
-        // Add a new document with a generated ID
-        db.collection("objetosPerdidos").document(card.getUsuario())
-                .set(usuario)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-    }
-
-    public void getUsers() {
-        Log.d(TAG, "updateUsers");
-        DataBaseAdapter.db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-
-                            ArrayList<User> retrieved_s = new ArrayList<User>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new User(document.getString("correo"),document.getString("contra"), document.getString("name"),document.getString("birthday"),document.getString("surname"),document.getString("dni"),(ArrayList<String>) document.get("listFavoritos"),document.getString("url"),(ArrayList<String>) document.get("listSuscripciones")));
-                            }
-                            AllUsers allUsers = AllUsers.getInstance();
-                            allUsers.setAllUsers(retrieved_s);
-                            listener.setUser(retrieved_s);
-
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-    }
-    public void getDiscos() {
-
-        Log.d(TAG, "updateDiscos");
-        DataBaseAdapter.db.collection("discos")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-
-                            ArrayList<PerfilDisco> retrieved_s = new ArrayList<PerfilDisco>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion"),document.getString("latitud"),document.getString("longitud")));
-                            }
-                            AllDiscos allDiscos = AllDiscos.getInstance();
-                            allDiscos.setAllDiscos(retrieved_s);
-
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+        StorageReference reference = storageRef.child(name);
+        reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                cargarFotoPerfil(name);
+            }
+        });
     }
 
 
-    public void getVueltaSeguraCard() {
-        Log.d(TAG, "updateVueltaSeguraCards");
-        DataBaseAdapter.db.collection("vueltaSegura")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
+    public void cargarFotoPerfil(String path){
 
-                            ArrayList<VueltaSeguraCardItem> retrieved_s = new ArrayList<VueltaSeguraCardItem>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new VueltaSeguraCardItem(document.getString("name"),document.getString("usuarioid"), document.getString("vehicle"),document.getString("location"),document.getString("number"),document.getString("origen"),document.getString("fotoLogo")));
-                            }
-                            listener.setVueltaSeguraCards(retrieved_s);
+        StorageReference photoReference= storageRef.child(path);
 
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+        final long ONE_MEGABYTE = 1024 * 1024;
+        photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bmp =BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                listener.setBitmapPerfil(bmp);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
+
+    public void cargarImagenesObjetos(String path,String usuario){
+
+        StorageReference photoReference= storageRef.child(path);
+
+        final long ONE_MEGABYTE = 1024 * 1024;
+        photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bmp =BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                HashMap<String,Bitmap> map = new HashMap<>();
+                map.put(usuario,bmp);
+                listener.setBitmapObjetosPerdidos(map);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+
+    public void cambiarVisitarPerfil(String nameDisco){
+        listener.setVisitarPerfil(nameDisco);
+    }
+
+
+
+    /*
+    public Uri getImage(String path){
+        StorageReference reference = storageRef.child(path);
+        final long megabyte = 1024*1024;
+        reference.getBytes(megabyte).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+
+            }
+        });
+
+    }
+
+     */
 
 /*
 
@@ -274,6 +380,9 @@ public class DataBaseAdapter extends Activity {
         perfilDisco.put("foto4", R.drawable.otto_evento2+"");
         perfilDisco.put("logo",R.drawable.downtownlogocrop+"");
         perfilDisco.put("nameDisco","Downtown");
+        perfilDisco.put("latitud",...);
+        perfilDisco.put("longitud",...);
+
 
         Log.d(TAG, "saveUser");
         // Add a new document with a generated ID
@@ -296,38 +405,11 @@ public class DataBaseAdapter extends Activity {
 
  */
 
-    public void getObjetosPerdidoCards() {
-        Log.d(TAG, "updateObjetosPerdidosCards");
-        DataBaseAdapter.db.collection("objetosPerdidos")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
 
-                            ArrayList<ObjetosPerdidosCardItem> retrieved_s = new ArrayList<ObjetosPerdidosCardItem>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new ObjetosPerdidosCardItem(document.getString("nombreObj"),document.getString("descripcion"), document.getString("usuario"),document.getString("imagen"),document.getString("nameDisco")));
-                            }
-                            listener.setObjetosPerdidosCards(retrieved_s);
 
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-    }
 
 
 
 
 
 }
-
-
-
-
-
-
-

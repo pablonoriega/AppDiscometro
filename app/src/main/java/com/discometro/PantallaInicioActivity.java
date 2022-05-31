@@ -1,12 +1,12 @@
 package com.discometro;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.discometro.login.LoginActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.discometro.Login.LoginActivity;
 
 public class PantallaInicioActivity extends AppCompatActivity {
 

@@ -66,11 +66,15 @@
         <entry key="app/src/main/res/layout/favs_item_list.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_favoritos.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.12364130434782608" />
-        <entry key="app/src/main/res/layout/fragment_perfil_user.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_perfil_user.xml" value="0.21442108154296877" />
         <entry key="app/src/main/res/layout/fragment_suscripciones.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/fragment_vuelta_segura.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/objetos_perdidos_item_list.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/suscripciones_item_list.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/vuelta_segura_item_list.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2085" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2085" />
       </map>
     </option>
   </component>
