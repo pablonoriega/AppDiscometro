@@ -52,7 +52,12 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
     @Override
     public void onBindViewHolder(ViewHolderItems holder, int position) {
         usuario = listItems.get(position).getUsuario();
-        vm.iniBitmap(listItems.get(position).getImagenObjeto(),usuario);
+        if(listItems.get(position).getImagenObjeto().equals("")){
+            vm.iniBitmap("fotosObjetosPerdidos/defaultObject.jpg",usuario);
+        }
+        else{
+            vm.iniBitmap(listItems.get(position).getImagenObjeto(),usuario);
+        }
         usersArray.add(usuario);
         holderItemsArrayList.add(holder);
 

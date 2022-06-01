@@ -128,7 +128,15 @@ public class PerfilUserFragment extends Fragment {
                     password.setText(u.getContra());
                     dni.setText(u.getDni());
                     email.setText(u.getCorreo());
-                    vm.iniBitmap(u.getUrl());
+                    if(u.getUrl().equals("")){
+                        vm.iniBitmap("fotosPerfil/defaultUser.jpg");
+
+                    }
+                    else {
+                        vm.iniBitmap(u.getUrl());
+                    }
+
+
                 }
             }
         };
