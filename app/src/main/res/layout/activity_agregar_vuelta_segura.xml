@@ -7,39 +7,13 @@
     tools:context=".VueltaSegura.AgregarVueltaSeguraActivity">
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="409dp"
         android:layout_height="362dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="141dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ubicación:"
-                android:textColor="#AC67D3"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Ubicación"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:textSize="20sp" />
-        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -95,37 +69,14 @@
                 tools:ignore="SpeakableTextPresentCheck" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btn_accept"
-                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#AC67D3"
-                android:onClick="intentToVueltaSegura"
-                android:outlineAmbientShadowColor="#3F51B5"
-                android:outlineSpotShadowColor="#3F51B5"
-                android:text="Aceptar"
-                android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:iconTintMode="add"
-                app:strokeColor="#AC67D3" />
-        </TableRow>
     </TableLayout>
 
     <TableRow
         android:layout_width="405dp"
         android:layout_height="92dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="92dp">
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_location3"
@@ -146,5 +97,18 @@
             android:minHeight="48dp"
             android:textSize="20sp" />
     </TableRow>
+
+    <Button
+        android:id="@+id/btn_agregar_ubicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="72dp"
+        android:onClick="intentToAddUbicacion"
+        android:text="Seleccionar Destino"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.671" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

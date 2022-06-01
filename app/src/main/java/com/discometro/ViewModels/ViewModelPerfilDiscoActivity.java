@@ -69,6 +69,11 @@ public class ViewModelPerfilDiscoActivity extends AndroidViewModel implements Da
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
 
     public void iniUser(String correo){ da.iniUser(correo); }
 

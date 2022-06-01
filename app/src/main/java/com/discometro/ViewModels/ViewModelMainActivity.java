@@ -79,6 +79,11 @@ public class ViewModelMainActivity extends AndroidViewModel implements DataBaseA
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
     public ArrayList<PerfilDisco> getDiscos(){
         return mPerfilDisco.getValue();
     }

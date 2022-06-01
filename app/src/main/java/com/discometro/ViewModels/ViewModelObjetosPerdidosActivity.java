@@ -127,6 +127,11 @@ public class ViewModelObjetosPerdidosActivity extends AndroidViewModel implement
         mImagenesObjetos.setValue(map);
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
     public void  SaveImage(Uri uri, String name){
         da.saveImage(uri,name);
     }

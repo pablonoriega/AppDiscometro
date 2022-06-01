@@ -79,6 +79,11 @@ public class ViewModelLoginActivity extends AndroidViewModel implements DataBase
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
 
     public LiveData<String> getToast(){
         return mToast;

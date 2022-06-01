@@ -103,7 +103,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_maps, container, false);
-        button = (Button) view.findViewById(R.id.botonMapa);
+        button = (Button) view.findViewById(R.id.botonMapaVuelta);
         button.setVisibility(view.INVISIBLE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

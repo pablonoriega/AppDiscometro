@@ -28,7 +28,7 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private TextView number_amount;
-    private EditText location, number, origen;
+    private EditText number, origen;
     private ViewGroup container;
     private ViewModelVueltaSeguraFragment vm;
     private User u;
@@ -54,7 +54,6 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
         number_amount = findViewById(R.id.tv_amount);
         number = findViewById(R.id.et_number);
-        location= findViewById(R.id.et_location);
         origen=findViewById(R.id.edit_origen);
         container = findViewById(R.id.tr_amount);
 
@@ -81,13 +80,15 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
         });
     }
 
-    public void intentToVueltaSegura(View view) {
-        Intent vuelta = new Intent(getApplicationContext(), MainActivity.class);
-        vuelta.putExtra("usuario",correo);
+    public void intentToAddUbicacion(View view) {
+        Intent ubicacion = new Intent(getApplicationContext(), SeleccionarUbicacionVueltaActivity.class);
+        ubicacion.putExtra("usuario",correo);
         if(comprobar()){
             vm.saveVueltaSeguraCard(card);
-            startActivity(vuelta);
+            startActivity(ubicacion);
+
         }
+
     }
 
     public void setLiveDataObservers() {
@@ -118,7 +119,6 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     }
 
     public boolean comprobar(){
-        String txt_location= location.getText().toString();
         String txt_number = number.getText().toString();
         String txt_vehicle = spinner.getSelectedItem().toString();
         String txt_origen =origen.getText().toString();
@@ -130,10 +130,6 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
         resto=resto.toLowerCase();
         txt_origen= inicial+resto;
 
-        if(txt_location.equals("")){
-            Toast.makeText(getApplicationContext(), "No se ha rellenado la localización", Toast.LENGTH_SHORT).show();
-            return false;
-        }
         if(txt_origen.equals("")){
             Toast.makeText(getApplicationContext(), "No se ha rellenado el origen", Toast.LENGTH_SHORT).show();
             return false;
@@ -144,10 +140,10 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
         }
         if(txt_vehicle.equals("pie")){
-            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,txt_location,"Indefinido",txt_origen,vm.getDiscoByName(txt_origen).getLogo());
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"","Indefinido",txt_origen,vm.getDiscoByName(txt_origen).getLogo());
         }
         else{
-            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,txt_location,txt_number,txt_origen,vm.getDiscoByName(txt_origen).getLogo());
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"",txt_number,txt_origen,vm.getDiscoByName(txt_origen).getLogo());
         }
         return true;
     }

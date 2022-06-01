@@ -60,6 +60,7 @@ public class DataBaseAdapter extends Activity {
         void setVisitarPerfil(String m);
         void setBitmapPerfil(Bitmap p);
         void setBitmapObjetosPerdidos(HashMap<String,Bitmap> map);
+        void setVueltaSeguraCard(VueltaSeguraCardItem card);
     }
 
     public void initFirebase() {
@@ -247,6 +248,31 @@ public class DataBaseAdapter extends Activity {
                                 retrieved_s.add(new VueltaSeguraCardItem(document.getString("name"),document.getString("usuarioid"), document.getString("vehicle"),document.getString("location"),document.getString("number"),document.getString("origen"),document.getString("fotoLogo")));
                             }
                             listener.setVueltaSeguraCards(retrieved_s);
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+
+    public void iniVueltaSeguraCard(String user) {
+        Log.d(TAG, "updateVueltaSeguraCards");
+        DataBaseAdapter.db.collection("vueltaSegura")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            VueltaSeguraCardItem card = null;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                if(document.getString("usuarioid").equals(user)){
+                                    card=new VueltaSeguraCardItem(document.getString("name"),document.getString("usuarioid"), document.getString("vehicle"),document.getString("location"),document.getString("number"),document.getString("origen"),document.getString("fotoLogo"));
+                                }
+                            }
+                            listener.setVueltaSeguraCard(card);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

@@ -88,6 +88,11 @@ public class ViewModelSuscripcionesFragment extends AndroidViewModel implements 
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
 
     public LiveData<String> getToast(){
         return mToast;

@@ -75,6 +75,11 @@ public class ViewModelMapFragment extends AndroidViewModel implements DataBaseAd
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
 
     public LiveData<ArrayList<PerfilDisco>> getDiscos(){
         return mPerfilDisco;

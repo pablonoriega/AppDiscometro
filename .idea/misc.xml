@@ -48,7 +48,7 @@
         <entry key="app/src/main/res/layout/activity_agregar_vuelta_segura.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/activity_disco_perfil.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17855224609375003" />
         <entry key="app/src/main/res/layout/activity_main_map.xml" value="0.12364130434782608" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.12364130434782608" />
         <entry key="app/src/main/res/layout/activity_objetos_perdidos.xml" value="0.25" />
@@ -62,14 +62,19 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_seleccionar_ubicacion_vuelta.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/favoritos_item_list.xml" value="0.17363433837890624" />
         <entry key="app/src/main/res/layout/favs_item_list.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_addUbi_vueltaSegura.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_ubi_vuelta_segura.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/fragment_favoritos.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_map_seleccionar_ubi_vuelta.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.12364130434782608" />
         <entry key="app/src/main/res/layout/fragment_perfil_user.xml" value="0.21442108154296877" />
         <entry key="app/src/main/res/layout/fragment_suscripciones.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/fragment_vuelta_segura.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/objetos_perdidos_item_list.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/seleccionarUbicacionActivity.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/suscripciones_item_list.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/vuelta_segura_item_list.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.1" />

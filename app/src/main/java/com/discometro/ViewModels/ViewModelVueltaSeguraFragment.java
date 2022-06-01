@@ -68,6 +68,11 @@ public class ViewModelVueltaSeguraFragment extends AndroidViewModel implements D
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
     public LiveData<String> getToast(){
         return mToast;
     }

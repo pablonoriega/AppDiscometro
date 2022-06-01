@@ -85,6 +85,11 @@ public class ViewModelFavoritosFragment extends AndroidViewModel implements Data
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
 
     public LiveData<String> getToast(){
         return mToast;

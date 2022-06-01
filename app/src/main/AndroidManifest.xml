@@ -14,16 +14,21 @@
         android:theme="@style/Theme.Discometro">
 
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <activity
+            android:name=".VueltaSegura.SeleccionarUbicacionVueltaActivity"
+            android:exported="false" />
         <activity
             android:name=".VueltaSegura.AgregarVueltaSeguraActivity"
             android:exported="false"
             tools:ignore="Instantiatable" />
-
         <activity
             android:name=".Registro.RegistroActivity"
             android:exported="false"
             tools:ignore="Instantiatable" />
-
         <activity
             android:name=".ObjetosPerdidos.AgregarObjetoPerdidoActivity"
             android:exported="false"
@@ -44,12 +49,6 @@
             android:name=".Login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login" />
-
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
-
         <activity
             android:name=".MainActivity.MainActivity"
             android:exported="true"

@@ -79,6 +79,11 @@ public class ViewModelRegistroActivity extends AndroidViewModel implements DataB
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
 
     public LiveData<String> getToast(){
         return mToast;

@@ -82,6 +82,11 @@ public class ViewModelPerfilUserFragment extends AndroidViewModel implements Dat
 
     }
 
+    @Override
+    public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
+
+    }
+
     public LiveData<Bitmap> getBitmap(){
         return mBitmap;
     }
