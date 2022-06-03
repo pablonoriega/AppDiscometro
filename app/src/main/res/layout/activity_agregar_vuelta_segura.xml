@@ -1,114 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VueltaSegura.AgregarVueltaSeguraActivity">
+    tools:context=".VueltaSegura.AgregarVueltaSeguraActivity" >
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="409dp"
-        android:layout_height="362dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_vehicle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Transporte:"
-                android:textColor="#AC67D3"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinner_vehicles"
-                android:layout_width="208dp"
-                android:layout_height="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tr_amount"
-            android:layout_width="match_parent"
-            android:layout_height="101dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:cursorVisible="true"
-                android:text="Nº Personas:"
-                android:textColor="#AC67D3"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
-
-            <EditText
-                android:id="@+id/et_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:cursorVisible="true"
-                android:ems="10"
-                android:inputType="number"
-                android:textSize="20sp"
-                android:visibility="invisible"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </TableRow>
-
-    </TableLayout>
-
-    <TableRow
-        android:layout_width="405dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="68dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_addsafereturn_constraintlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_location3"
-            android:layout_width="153dp"
-            android:layout_height="44dp"
-            android:text="Discoteca Origen"
+            android:id="@+id/tv_addsafereturn_addsafereturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="103dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="103dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Añadir vuelta segura"
+            android:textAlignment="center"
+            android:textColor="#AC67D3"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:translationY="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_addsafereturn_discoorigin"
+            android:layout_width="76dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="200dp"
+            android:text="Discoteca\norigen:"
             android:textColor="#AC67D3"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_origen"
+            android:id="@+id/et_addsafereturn_discoorigin"
             android:layout_width="251dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="200dp"
             android:ems="10"
             android:hint="Origen"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:textSize="20sp" />
-    </TableRow>
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_addsafereturn_discoorigin"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_agregar_ubicacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="72dp"
-        android:onClick="intentToAddUbicacion"
-        android:text="Seleccionar Destino"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.671" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_addsafereturn_dest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Destino:"
+            android:textColor="#AC67D3"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_addsafereturn_discoorigin" />
+
+        <EditText
+            android:id="@+id/et_addsafereturn_dest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Destino"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_addsafereturn_dest"
+            app:layout_constraintTop_toBottomOf="@+id/et_addsafereturn_discoorigin" />
+
+        <TextView
+            android:id="@+id/tv_addsafereturn_vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Transporte:"
+            android:textColor="#AC67D3"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_addsafereturn_dest" />
+
+        <Spinner
+            android:id="@+id/spn_addsafereturn_spinnervehicle"
+            android:layout_width="208dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_addsafereturn_vehicle"
+            app:layout_constraintTop_toBottomOf="@+id/et_addsafereturn_dest"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_addsafereturn_passengers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="35dp"
+            android:cursorVisible="true"
+            android:text="Nº Max\nPersonas:"
+            android:textColor="#AC67D3"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_addsafereturn_vehicle" />
+
+        <EditText
+            android:id="@+id/et_addsafereturn_passengers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/tv_addsafereturn_passengers"
+            app:layout_constraintTop_toBottomOf="@+id/spn_addsafereturn_spinnervehicle"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/btn_addsafereturn_accept"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#AC67D3"
+            android:onClick="intentToAddUbicacion"
+            android:outlineAmbientShadowColor="#3F51B5"
+            android:outlineSpotShadowColor="#3F51B5"
+            android:text="Aceptar"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:iconTintMode="add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_addsafereturn_passengers"
+            app:strokeColor="#AC67D3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+

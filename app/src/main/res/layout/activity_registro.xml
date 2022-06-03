@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registro.RegistroActivity"
+    tools:context=".Registro.RegistroActivity"
     tools:ignore="SpeakableTextPresentCheck">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="410dp"
+        android:layout_height="720dp"
+        android:minHeight="730dp">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/iv_registro_banner"
             android:layout_width="396dp"
             android:layout_height="237dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,24 +23,26 @@
             app:srcCompat="@drawable/discometrologo" />
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/tv_register_name"
             android:layout_width="160dp"
             android:layout_height="45dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="5dp"
             android:ems="10"
             android:hint="Nombre"
             android:inputType="textPersonName"
             android:textColor="#95000000"
             android:textColorHint="@color/material_dynamic_neutral50"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/iv_registro_banner"
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/surname"
+            android:id="@+id/tv_register_surname"
             android:layout_width="174dp"
             android:layout_height="44dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="Apellido"
@@ -47,12 +50,13 @@
             android:textColor="#95000000"
             android:textColorHint="@color/material_dynamic_neutral50"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toEndOf="@+id/tv_register_name"
+            app:layout_constraintTop_toBottomOf="@+id/iv_registro_banner"
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/tv_register_email"
             android:layout_width="357dp"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
@@ -66,11 +70,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/surname"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register_surname"
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/dni"
+            android:id="@+id/tv_register_dni"
             android:layout_width="154dp"
             android:layout_height="44dp"
             android:layout_marginStart="20dp"
@@ -81,11 +85,11 @@
             android:textColor="#95000000"
             android:textColorHint="@color/material_dynamic_neutral50"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register_email"
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/birthDate"
+            android:id="@+id/tv_register_birthday"
             android:layout_width="183dp"
             android:layout_height="44dp"
             android:layout_marginStart="20dp"
@@ -98,12 +102,12 @@
             android:textColorHint="@color/material_dynamic_neutral50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/dni"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintStart_toEndOf="@+id/tv_register_dni"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register_email"
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/tv_register_password"
             android:layout_width="356dp"
             android:layout_height="46dp"
             android:layout_marginStart="20dp"
@@ -116,11 +120,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dni"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register_dni"
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/password2"
+            android:id="@+id/tv_register_passwordconfirm"
             android:layout_width="354dp"
             android:layout_height="39dp"
             android:layout_marginStart="20dp"
@@ -133,11 +137,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register_password"
             tools:ignore="TouchTargetSizeCheck" />
 
         <CheckBox
-            android:id="@+id/acceptTerms"
+            android:id="@+id/cb_register_acceptterms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#AC67D3"
@@ -149,10 +153,10 @@
             android:textColorHighlight="#AC67D3"
             android:textColorLink="#AC67D3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password2" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_register_passwordconfirm" />
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/btn_register_register"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
             android:layout_width="307dp"
             android:layout_height="76dp"
@@ -168,7 +172,7 @@
             android:textStyle="bold"
             app:iconTintMode="add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/acceptTerms"
+            app:layout_constraintTop_toBottomOf="@+id/cb_register_acceptterms"
             app:strokeColor="#AC67D3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

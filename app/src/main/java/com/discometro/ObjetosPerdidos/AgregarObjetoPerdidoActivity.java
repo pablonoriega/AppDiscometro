@@ -57,11 +57,11 @@ public class AgregarObjetoPerdidoActivity extends AppCompatActivity {
 
 
 
-        nombre = findViewById(R.id.eTxtObjectName);
-        descripcion= findViewById(R.id.eTxtAddDescription);
-        subirObjeto = findViewById(R.id.subirObjBtn);
-        objectImage = findViewById(R.id.objectImage);
-        addImageBtn = findViewById(R.id.addImageBtn);
+        nombre = findViewById(R.id.tv_addobject_objectname);
+        descripcion= findViewById(R.id.tv_addobject_objectdescr);
+        subirObjeto = findViewById(R.id.btn_addobject_addobject);
+        objectImage = findViewById(R.id.iv_addobject_objectimg);
+        addImageBtn = findViewById(R.id.ib_addobject_addobjectimg);
 
         addImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override

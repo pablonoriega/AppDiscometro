@@ -65,17 +65,17 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        ib_1 = findViewById(R.id.ib_foto1_disco);
-        ib_2 = findViewById(R.id.ib_foto2_disco);
-        ib_3 = findViewById(R.id.ib_foto3_disco);
-        ib_4 = findViewById(R.id.ib_event1_disco);
-        fab_msg = findViewById(R.id.FAB_msg_disco);
-        fab_items = findViewById(R.id.FAB_items_disco);
-        fab_favs = findViewById(R.id.FAB_favs_disco);
-        fab_subs = findViewById(R.id.FAB_subs_disco);
-        logo= findViewById(R.id.logoDisco);
-        banner=findViewById(R.id.banner_disco);
-        descripcion= findViewById(R.id.descripcion_disco);
+        ib_1 = findViewById(R.id.ib_discoprofile_pic1);
+        ib_2 = findViewById(R.id.ib_discoprofile_pic2);
+        ib_3 = findViewById(R.id.ib_discoprofile_pic3);
+        ib_4 = findViewById(R.id.ib_discoprofile_event1);
+        fab_msg = findViewById(R.id.FAB_discoprofile_message);
+        fab_items = findViewById(R.id.FAB_discoprofile_object);
+        fab_favs = findViewById(R.id.FAB_discoprofile_favs);
+        fab_subs = findViewById(R.id.FAB_discoprofile_subscribe);
+        logo= findViewById(R.id.iv_discoprofile_logo);
+        banner=findViewById(R.id.iv_discoprofile_banner);
+        descripcion= findViewById(R.id.tv__discoprofile_descr);
 
 
 

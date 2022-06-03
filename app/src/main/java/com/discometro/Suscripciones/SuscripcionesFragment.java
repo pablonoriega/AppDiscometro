@@ -86,7 +86,7 @@ public class SuscripcionesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_suscripciones, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewSubs);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragmentsubs_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         setLiveDataObservers();

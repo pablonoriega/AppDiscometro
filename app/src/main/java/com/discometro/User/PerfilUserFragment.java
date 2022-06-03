@@ -55,13 +55,13 @@ public class PerfilUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_perfil_user, container, false);
-        name = (TextView) view.findViewById(R.id.tv_username);
-        birthday = (TextView) view.findViewById(R.id.tv_bday_user);
-        password = (TextView) view.findViewById(R.id.tv_password_user);
-        dni = (TextView) view.findViewById(R.id.tv_DNI_user);
-        email = (TextView) view.findViewById(R.id.tv_email_user);
-        mImageView = (ImageView) view.findViewById(R.id.imageView2);
-        cambiarImagen = (Button) view.findViewById(R.id.changeUserImage);
+        name = (TextView) view.findViewById(R.id.tv_profile_name);
+        birthday = (TextView) view.findViewById(R.id.tv_profile_birthday);
+        password = (TextView) view.findViewById(R.id.tv_profile_password);
+        dni = (TextView) view.findViewById(R.id.tv_profile_dni);
+        email = (TextView) view.findViewById(R.id.tv_profile_email);
+        mImageView = (ImageView) view.findViewById(R.id.iv_profile_avatar);
+        cambiarImagen = (Button) view.findViewById(R.id.btn_profile_changeavatar);
         cambiarImagen.setOnClickListener(new View.OnClickListener() {
 
             @Override

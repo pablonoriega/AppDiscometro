@@ -27,15 +27,18 @@
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/activity_perfil_disco_titus.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/activity_registro.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/activity_registro2.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/activity_seleccionar_ubicacion_vuelta.xml" value="0.1" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/activity_zoom.xml" value="0.16486486486486487" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/favoritos_item_list.xml" value="0.22780797101449277" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/favs_item_list.xml" value="0.16486486486486487" />
+        <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/fragment_add_ubi_vuelta_segura.xml" value="0.1" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/fragment_favoritos.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/fragment_maps.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/fragment_perfil_user.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/fragment_suscripciones.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/fragment_vuelta_segura.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/fragment_zoom.xml" value="0.16486486486486487" />
+        <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/objetos_perdidos_item_list.xml" value="0.1" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/suscripciones_item_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/layout/vuelta_segura_item_list.xml" value="0.16486486486486487" />
         <entry key="..\:/Users/marmo/AndroidStudioProjects/AppDiscometro/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />

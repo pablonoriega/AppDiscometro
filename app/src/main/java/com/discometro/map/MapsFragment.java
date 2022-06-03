@@ -94,6 +94,13 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                     return false;
                 }
             });
+
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(@NonNull LatLng latLng) {
+                    button.setVisibility(View.INVISIBLE);
+                }
+            });
         }
     };
 
@@ -103,7 +110,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_maps, container, false);
-        button = (Button) view.findViewById(R.id.botonMapaVuelta);
+        button = (Button) view.findViewById(R.id.btn_fragmentmap_gotoprofile);
         button.setVisibility(view.INVISIBLE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +143,7 @@ public class MapsFragment extends Fragment  implements GoogleMap.OnMarkerClickLi
 
         super.onViewCreated(view, savedInstanceState);
         mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_fragmentmap_map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }

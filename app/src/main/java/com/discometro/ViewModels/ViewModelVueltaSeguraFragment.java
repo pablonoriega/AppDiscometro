@@ -100,7 +100,15 @@ public class ViewModelVueltaSeguraFragment extends AndroidViewModel implements D
 
     public void saveVueltaSeguraCard(VueltaSeguraCardItem card){
         if(card!= null){
-            mVueltaSegura.getValue().add(card);
+            if (mVueltaSegura.getValue().contains(card)) {
+                for (VueltaSeguraCardItem foundcard : mVueltaSegura.getValue()) {
+                    if (foundcard.getUsuarioid().equals(card.getUsuarioid())) {
+                        foundcard = card;
+                    }
+                }
+            } else {
+                mVueltaSegura.getValue().add(card);
+            }
             mVueltaSegura.setValue(mVueltaSegura.getValue());
             da.saveVueltaSegura(card);
         }

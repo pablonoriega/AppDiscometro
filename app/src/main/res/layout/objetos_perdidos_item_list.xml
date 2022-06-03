@@ -7,93 +7,82 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_vuelta_segura"
+        android:id="@+id/cv_objectitemlist_cardview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FFFFFF">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/objePerdidoUser"
-                android:layout_width="117dp"
-                android:layout_height="33dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.199"
-                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.863" />
-
-            <TextView
-                android:id="@+id/nombreObj_objetos_perdidos_item"
+                android:id="@+id/tv_objectitemlist_username"
                 android:layout_width="4dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
+                app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_logo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/usuario_objetos_perdidos_item"
+                android:id="@+id/tv_objectitemlist_useremail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
-                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
-                app:layout_constraintTop_toBottomOf="@+id/nombreObj_objetos_perdidos_item" />
+                app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_logo"
+                app:layout_constraintTop_toBottomOf="@+id/tv_objectitemlist_username" />
 
             <ImageView
-                android:id="@+id/fotoLogoObjetosPerdidos"
+                android:id="@+id/iv_objectitemlist_logo"
                 android:layout_width="63dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/downtownlogocrop" />
 
             <TextView
-                android:id="@+id/obje_PerdidosDesc"
-                android:layout_width="172dp"
-                android:layout_height="33dp"
+                android:id="@+id/tv_objectitemlist_descr"
+                android:layout_width="168dp"
+                android:layout_height="55dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.147"
-                app:layout_constraintStart_toEndOf="@+id/objetoPerdidoImagenObjeto"
+                app:layout_constraintHorizontal_bias="0.411"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.504" />
+                app:layout_constraintVertical_bias="0.836" />
 
             <TextView
-                android:id="@+id/objePerdidoName"
+                android:id="@+id/tv_objectitemlist_objectname"
                 android:layout_width="117dp"
                 android:layout_height="33dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.236"
-                app:layout_constraintStart_toEndOf="@+id/fotoLogoObjetosPerdidos"
+                app:layout_constraintHorizontal_bias="0.411"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.136" />
+                app:layout_constraintVertical_bias="0.275" />
 
             <Button
-                android:id="@+id/buttonEliminarSus"
+                android:id="@+id/btn_objectitemlist_reclaim"
                 android:layout_width="111dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="112dp"
                 android:layout_marginEnd="6dp"
+                android:layout_marginBottom="3dp"
                 android:text="RECLAMAR"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.444"
-                app:layout_constraintStart_toEndOf="@+id/obje_PerdidosDesc"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <ImageView
-                android:id="@+id/objetoPerdidoImagenObjeto"
+                android:id="@+id/iv_objectitemlist_objectimg"
                 android:layout_width="58dp"
                 android:layout_height="54dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +90,7 @@
                 app:layout_constraintHorizontal_bias="0.07"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.833"
+                app:layout_constraintVertical_bias="0.838"
                 tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

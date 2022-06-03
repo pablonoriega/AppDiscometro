@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".VueltaSegura.VueltaSeguraFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewVuelta"
-        android:layout_width="0dp"
+        android:id="@+id/rv_fragmentsafereturn_recyclerview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:layout_weight="0.9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,17 +22,21 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_addcard"
+        android:id="@+id/FAB_fragmentsafereturn_addsafereturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="44dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0"
         android:clickable="true"
+        android:minHeight="48dp"
         android:onClick="intentAddCard"
         android:src="@android:drawable/ic_menu_add"
         app:backgroundTint="#AC67D3"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerViewVuelta"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewVuelta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rv_fragmentsafereturn_recyclerview"
+        app:layout_constraintTop_toBottomOf="@+id/rv_fragmentsafereturn_recyclerview"
         tools:ignore="SpeakableTextPresentCheck" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

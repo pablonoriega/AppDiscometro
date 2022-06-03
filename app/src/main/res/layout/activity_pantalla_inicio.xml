@@ -8,7 +8,7 @@
     tools:context=".PantallaInicioActivity">
 
     <ImageView
-        android:id="@+id/discometroLogo"
+        android:id="@+id/iv_start_discometro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"

@@ -35,9 +35,9 @@ public class SuscripcionesItemAdapter extends RecyclerView.Adapter<Suscripciones
     public ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.suscripciones_item_list, null, false);
 
-        eliminar=view.findViewById(R.id.buttonEliminarSus);
-        visitarPerfil = view.findViewById(R.id.VisitarPerfilSus);
-        iv = view.findViewById(R.id.fotoLogoSus);
+        eliminar=view.findViewById(R.id.btn_subsitemlist_delete);
+        visitarPerfil = view.findViewById(R.id.btn_subsitemlist_gotoprofile);
+        iv = view.findViewById(R.id.iv_subsitemlist_logo);
 
         return new ViewHolderItems(view);
     }
@@ -82,7 +82,7 @@ public class SuscripcionesItemAdapter extends RecyclerView.Adapter<Suscripciones
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
 
-            logoDisco= (ImageView) itemView.findViewById(R.id.fotoLogoSus);
+            logoDisco= (ImageView) itemView.findViewById(R.id.iv_subsitemlist_logo);
 
         }
         public void asignarItems(String nameDisco) {

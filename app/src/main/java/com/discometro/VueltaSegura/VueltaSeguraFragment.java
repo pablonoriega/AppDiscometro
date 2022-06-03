@@ -82,7 +82,7 @@ public class VueltaSeguraFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_vuelta_segura, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewVuelta);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragmentsafereturn_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         setLiveDataObservers();
@@ -90,7 +90,7 @@ public class VueltaSeguraFragment extends Fragment {
         vm.iniUser(correo);
 
 
-        btn_addCard= (FloatingActionButton) view.findViewById(R.id.btn_addcard);
+        btn_addCard= (FloatingActionButton) view.findViewById(R.id.FAB_fragmentsafereturn_addsafereturn);
         btn_addCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,7 +129,7 @@ public class VueltaSeguraFragment extends Fragment {
                     listItems= new ArrayList<>();
                     listItems= vm.getVueltaSeguraCards().getValue();
                     if(!listItems.isEmpty()){
-                        VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems);
+                        VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems, correo, vm);
                         recyclerView.setAdapter(adapter);
                     }
                 }

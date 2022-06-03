@@ -40,11 +40,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        email = findViewById(R.id.et_correo);
-        password = findViewById(R.id.et_contra);
-        remember = findViewById(R.id.cb_recuerdame);
-        login = findViewById(R.id.btn_login);
-        img_btn = findViewById(R.id.img_btn);
+        email = findViewById(R.id.et_login_email);
+        password = findViewById(R.id.et_login_password);
+        remember = findViewById(R.id.cb_login_remember);
+        login = findViewById(R.id.btn_login_login);
+        img_btn = findViewById(R.id.ibtn_login_showpassword);
         num = 0;
         setLiveDataObservers();
         loadPreferences();

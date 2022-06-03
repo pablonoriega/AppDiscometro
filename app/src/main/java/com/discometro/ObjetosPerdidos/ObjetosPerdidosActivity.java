@@ -44,9 +44,9 @@ public class ObjetosPerdidosActivity extends AppCompatActivity {
         listCards = new ArrayList<ObjetosPerdidosCardItem>();
 
 
-        addObject = findViewById(R.id.addObjectBtn);
+        addObject = findViewById(R.id.ib_object_addobject);
 
-        recyclerView = (RecyclerView) findViewById(R.id.objPerdidosRecycler);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_object_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
 

@@ -28,7 +28,7 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private TextView number_amount;
-    private EditText number, origen;
+    private EditText location, number, origen;
     private ViewGroup container;
     private ViewModelVueltaSeguraFragment vm;
     private User u;
@@ -47,21 +47,22 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
         setLiveDataObservers();
         vm.iniUser(correo);
 
-        spinner = findViewById(R.id.spinner_vehicles);
+        spinner = findViewById(R.id.spn_addsafereturn_spinnervehicle);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.vehicles, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
 
-        number_amount = findViewById(R.id.tv_amount);
-        number = findViewById(R.id.et_number);
-        origen=findViewById(R.id.edit_origen);
-        container = findViewById(R.id.tr_amount);
+        location= findViewById(R.id.et_addsafereturn_dest);
+        number_amount = findViewById(R.id.tv_addsafereturn_passengers);
+        number = findViewById(R.id.et_addsafereturn_passengers);
+        origen=findViewById(R.id.et_addsafereturn_discoorigin);
+        container = findViewById(R.id.cl_addsafereturn_constraintlayout);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String text = spinner.getSelectedItem().toString();
-                if (text.equals("A pie")) {
+                if (text.equals("A pie") || text.equals("Autobus") || text.equals("Moto")) {
                     TransitionManager.beginDelayedTransition(container);
                     number_amount.setVisibility(View.GONE);
                     number.setVisibility(View.GONE);
@@ -119,11 +120,13 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     }
 
     public boolean comprobar(){
+        String txt_location= location.getText().toString();
         String txt_number = number.getText().toString();
         String txt_vehicle = spinner.getSelectedItem().toString();
         String txt_origen =origen.getText().toString();
         ArrayList<String> listNombres = vm.getNameDiscos();
-
+        ArrayList<String> userList = new ArrayList<>();
+        userList.add(correo);
         String inicial= txt_origen.substring(0,1);
         inicial=inicial.toUpperCase();
         String resto = txt_origen.substring(1,txt_origen.length());
@@ -139,11 +142,16 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
             return false;
 
         }
-        if(txt_vehicle.equals("pie")){
-            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"","Indefinido",txt_origen,vm.getDiscoByName(txt_origen).getLogo());
+        if(txt_vehicle.equals("A pie") || txt_vehicle.equals("Bicicleta") || txt_vehicle.equals("Autobus")){
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"","10",txt_origen,vm.getDiscoByName(txt_origen).getLogo(), userList);
+        } else if (txt_vehicle.equals("Moto")) {
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,txt_location,"1",txt_origen,vm.getDiscoByName(txt_origen).getLogo(), userList);
         }
         else{
-            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"",txt_number,txt_origen,vm.getDiscoByName(txt_origen).getLogo());
+            if (Integer.parseInt(txt_number) <= 0 || Integer.parseInt(txt_number) >= 5) {
+                return false;
+            }
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,txt_location,txt_number,txt_origen,vm.getDiscoByName(txt_origen).getLogo(), userList);
         }
         return true;
     }

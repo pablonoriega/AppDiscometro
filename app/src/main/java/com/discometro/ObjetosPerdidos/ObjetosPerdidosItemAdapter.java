@@ -117,11 +117,11 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
 
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
-            nombreObj = (TextView) itemView.findViewById(R.id.objePerdidoName);
-            usuario = (TextView) itemView.findViewById(R.id.objePerdidoUser);
-            descripcion = (TextView) itemView.findViewById(R.id.obje_PerdidosDesc);
-            imagenLogo = (ImageView) itemView.findViewById(R.id.fotoLogoObjetosPerdidos);
-            imagenObjeto = (ImageView) itemView.findViewById(R.id.objetoPerdidoImagenObjeto);
+            nombreObj = (TextView) itemView.findViewById(R.id.tv_objectitemlist_objectname);
+            usuario = (TextView) itemView.findViewById(R.id.tv_objectitemlist_username);
+            descripcion = (TextView) itemView.findViewById(R.id.tv_objectitemlist_useremail);
+            imagenLogo = (ImageView) itemView.findViewById(R.id.iv_objectitemlist_logo);
+            imagenObjeto = (ImageView) itemView.findViewById(R.id.iv_objectitemlist_objectimg);
         }
 
         public void asignarItems(String nombreObj, String usuario, String descripcion, String imagen,Bitmap bmImagenObjeto) {
