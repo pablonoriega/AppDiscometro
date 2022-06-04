@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.discometro.Discos.PerfilDisco;
 import com.discometro.ObjetosPerdidos.ObjetosPerdidosCardItem;
+import com.discometro.Pair;
 import com.discometro.User.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,7 +60,7 @@ public class DataBaseAdapter extends Activity {
         void setVueltaSeguraCards(ArrayList<VueltaSeguraCardItem> retrieved_s);
         void setVisitarPerfil(String m);
         void setBitmapPerfil(Bitmap p);
-        void setBitmapObjetosPerdidos(HashMap<String,Bitmap> map);
+        void setBitmapImagenes(Pair pair);
         void setVueltaSeguraCard(VueltaSeguraCardItem card);
     }
 
@@ -222,7 +223,7 @@ public class DataBaseAdapter extends Activity {
                             ArrayList<PerfilDisco> retrieved_s = new ArrayList<PerfilDisco>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion"),document.getString("latitud"),document.getString("longitud")));
+                                retrieved_s.add(new PerfilDisco(document.getString("nameDisco"),document.getString("logo"),document.getString("foto1"),document.getString("foto2"),document.getString("foto3"),document.getString("foto4"),document.getString("correo"),document.getString("banner"),document.getString("descripcion"),document.getString("latitud"),document.getString("longitud"),document.getString("logoCoded")));
                             }
                             listener.setDiscos(retrieved_s);
 
@@ -345,18 +346,17 @@ public class DataBaseAdapter extends Activity {
 
     }
 
-    public void cargarImagenesObjetos(String path,String usuario){
+    public void cargarImagenesObjetos(String path,String identificador){
 
         StorageReference photoReference= storageRef.child(path);
 
-        final long ONE_MEGABYTE = 1024 * 1024;
+        final long ONE_MEGABYTE = 1024 * 1024 * 6;
         photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bmp =BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                HashMap<String,Bitmap> map = new HashMap<>();
-                map.put(usuario,bmp);
-                listener.setBitmapObjetosPerdidos(map);
+                Pair pair = new Pair(identificador,bmp);
+                listener.setBitmapImagenes(pair);
 
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -200,7 +200,7 @@ public class RegistroActivity extends AppCompatActivity {
 
     public void validacionFinal(){
         if (u != null) {
-            Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Este usuario ya existe", Toast.LENGTH_SHORT).show();
         } else {
             if (txt_pwd.equals(txt_pwd2)) {
                 User u = new User(txt_email, txt_pwd, txt_name, txt_birthday, txt_surname, txt_dni, new ArrayList<String>(), "", new ArrayList<String>());

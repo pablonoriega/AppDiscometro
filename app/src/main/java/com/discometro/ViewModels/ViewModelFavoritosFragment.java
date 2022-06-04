@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.discometro.Adapter.DataBaseAdapter;
 import com.discometro.Discos.PerfilDisco;
 import com.discometro.ObjetosPerdidos.ObjetosPerdidosCardItem;
+import com.discometro.Pair;
 import com.discometro.User.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
 
@@ -25,6 +26,7 @@ public class ViewModelFavoritosFragment extends AndroidViewModel implements Data
     private MutableLiveData<String> mToast;
     private MutableLiveData<String> mVisitarPerfil;
     private MutableLiveData<ArrayList<PerfilDisco>> mPerfilDisco;
+    private MutableLiveData<Pair> mImagenLogo;
 
     public ViewModelFavoritosFragment(@NonNull Application application) {
         super(application);
@@ -33,9 +35,13 @@ public class ViewModelFavoritosFragment extends AndroidViewModel implements Data
         mUser = new MutableLiveData<>();
         mVisitarPerfil = new MutableLiveData<>();
         mPerfilDisco = new MutableLiveData<>();
+        mVisitarPerfil.setValue("null");
+        mImagenLogo= new MutableLiveData<>();
+
+
         da = new DataBaseAdapter(this);
         da.iniAllDiscos();
-        mVisitarPerfil.setValue("null");
+
     }
     public void iniUser(String correo){
         da.iniUser(correo);
@@ -81,16 +87,18 @@ public class ViewModelFavoritosFragment extends AndroidViewModel implements Data
     }
 
     @Override
-    public void setBitmapObjetosPerdidos(HashMap<String, Bitmap> map) {
+    public void setBitmapImagenes(Pair pair) {
+        mImagenLogo.setValue(pair);
 
     }
+
 
     @Override
     public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
 
     }
 
-
+    public LiveData<ArrayList<PerfilDisco>> getDiscos(){return mPerfilDisco;}
     public LiveData<String> getToast(){
         return mToast;
     }
@@ -111,14 +119,31 @@ public class ViewModelFavoritosFragment extends AndroidViewModel implements Data
         String nameDisco=null;
         ArrayList<PerfilDisco> listDiscos = mPerfilDisco.getValue();
         Iterator it = listDiscos.iterator();
-        PerfilDisco u = null;
         while (it.hasNext()){
             PerfilDisco aux= (PerfilDisco) it.next();
-            if(aux.getLogo().equals(logo)){
+            if(aux.getLogoCoded().equals(logo)){
                 nameDisco=aux.getNameDisco();
             }
         }
         return nameDisco;
+    }
+
+    public PerfilDisco getDiscoByName(String name){
+        ArrayList<PerfilDisco> listDiscos = mPerfilDisco.getValue();
+        Iterator it = listDiscos.iterator();
+        PerfilDisco u = null;
+        while (it.hasNext()){
+            PerfilDisco aux= (PerfilDisco) it.next();
+            if(aux.getNameDisco().equals(name)){
+                u=aux;
+            }
+        }
+        return u;
+    }
+    public LiveData<Pair> getLogoImage(){ return mImagenLogo;}
+    public void iniBitmap(String path,String nameDisco){
+        da.cargarImagenesObjetos(path,nameDisco);
+
     }
 
 }

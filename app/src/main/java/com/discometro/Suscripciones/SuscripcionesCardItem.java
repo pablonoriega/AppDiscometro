@@ -2,12 +2,11 @@ package com.discometro.Suscripciones;
 
 public class SuscripcionesCardItem {
 
-    private String usuario, usuarioid,nameDisco,fotoLogo;
+    private String usuario, usuarioid,fotoLogo;
 
     public SuscripcionesCardItem(String usuario, String usuarioid, String fotoLogo) {
         this.usuario = usuario;
         this.usuarioid = usuarioid;
-        this.nameDisco=fotoLogo;
         this.fotoLogo=fotoLogo;
     }
 
@@ -29,11 +28,5 @@ public class SuscripcionesCardItem {
         this.usuarioid = usuarioid;
     }
 
-    public String getNameDisco() {
-        return nameDisco;
-    }
 
-    public void setNameDisco(String nameDisco) {
-        this.nameDisco = nameDisco;
-    }
 }

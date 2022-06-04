@@ -76,7 +76,7 @@ public class MapSeleccionarUbiVuelta extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    card.setLocation(marker.getPosition().latitude+""+marker.getPosition().longitude);
+                    card.setLocation(marker.getPosition().latitude+" "+marker.getPosition().longitude);
                     Intent vuelta = new Intent(getContext(), MainActivity.class);
                     vuelta.putExtra("usuario",correo);
                     vm.saveVueltaSeguraCard(card);

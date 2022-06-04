@@ -3,6 +3,7 @@ package com.discometro.Discos;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -24,6 +25,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.discometro.MainActivity.MainActivity;
 import com.discometro.ObjetosPerdidos.ObjetosPerdidosActivity;
+import com.discometro.ObjetosPerdidos.ObjetosPerdidosItemAdapter;
+import com.discometro.Pair;
 import com.discometro.R;
 import com.discometro.User.User;
 
@@ -32,6 +35,7 @@ import com.discometro.ViewModels.ViewModelPerfilDiscoActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPerfilDisco {
 
@@ -45,6 +49,9 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
     private User u;
     private String correo;
     private String nameDisco;
+
+    private ArrayList<String> positionImages;
+    private int count=0;
 
     private PerfilDisco disco;
 
@@ -62,6 +69,15 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         setLiveDataObservers();
         vm.iniUser(correo);
 
+        positionImages=new ArrayList<>();
+        positionImages.add("banner");
+        positionImages.add("foto1");
+        positionImages.add("foto2");
+        positionImages.add("foto3");
+        positionImages.add("foto4");
+        positionImages.add("logo");
+
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
@@ -76,6 +92,10 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         logo= findViewById(R.id.iv_discoprofile_logo);
         banner=findViewById(R.id.iv_discoprofile_banner);
         descripcion= findViewById(R.id.tv__discoprofile_descr);
+
+        changeVisibility(4);
+
+
 
 
 
@@ -126,22 +146,11 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
     public void inicializarFotos(){
 
-        String foto1 = disco.getFoto1();
-        String foto2 = disco.getFoto2();
-        String foto3 = disco.getFoto3();
-        String foto4 = disco.getFoto4();
-        String logo_text = disco.getLogo();
         String banner_text =disco.getBanner();
         String descripcion_text=disco.getDescripcion();
+        vm.iniBitmap(banner_text,"banner");
+        changeVisibility(4);
 
-
-
-        ib_1.setImageResource(Integer.parseInt(foto1));
-        ib_2.setImageResource(Integer.parseInt(foto2));
-        ib_3.setImageResource(Integer.parseInt(foto3));
-        ib_4.setImageResource(Integer.parseInt(foto4));
-        logo.setImageResource(Integer.parseInt(logo_text));
-        banner.setImageResource(Integer.parseInt(banner_text));
         descripcion.setText(descripcion_text);
 
     }
@@ -160,6 +169,43 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
             }
         };
 
+        final Observer<Pair> hashMapObserver = new Observer<Pair>() {
+            @Override
+            public void onChanged(Pair pair) {
+                if(vm.getMapImagesObjects().getValue().equals(null)){
+
+                }
+                else{
+                    String position= vm.getMapImagesObjects().getValue().getIdentificador();
+                    Bitmap bm = vm.getMapImagesObjects().getValue().getBitmap();
+
+                    if(position.equals("banner")){
+                        banner.setImageBitmap(bm);
+                        vm.iniBitmap(disco.getFoto1(),"foto1");
+                    }
+                    else if(position.equals("foto1")){
+                        ib_1.setImageBitmap(bm);
+                        vm.iniBitmap(disco.getFoto2(),"foto2");
+                    }
+                    else if(position.equals("foto2")){
+                        ib_2.setImageBitmap(bm);
+                        vm.iniBitmap(disco.getFoto3(),"foto3");
+                    }
+                    else if(position.equals("foto3")){
+                        ib_3.setImageBitmap(bm);
+                        vm.iniBitmap(disco.getFoto4(),"foto4");
+                    }
+                    else if(position.equals("foto4")){
+                        ib_4.setImageBitmap(bm);
+                        vm.iniBitmap(disco.getLogo(),"logo");
+                    }
+                    else if(position.equals("logo")){
+                        logo.setImageBitmap(bm);
+                        changeVisibility(0);
+                    }
+                }
+            }
+        };
         final Observer<ArrayList<PerfilDisco>> observerDiscos = new Observer<ArrayList<PerfilDisco>>() {
             @Override
             public void onChanged(ArrayList<PerfilDisco> perfilDiscos) {
@@ -182,6 +228,7 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         vm.getToast().observe(this, observerToast);
         vm.getUser().observe(this, observerUsuario);
         vm.getDiscos().observe(this,observerDiscos);
+        vm.getMapImagesObjects().observe(this,hashMapObserver);
     }
 
 
@@ -210,26 +257,35 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
     }
 
     public void añadirFavorito(View view){
-        if(!u.getListFavoritos().contains(disco.getLogo())){
-            u.añadirFavorito(disco.getLogo());
+        if(!u.getListFavoritos().contains(disco.getLogoCoded())){
+            u.añadirFavorito(disco.getLogoCoded());
             vm.saveUser(u);
             Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getNameDisco()+" a favoritos", Toast.LENGTH_SHORT).show();
 
         }
-        else if(u.getListFavoritos().contains(disco.getLogo())){
+        else if(u.getListFavoritos().contains(disco.getLogoCoded())){
             Toast.makeText(getApplicationContext(),disco.getNameDisco() + " ya se encuentra en favoritos", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void añadirSuscripción(View view){
 
-        if(!u.getListSuscripciones().contains(disco.getLogo())){
-            u.añadirSuscripcion(disco.getLogo());
+        if(!u.getListSuscripciones().contains(disco.getLogoCoded())){
+            u.añadirSuscripcion(disco.getLogoCoded());
             vm.saveUser(u);
             Toast.makeText(getApplicationContext(),"Se ha añadido "+disco.getNameDisco()+" a suscripciones", Toast.LENGTH_SHORT).show();
         }
-        else if(u.getListSuscripciones().contains(disco.getLogo())){
+        else if(u.getListSuscripciones().contains(disco.getLogoCoded())){
             Toast.makeText(getApplicationContext(),disco.getNameDisco() + " ya se encuentra en suscripciones", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void changeVisibility(int visibility){
+        banner.setVisibility(visibility);
+        ib_1.setVisibility(visibility);
+        ib_2.setVisibility(visibility);
+        ib_3.setVisibility(visibility);
+        ib_4.setVisibility(visibility);
+        descripcion.setVisibility(visibility);
     }
 }

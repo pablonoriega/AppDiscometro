@@ -2,12 +2,12 @@ package com.discometro.favoritos;
 
 public class FavoritosCardItem {
 
-    private String usuario, usuarioid,nameDisco;
+    private String usuario, usuarioid,logoDisco;
 
-    public FavoritosCardItem(String usuario, String usuarioid, String nameDisco) {
+    public FavoritosCardItem(String usuario, String usuarioid, String logoDisco) {
         this.usuario = usuario;
         this.usuarioid = usuarioid;
-        this.nameDisco=nameDisco;
+        this.logoDisco=logoDisco;
     }
 
     public String getUsuario() {
@@ -26,11 +26,13 @@ public class FavoritosCardItem {
         this.usuarioid = usuarioid;
     }
 
-    public String getNameDisco() {
-        return nameDisco;
+    public String getLogoDisco() {
+        return logoDisco;
     }
 
-    public void setNameDisco(String nameDisco) {
-        this.nameDisco = nameDisco;
+    public void setLogoDisco(String logoDisco) {
+        this.logoDisco = logoDisco;
     }
+
+
 }

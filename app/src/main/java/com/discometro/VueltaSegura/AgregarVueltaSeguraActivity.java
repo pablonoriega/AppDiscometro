@@ -33,7 +33,7 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     private ViewModelVueltaSeguraFragment vm;
     private User u;
     private String correo;
-    VueltaSeguraCardItem card;
+    private VueltaSeguraCardItem card;
 
 
 
@@ -47,12 +47,12 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
         setLiveDataObservers();
         vm.iniUser(correo);
 
+
         spinner = findViewById(R.id.spn_addsafereturn_spinnervehicle);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.vehicles, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
 
-        location= findViewById(R.id.et_addsafereturn_dest);
         number_amount = findViewById(R.id.tv_addsafereturn_passengers);
         number = findViewById(R.id.et_addsafereturn_passengers);
         origen=findViewById(R.id.et_addsafereturn_discoorigin);
@@ -120,7 +120,6 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
     }
 
     public boolean comprobar(){
-        String txt_location= location.getText().toString();
         String txt_number = number.getText().toString();
         String txt_vehicle = spinner.getSelectedItem().toString();
         String txt_origen =origen.getText().toString();
@@ -143,15 +142,15 @@ public class AgregarVueltaSeguraActivity extends AppCompatActivity {
 
         }
         if(txt_vehicle.equals("A pie") || txt_vehicle.equals("Bicicleta") || txt_vehicle.equals("Autobus")){
-            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"","10",txt_origen,vm.getDiscoByName(txt_origen).getLogo(), userList);
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"","10",txt_origen,vm.getDiscoByName(txt_origen).getLogoCoded(), userList);
         } else if (txt_vehicle.equals("Moto")) {
-            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,txt_location,"1",txt_origen,vm.getDiscoByName(txt_origen).getLogo(), userList);
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"","1",txt_origen,vm.getDiscoByName(txt_origen).getLogoCoded(), userList);
         }
         else{
             if (Integer.parseInt(txt_number) <= 0 || Integer.parseInt(txt_number) >= 5) {
                 return false;
             }
-            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,txt_location,txt_number,txt_origen,vm.getDiscoByName(txt_origen).getLogo(), userList);
+            card = new VueltaSeguraCardItem(u.getName(),u.getCorreo(),txt_vehicle,"",txt_number,txt_origen,vm.getDiscoByName(txt_origen).getLogoCoded(), userList);
         }
         return true;
     }

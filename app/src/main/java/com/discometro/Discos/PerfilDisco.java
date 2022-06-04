@@ -16,8 +16,9 @@ public class PerfilDisco implements Parcelable {
     private String latitud;
     private String longitud;
     private String correo;
+    private String logoCoded;
 
-    public PerfilDisco(String nameDisco, String logo, String foto1, String foto2, String foto3, String foto4, String correo, String banner, String descripcion, String latitud, String longitud) {
+    public PerfilDisco(String nameDisco, String logo, String foto1, String foto2, String foto3, String foto4, String correo, String banner, String descripcion, String latitud, String longitud, String logoCoded) {
 
         this.nameDisco = nameDisco;
         this.logo = logo;
@@ -30,6 +31,7 @@ public class PerfilDisco implements Parcelable {
         this.descripcion=descripcion;
         this.longitud = longitud;
         this.latitud =latitud;
+        this.logoCoded=logoCoded;
     }
 
 
@@ -45,6 +47,7 @@ public class PerfilDisco implements Parcelable {
         descripcion=in.readString();
         latitud= in.readString();
         longitud=in.readString();
+        logoCoded= in.readString();
     }
 
     public static final Creator<PerfilDisco> CREATOR = new Creator<PerfilDisco>() {
@@ -99,6 +102,9 @@ public class PerfilDisco implements Parcelable {
         return foto4;
     }
 
+    public String getLogoCoded(){return logoCoded; }
+    public void SetLogoCoded(String logo){ this.logoCoded= logo;}
+
     public void setNameDisco(String nameDisco) {
         this.nameDisco = nameDisco;
     }
@@ -121,6 +127,7 @@ public class PerfilDisco implements Parcelable {
         parcel.writeString(descripcion);
         parcel.writeString(latitud);
         parcel.writeString(longitud);
+        parcel.writeString(logoCoded);
 
     }
 }

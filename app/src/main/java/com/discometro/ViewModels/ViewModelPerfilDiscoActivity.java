@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.discometro.Adapter.DataBaseAdapter;
 import com.discometro.Discos.PerfilDisco;
 import com.discometro.ObjetosPerdidos.ObjetosPerdidosCardItem;
+import com.discometro.Pair;
 import com.discometro.User.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
 
@@ -24,12 +25,14 @@ public class ViewModelPerfilDiscoActivity extends AndroidViewModel implements Da
     private MutableLiveData<User> mUser;
     private MutableLiveData<String> mToast;
     private MutableLiveData<ArrayList<PerfilDisco>> mPerfilDisco;
+    private MutableLiveData<Pair> mImagenesDisco;
 
     public ViewModelPerfilDiscoActivity(@NonNull Application application) {
         super(application);
         mToast = new MutableLiveData<>();
         mUser = new MutableLiveData<>();
         mPerfilDisco = new MutableLiveData<>();
+        mImagenesDisco = new MutableLiveData<>();
 
         da = new DataBaseAdapter(this);
         da.iniAllDiscos();
@@ -65,9 +68,12 @@ public class ViewModelPerfilDiscoActivity extends AndroidViewModel implements Da
     }
 
     @Override
-    public void setBitmapObjetosPerdidos(HashMap<String, Bitmap> map) {
+    public void setBitmapImagenes(Pair pair) {
+        mImagenesDisco.setValue(pair);
 
     }
+
+
 
     @Override
     public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
@@ -102,4 +108,10 @@ public class ViewModelPerfilDiscoActivity extends AndroidViewModel implements Da
         }
         return u;
     }
+
+    public void iniBitmap(String path,String user){
+        da.cargarImagenesObjetos(path,user);
+
+    }
+    public LiveData<Pair> getMapImagesObjects(){ return mImagenesDisco;}
 }

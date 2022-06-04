@@ -129,7 +129,7 @@ public class VueltaSeguraFragment extends Fragment {
                     listItems= new ArrayList<>();
                     listItems= vm.getVueltaSeguraCards().getValue();
                     if(!listItems.isEmpty()){
-                        VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems, correo, vm);
+                        VueltaSeguraItemAdapter adapter = new VueltaSeguraItemAdapter(listItems, correo, vm,VueltaSeguraFragment.this);
                         recyclerView.setAdapter(adapter);
                     }
                 }

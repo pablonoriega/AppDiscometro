@@ -45,14 +45,14 @@ public class SuscripcionesItemAdapter extends RecyclerView.Adapter<Suscripciones
 
     @Override
     public void onBindViewHolder(ViewHolderItems holder, int position) {
-        String nameDisco= listItems.get(position).getNameDisco();
+        String fotoLogo= listItems.get(position).getFotoLogo();
 
-        ((ViewHolderItems)holder).asignarItems(nameDisco);
+        ((ViewHolderItems)holder).asignarItems(fotoLogo);
         eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (u.getListSuscripciones().contains(nameDisco)) {
-                    u.eliminarSuscripcion(nameDisco);
+                if (u.getListSuscripciones().contains(fotoLogo)) {
+                    u.eliminarSuscripcion(fotoLogo);
                     vm.saveUser(u);
                 }
             }
@@ -61,7 +61,7 @@ public class SuscripcionesItemAdapter extends RecyclerView.Adapter<Suscripciones
             @Override
             public void onClick(View view) {
                 //hay que conseguir el nombre de  la discoteca a traves del numero del logo
-                String name = vm.getNamebyLogo(nameDisco);
+                String name = vm.getNamebyLogo(fotoLogo);
                 vm.llamarVisitarPerfil(name);
             }
         });

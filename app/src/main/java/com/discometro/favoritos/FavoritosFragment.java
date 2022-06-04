@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.discometro.Discos.PerfilDisco;
 import com.discometro.Discos.PerfilDiscoActivity;
 import com.discometro.MainActivity.MainActivity;
 import com.discometro.R;
@@ -103,10 +104,9 @@ public class FavoritosFragment extends Fragment {
                 if (vm.getUser().getValue().equals(null)) {
                     Toast.makeText(getActivity(), "El usuario o la contraseÃ±a son incorrectos", Toast.LENGTH_SHORT).show();
                 } else {
-                    listItems= new ArrayList<FavoritosCardItem>();
                     u=vm.getUser().getValue();
+                    listItems= new ArrayList<FavoritosCardItem>();
                     listNombres=u.getListFavoritos();
-
                     if(!listNombres.isEmpty()){
                         for(int i=0; i<listNombres.size();i++){
                             String logoDisco=listNombres.get(i);
@@ -116,9 +116,12 @@ public class FavoritosFragment extends Fragment {
                     }
                     FavoritosItemAdapter adapter = new FavoritosItemAdapter(listItems,u,vm);
                     recyclerView.setAdapter(adapter);
+
                 }
             }
             };
+
+
 
            final Observer<String> observerVisitarPerfil = new Observer<String>() {
                @Override
@@ -128,7 +131,6 @@ public class FavoritosFragment extends Fragment {
                    }
                    else{
                        if(!vm.getVisitarPerfil().getValue().equals("null")){
-                           System.out.println("entraaaaaaaaaaaaa");
                            String nameDisco = vm.getVisitarPerfil().getValue();
                            Intent intent = new Intent(getContext(), PerfilDiscoActivity.class);
                            Bundle extras = new Bundle();
@@ -152,6 +154,8 @@ public class FavoritosFragment extends Fragment {
         vm.getUser().observe(getViewLifecycleOwner(),observerUsuario);
         vm.getVisitarPerfil().observe(getViewLifecycleOwner(),observerVisitarPerfil);
         }
+
+
 
 
 }

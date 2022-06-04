@@ -128,7 +128,7 @@ public class AgregarObjetoPerdidoActivity extends AppCompatActivity {
         String txt_nombre = nombre.getText().toString();
         String txt_descripcion = descripcion.getText().toString();
         String txt_usuario = u.getCorreo();
-        String txt_fotoLogo = vmObjetos.getDiscoByName(nameDisco).getLogo();
+        String txt_fotoLogo = vmObjetos.getDiscoByName(nameDisco).getLogoCoded();
 
 
         if(txt_descripcion.equals("")){

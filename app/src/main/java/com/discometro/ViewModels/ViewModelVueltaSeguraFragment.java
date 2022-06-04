@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.discometro.Adapter.DataBaseAdapter;
 import com.discometro.Discos.PerfilDisco;
 import com.discometro.ObjetosPerdidos.ObjetosPerdidosCardItem;
+import com.discometro.Pair;
 import com.discometro.User.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
 
@@ -64,9 +65,10 @@ public class ViewModelVueltaSeguraFragment extends AndroidViewModel implements D
     }
 
     @Override
-    public void setBitmapObjetosPerdidos(HashMap<String, Bitmap> map) {
+    public void setBitmapImagenes(Pair pair) {
 
     }
+
 
     @Override
     public void setVueltaSeguraCard(VueltaSeguraCardItem card) {
@@ -121,6 +123,18 @@ public class ViewModelVueltaSeguraFragment extends AndroidViewModel implements D
         while (it.hasNext()){
             PerfilDisco aux= (PerfilDisco) it.next();
             if(aux.getNameDisco().equals(name)){
+                u=aux;
+            }
+        }
+        return u;
+    }
+    public PerfilDisco getDiscoByLogo(String logo){
+        ArrayList<PerfilDisco> listDiscos = mPerfilDisco.getValue();
+        Iterator it = listDiscos.iterator();
+        PerfilDisco u = null;
+        while (it.hasNext()){
+            PerfilDisco aux= (PerfilDisco) it.next();
+            if(aux.getLogoCoded().equals(logo)){
                 u=aux;
             }
         }

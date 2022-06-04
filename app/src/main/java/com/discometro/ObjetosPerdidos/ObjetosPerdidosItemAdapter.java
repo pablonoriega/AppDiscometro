@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.discometro.Pair;
 import com.discometro.R;
 import com.discometro.Suscripciones.SuscripcionesItemAdapter;
 import com.discometro.User.User;
@@ -49,6 +50,7 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
         return new ViewHolderItems(view);
     }
 
+
     @Override
     public void onBindViewHolder(ViewHolderItems holder, int position) {
         usuario = listItems.get(position).getUsuario();
@@ -60,9 +62,6 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
         }
         usersArray.add(usuario);
         holderItemsArrayList.add(holder);
-
-
-
 
     }
 
@@ -76,26 +75,28 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
         //Subscribe the activity to the observable
         vm = new ViewModelProvider(objetosPerdidosActivity).get(ViewModelObjetosPerdidosActivity.class);
 
-        final Observer<HashMap<String,Bitmap>> hashMapObserver = new Observer<HashMap<String, Bitmap>>() {
+        final Observer<Pair> pairObserver = new Observer<Pair>() {
             @Override
-            public void onChanged(HashMap<String, Bitmap> BitmapHashMap) {
+            public void onChanged(Pair pair) {
                 if(vm.getMapImagesObjects().getValue().equals(null)){
 
                 }
                 else{
-                    Bitmap bm = vm.getMapImagesObjects().getValue().get(usersArray.get(count));
-                    nombreObj = listItems.get(count).getNombreObj();
-                    usuario = listItems.get(count).getUsuario();
-                    descripcion = listItems.get(count).getDescripcion();
-                    imagenLogo = listItems.get(count).getImagenLogo();
-                    ViewHolderItems holder = holderItemsArrayList.get(count);
-                    ((ObjetosPerdidosItemAdapter.ViewHolderItems)holder).asignarItems(nombreObj,usuario,descripcion,imagenLogo,bm);
-                    count=count+1;
-
+                    Bitmap bm = vm.getMapImagesObjects().getValue().getBitmap();
+                    String identificador= vm.getMapImagesObjects().getValue().getIdentificador();
+                    int index = usersArray.indexOf(identificador);
+                    if(index!=-1){
+                        nombreObj = listItems.get(index).getNombreObj();
+                        usuario = listItems.get(index).getUsuario();
+                        descripcion = listItems.get(index).getDescripcion();
+                        imagenLogo = listItems.get(index).getImagenLogo();
+                        ViewHolderItems holder = holderItemsArrayList.get(index);
+                        ((ObjetosPerdidosItemAdapter.ViewHolderItems)holder).asignarItems(nombreObj,usuario,descripcion,imagenLogo,bm);
+                    }
                 }
-
             }
         };
+
         final Observer<String> observerToast = new Observer<String>() {
             @Override
             public void onChanged(String t) {
@@ -104,7 +105,7 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
         };
 
         vm.getToast().observe(objetosPerdidosActivity, observerToast);
-        vm.getMapImagesObjects().observe(objetosPerdidosActivity,hashMapObserver);
+        vm.getMapImagesObjects().observe(objetosPerdidosActivity,pairObserver);
     }
 
 
@@ -117,9 +118,9 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
 
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
-            nombreObj = (TextView) itemView.findViewById(R.id.tv_objectitemlist_objectname);
-            usuario = (TextView) itemView.findViewById(R.id.tv_objectitemlist_username);
-            descripcion = (TextView) itemView.findViewById(R.id.tv_objectitemlist_useremail);
+            nombreObj = (TextView) itemView.findViewById(R.id.obj_LostObject);
+            usuario = (TextView) itemView.findViewById(R.id.user_LostObject);
+            descripcion = (TextView) itemView.findViewById(R.id.desc_LostObject);
             imagenLogo = (ImageView) itemView.findViewById(R.id.iv_objectitemlist_logo);
             imagenObjeto = (ImageView) itemView.findViewById(R.id.iv_objectitemlist_objectimg);
         }

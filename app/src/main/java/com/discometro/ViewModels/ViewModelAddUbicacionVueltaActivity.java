@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.discometro.Adapter.DataBaseAdapter;
 import com.discometro.Discos.PerfilDisco;
 import com.discometro.ObjetosPerdidos.ObjetosPerdidosCardItem;
+import com.discometro.Pair;
 import com.discometro.User.User;
 import com.discometro.VueltaSegura.VueltaSeguraCardItem;
 
@@ -53,7 +54,7 @@ public class ViewModelAddUbicacionVueltaActivity extends AndroidViewModel implem
     public void setBitmapPerfil(Bitmap p) { }
 
     @Override
-    public void setBitmapObjetosPerdidos(HashMap<String, Bitmap> map) { }
+    public void setBitmapImagenes(Pair pair) { }
 
     @Override
     public void setVueltaSeguraCard(VueltaSeguraCardItem card) { mCard.setValue(card);}
