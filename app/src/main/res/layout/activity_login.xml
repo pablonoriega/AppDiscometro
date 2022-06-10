@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
     tools:context=".Login.LoginActivity"
     tools:ignore="SpeakableTextPresentCheck">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
 
         <ImageView
             android:id="@+id/iv_login_banner"
@@ -25,13 +27,14 @@
             android:id="@+id/et_login_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="56dp"
             android:ems="10"
             android:hint="@string/CorreoDNI"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_login_banner" />
 
@@ -39,13 +42,14 @@
             android:id="@+id/et_login_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="24dp"
             android:ems="10"
             android:hint="@string/Contraseña"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_login_email" />
 
@@ -53,11 +57,12 @@
             android:id="@+id/ibtn_login_showpassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="216dp"
+            android:backgroundTint="#FFFFFF"
             android:minHeight="48dp"
-            app:layout_constraintStart_toEndOf="@+id/et_login_password"
-            app:layout_constraintTop_toBottomOf="@+id/et_login_email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="?android:attr/fingerprintAuthDrawable"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -65,8 +70,8 @@
             android:id="@+id/cb_login_remember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="12dp"
             android:buttonTint="#AC67D3"
             android:text="@string/Recuérdame"
             android:textColor="#95000000"
@@ -78,20 +83,21 @@
         <Button
             android:id="@+id/btn_login_login"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="199dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="36dp"
             android:backgroundTint="#AC67D3"
             android:onClick="intentToMap"
             android:outlineAmbientShadowColor="#3F51B5"
             android:outlineSpotShadowColor="#3F51B5"
             android:text="@string/login"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold"
             app:iconTintMode="add"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cb_login_remember"
             app:strokeColor="#AC67D3" />
@@ -99,23 +105,25 @@
         <Button
             android:id="@+id/btn_login_register"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#AC67D3"
+            android:layout_width="198dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#FFFFFF"
             android:backgroundTintMode="add"
             android:onClick="intentToRegister"
             android:outlineAmbientShadowColor="#3F51B5"
             android:outlineSpotShadowColor="#3F51B5"
-            android:text="@string/registrar"
+            android:text="Crear una cuenta"
+            android:textAlignment="center"
+            android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="#FFFFFF"
+            android:textColor="#8D4BA6"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_login_login"
-            app:strokeColor="#AC67D3" />
+            app:strokeColor="#FFFFFF" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
