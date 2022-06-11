@@ -13,15 +13,15 @@
 
         <Button
             android:id="@+id/btn_profile_changeavatar"
-            android:layout_width="32dp"
-            android:layout_height="37dp"
+            android:layout_width="57dp"
+            android:layout_height="50dp"
             android:background="@color/common_google_signin_btn_tint"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.282"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.112"
+            app:layout_constraintVertical_bias="0.11"
             app:tint="#AC67D3"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -29,7 +29,7 @@
             android:id="@+id/iv_profile_avatar"
             android:layout_width="111dp"
             android:layout_height="79dp"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="36dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,9 +39,33 @@
             android:id="@+id/tv_profile_nametext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:text="Nombre"
+            android:textColor="#AC67D3"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/btn_profile_changeavatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:text="NOMBRE"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/btn_profile_changeavatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_nametext" />
+
+        <TextView
+            android:id="@+id/tv_profile_emailtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:text="Correo:"
             android:textColor="#AC67D3"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -49,45 +73,10 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_profile_avatar" />
 
         <TextView
-            android:id="@+id/tv_profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
-            android:text="NOMBRE"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_nametext" />
-
-        <TextView
-            android:id="@+id/tv_profile_dnitext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
-            android:text="DNI:"
-            android:textColor="#AC67D3"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_profile_name" />
-
-        <TextView
-            android:id="@+id/tv_profile_dni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
-            android:text="DNI"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_dnitext" />
-
-        <TextView
             android:id="@+id/tv_profile_birthdaytext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:text="Cumpleaños:"
             android:textColor="#AC67D3"
@@ -97,67 +86,79 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_profile_dni" />
 
         <TextView
-            android:id="@+id/tv_profile_birthday"
+            android:id="@+id/tv_profile_dni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="20dp"
-            android:text="CUMPLEAÑOS"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_birthdaytext" />
-
-        <TextView
-            android:id="@+id/tv_profile_emailtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
-            android:text="Correo:"
-            android:textColor="#AC67D3"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="DNI"
             android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_birthday" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_dnitext" />
 
         <TextView
-            android:id="@+id/tv_profile_email"
+            android:id="@+id/tv_profile_dnitext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
-            android:text="CORREO"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_emailtext" />
-
-        <TextView
-            android:id="@+id/tv_profile_passwordtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:text="Contraseña:"
+            android:text="DNI:"
             android:textColor="#AC67D3"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_profile_email" />
 
+        <TextView
+            android:id="@+id/tv_profile_passwordtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:text="Contraseña:"
+            android:textColor="#AC67D3"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_birthday" />
+
         <EditText
             android:id="@+id/tv_profile_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
             android:clickable="false"
             android:editable="false"
             android:ems="10"
             android:enabled="false"
             android:inputType="textPassword"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_profile_passwordtext"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_profile_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="CUMPLEAÑOS"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_birthdaytext" />
+
+        <TextView
+            android:id="@+id/tv_profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:text="CORREO"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_emailtext" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
