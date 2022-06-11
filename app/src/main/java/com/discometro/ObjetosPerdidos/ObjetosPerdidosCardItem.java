@@ -12,6 +12,7 @@ public class ObjetosPerdidosCardItem {
         this.imagenLogo = imagenLogo;
         this.nameDisco=nameDisco;
         this.imagenObjeto=imagenObjeto;
+
     }
 
     public String getNombreObj() {
@@ -57,4 +58,6 @@ public class ObjetosPerdidosCardItem {
     public String getImagenObjeto() {
         return imagenObjeto;
     }
+
+
 }

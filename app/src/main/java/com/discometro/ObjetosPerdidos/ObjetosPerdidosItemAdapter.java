@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
     private List<ObjetosPerdidosCardItem> listItems;
     private String nombreObj,usuario,descripcion,imagenLogo;
     private Bitmap bmImagenObjeto;
+    private Button reclamar;
     private ViewModelObjetosPerdidosActivity vm;
     private ObjetosPerdidosActivity objetosPerdidosActivity;
     private ArrayList<String> usersArray;
@@ -47,12 +49,14 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
     @Override
     public ViewHolderItems onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.objetos_perdidos_item_list, null, false);
+        reclamar = view.findViewById(R.id.btn_objectitemlist_reclaim);
         return new ViewHolderItems(view);
     }
 
 
     @Override
     public void onBindViewHolder(ViewHolderItems holder, int position) {
+        ObjetosPerdidosCardItem card = listItems.get(position);
         usuario = listItems.get(position).getUsuario();
         if(listItems.get(position).getImagenObjeto().equals("")){
             vm.iniBitmap("fotosObjetosPerdidos/defaultObject.jpg",usuario);
@@ -62,6 +66,13 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
         }
         usersArray.add(usuario);
         holderItemsArrayList.add(holder);
+
+        reclamar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(reclamar.getContext(), "Se ha reclamado el objeto", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -86,6 +97,7 @@ public class ObjetosPerdidosItemAdapter extends RecyclerView.Adapter<ObjetosPerd
                     String identificador= vm.getMapImagesObjects().getValue().getIdentificador();
                     int index = usersArray.indexOf(identificador);
                     if(index!=-1){
+
                         nombreObj = listItems.get(index).getNombreObj();
                         usuario = listItems.get(index).getUsuario();
                         descripcion = listItems.get(index).getDescripcion();
