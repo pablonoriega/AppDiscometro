@@ -8,11 +8,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
+import com.discometro.Login.LoginActivity;
 import com.discometro.MainActivity.MainActivity;
 import com.discometro.R;
 import com.discometro.User.User;
@@ -66,7 +68,19 @@ public class RegistroActivity extends AppCompatActivity {
             }
 
         });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent vuelta = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(vuelta);
+
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this,callback);
+
     }
+
 
     public boolean isPasswordSafe(String password) {
         Pattern pattern = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
