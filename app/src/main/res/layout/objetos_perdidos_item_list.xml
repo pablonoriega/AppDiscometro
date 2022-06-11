@@ -22,28 +22,19 @@
                 android:layout_height="33dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.208"
+                app:layout_constraintHorizontal_bias="0.073"
                 app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_objectimg"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.871" />
-
-            <TextView
-                android:id="@+id/desc_LostObject2"
-                android:layout_width="175dp"
-                android:layout_height="33dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.208"
-                app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_objectimg"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.529" />
+                app:layout_constraintVertical_bias="0.957" />
 
             <TextView
                 android:id="@+id/tv_objectitemlist_username"
                 android:layout_width="4dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_logo"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_logo"
                 app:layout_constraintTop_toBottomOf="@+id/tv_objectitemlist_username" />
 
@@ -71,23 +64,38 @@
                 android:id="@+id/desc_LostObject"
                 android:layout_width="175dp"
                 android:layout_height="33dp"
+                android:translationX="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.147"
+                app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_objectimg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.341" />
+
+            <TextView
+                android:id="@+id/desc_LostObject2"
+                android:layout_width="179dp"
+                android:layout_height="28dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.208"
                 app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_objectimg"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.529" />
+                app:layout_constraintVertical_bias="0.341" />
 
             <TextView
                 android:id="@+id/obj_LostObject"
-                android:layout_width="117dp"
-                android:layout_height="33dp"
+                android:layout_width="114dp"
+                android:layout_height="25dp"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/desc_LostObject"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.272"
+                app:layout_constraintHorizontal_bias="0.087"
                 app:layout_constraintStart_toEndOf="@+id/iv_objectitemlist_logo"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.446" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <Button
                 android:id="@+id/btn_objectitemlist_reclaim"
