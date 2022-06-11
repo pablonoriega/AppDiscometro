@@ -42,7 +42,7 @@
             app:backgroundTint="#00BCD4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_dialog_email"
+            app:srcCompat="@drawable/charlando"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -56,7 +56,7 @@
             app:backgroundTint="#00BCD4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/FAB_discoprofile_message"
-            app:srcCompat="@android:drawable/sym_contact_card"
+            app:srcCompat="@drawable/cartera"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -70,7 +70,7 @@
             app:backgroundTint="#00BCD4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/FAB_discoprofile_subscribe"
-            app:srcCompat="@drawable/ic_star"
+            app:srcCompat="@drawable/heart"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -83,9 +83,10 @@
             android:clickable="true"
             android:onClick="añadirSuscripción"
             app:backgroundTint="#00BCD4"
+            app:fabSize="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_card"
+            app:srcCompat="@drawable/billete"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
