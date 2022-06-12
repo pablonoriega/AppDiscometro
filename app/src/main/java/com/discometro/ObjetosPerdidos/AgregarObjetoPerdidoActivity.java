@@ -107,6 +107,7 @@ public class AgregarObjetoPerdidoActivity extends AppCompatActivity {
             try {
                 Bitmap bitmapImg = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
                 objectImage.setImageBitmap(bitmapImg);
+                vmObjetos.SaveImage(imgUri,"fotosObjetosPerdidos/"+u.getCorreo());
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -117,7 +118,6 @@ public class AgregarObjetoPerdidoActivity extends AppCompatActivity {
 
     public  void guardarImagen(){
         if (imgUri != null){
-            vmObjetos.SaveImage(imgUri,"fotosObjetosPerdidos/"+u.getCorreo());
             card.setImagenObjeto("fotosObjetosPerdidos/"+u.getCorreo());
 
 

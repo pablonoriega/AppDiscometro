@@ -44,6 +44,8 @@ public class PerfilUserFragment extends Fragment {
     private final int IMG_REQUEST_ID = 10;
     private Uri imgUri;
     private String correo;
+    private Bitmap bitmapImg;
+    private boolean iniciat = false;
 
     public PerfilUserFragment() {
         // Required empty public constructor
@@ -94,21 +96,22 @@ public class PerfilUserFragment extends Fragment {
 
             imgUri = data.getData();
             try {
-                Bitmap bitmapImg = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), imgUri);
+                bitmapImg = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), imgUri);
                 guardarImagen();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
-
     public  void guardarImagen(){
+        iniciat = true;
         if (imgUri != null){
             vm.SaveImage(imgUri,"fotosPerfil/"+u.getCorreo());
             u.setUri("fotosPerfil/"+u.getCorreo());
             vm.saveUser(u);
-            vm.iniBitmap(u.getUrl());
+
+
+
         }
     }
 
@@ -118,6 +121,7 @@ public class PerfilUserFragment extends Fragment {
         final Observer<User> observerUsuario = new Observer<User>() {
             @Override
             public void onChanged(User user) {
+
                 if (vm.getUser().getValue().equals(null)) {
                     Toast.makeText(getActivity(), "El usuario o la contraseÃ±a son incorrectos", Toast.LENGTH_SHORT).show();
                 } else {
@@ -128,14 +132,17 @@ public class PerfilUserFragment extends Fragment {
                     password.setText(u.getContra());
                     dni.setText(u.getDni());
                     email.setText(u.getCorreo());
-                    if(u.getUrl().equals("")){
-                        vm.iniBitmap("fotosPerfil/defaultUser.jpg");
 
-                    }
-                    else {
-                        vm.iniBitmap(u.getUrl());
-                    }
+                    if(iniciat == false){
+                        if(u.getUrl().equals("")){
+                            vm.iniBitmap("fotosPerfil/defaultUser.jpg");
 
+                        }
+                        else {
+                            vm.iniBitmap(u.getUrl());
+                        }
+                    }
+                    iniciat = false;
 
                 }
             }

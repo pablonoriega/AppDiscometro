@@ -61,6 +61,9 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_disco);
 
+
+
+
         intent=getIntent();
         Bundle extras = intent.getExtras();
         correo = extras.getString("usuario");
@@ -129,16 +132,16 @@ public class PerfilDiscoActivity extends AppCompatActivity implements BotonesPer
 
         ImageView imageView = new ImageView(this);
         if (view.equals(ib_1)) {
-            imageView.setImageResource(Integer.parseInt(disco.getFoto1()));
+
         }
         else if (view.equals(ib_2)) {
-            imageView.setImageResource(Integer.parseInt(disco.getFoto2()));
+
         }
         else if (view.equals(ib_3)) {
-            imageView.setImageResource(Integer.parseInt(disco.getFoto3()));
+
         }
         else if (view.equals(ib_4)) {
-            imageView.setImageResource(Integer.parseInt(disco.getFoto4()));
+
         }
         builder.addContentView(imageView, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         builder.show();
