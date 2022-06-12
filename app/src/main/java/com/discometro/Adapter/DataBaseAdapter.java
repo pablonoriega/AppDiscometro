@@ -329,7 +329,7 @@ public class DataBaseAdapter extends Activity {
 
         StorageReference photoReference= storageRef.child(path);
 
-        final long ONE_MEGABYTE = 1024 * 1024;
+        final long ONE_MEGABYTE = 1024 * 1024 * 8 ;
         photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
